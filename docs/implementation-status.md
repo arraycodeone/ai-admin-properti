@@ -1,5 +1,14 @@
 # Status implementasi
 
+## Persiapan Supabase 4 Oktober 2026
+
+- Bagian Supabase dari T-003 (issue #3) telah diverifikasi pada `feature/supabase-test-setup`. Layanan eksternal lain dalam T-003 belum disiapkan.
+- Panduan ada di [supabase-setup.md](supabase-setup.md) dan checker koneksi baca saja tersedia melalui `npm.cmd run check:supabase`.
+- Koneksi nyata Auth health, Auth Admin, dan transaksi PostgreSQL baca saja lulus pada proyek uji. Session pooler memakai TLS dengan verifikasi CA dan hostname; kredensial serta sertifikat tetap lokal dan diabaikan Git.
+- Checker berjalan dalam mode `supabase`/`test`; aplikasi tetap `preview` sampai migrasi. Origin localhost dan organisasi A terverifikasi. Rincian target dan setup ada pada panduan.
+- Typecheck, lint, dan 21 tes Vitest lulus, termasuk empat kasus penolakan konfigurasi checker. Migrasi, seed, dan `test:db` belum dijalankan; langkah berikutnya issue #4 untuk migrasi dan tipe database.
+- Seluruh T-003 belum selesai; status fitur di bawah adalah snapshot milestone sebelumnya.
+
 ## Perapihan struktur 4 Oktober 2026
 
 - Dokumentasi aktif dipusatkan di `docs/`; [architecture.md](architecture.md) menjelaskan implementasi sekarang, dan roadmap/backlog tetap menyimpan target fitur.
