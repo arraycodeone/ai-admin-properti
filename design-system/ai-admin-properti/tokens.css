@@ -1,0 +1,194 @@
+/* AI Admin Properti · design system v0.1 · light theme proposal.
+   Source of truth for visual values. No build step or external font required. */
+
+:root {
+  /* 1. PRIMITIVE — palette, dimensions, type, motion. */
+  --p-white: hsl(0 0% 100%);
+  --p-cream-50: hsl(42 35% 97%);
+  --p-sage-50: hsl(145 20% 94%);
+  --p-sage-100: hsl(145 18% 89%);
+  --p-ink-900: hsl(160 20% 13%);
+  --p-ink-600: hsl(160 9% 35%);
+  --p-line-200: hsl(150 10% 84%);
+  --p-line-600: hsl(150 8% 43%);
+  --p-forest-700: hsl(158 50% 24%);
+  --p-forest-800: hsl(158 45% 18%);
+  --p-forest-900: hsl(158 42% 14%);
+  --p-green-50: hsl(145 40% 94%);
+  --p-green-700: hsl(146 45% 25%);
+  --p-green-800: hsl(146 45% 19%);
+  --p-blue-50: hsl(215 65% 95%);
+  --p-blue-700: hsl(215 65% 34%);
+  --p-amber-50: hsl(43 100% 94%);
+  --p-amber-800: hsl(30 75% 27%);
+  --p-red-50: hsl(0 75% 96%);
+  --p-red-700: hsl(0 61% 36%);
+  --p-red-800: hsl(0 61% 29%);
+  --p-scrim: hsl(160 20% 13% / 0.55);
+  --p-space-1: 0.25rem;
+  --p-space-2: 0.5rem;
+  --p-space-3: 0.75rem;
+  --p-space-4: 1rem;
+  --p-space-5: 1.25rem;
+  --p-space-6: 1.5rem;
+  --p-space-8: 2rem;
+  --p-space-10: 2.5rem;
+  --p-space-12: 3rem;
+  --p-space-16: 4rem;
+  --p-space-20: 5rem;
+  --p-font-sans: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --p-font-serif: Georgia, "Times New Roman", serif;
+  --p-font-mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+  --p-text-xs: 0.75rem;
+  --p-text-sm: 0.875rem;
+  --p-text-md: 1rem;
+  --p-text-lg: 1.125rem;
+  --p-text-xl: 1.5rem;
+  --p-text-2xl: 2rem;
+  --p-text-3xl: 2.5rem;
+  --p-text-display: 3.5rem;
+  --p-leading-body: 1.6;
+  --p-leading-heading: 1.12;
+  --p-weight-regular: 400;
+  --p-weight-semibold: 600;
+  --p-weight-bold: 700;
+  --p-radius-sm: 0.5rem;
+  --p-radius-md: 0.75rem;
+  --p-radius-lg: 1.25rem;
+  --p-radius-pill: 999px;
+  --p-stroke: 1px;
+  --p-focus-width: 3px;
+  --p-focus-offset: 3px;
+  --p-control-md: 2.75rem;
+  --p-control-lg: 3rem;
+  --p-duration-fast: 150ms;
+  --p-duration-normal: 220ms;
+  --p-ease: ease-out;
+  --p-shadow-sm: 0 2px 8px hsl(160 20% 13% / 0.06);
+  --p-shadow-lg: 0 20px 60px hsl(160 20% 13% / 0.16);
+
+  /* 2. SEMANTIC — purpose. Brand can change without changing status meaning. */
+  --color-page: var(--p-cream-50);
+  --color-surface: var(--p-white);
+  --color-surface-soft: var(--p-sage-50);
+  --color-text: var(--p-ink-900);
+  --color-text-muted: var(--p-ink-600);
+  --color-primary: var(--p-forest-700);
+  --color-primary-hover: var(--p-forest-800);
+  --color-primary-active: var(--p-forest-900);
+  --color-on-primary: var(--p-white);
+  --color-border: var(--p-line-200); /* Decorative separators only. */
+  --color-control-border: var(--p-line-600); /* Meaningful control boundary. */
+  --color-focus: var(--p-blue-700);
+  --color-disabled-bg: var(--p-sage-100);
+  --color-disabled-text: var(--p-ink-600);
+  --color-whatsapp: var(--p-green-700); /* CTA treatment, not an official logo token. */
+  --color-whatsapp-hover: var(--p-green-800);
+  --color-success-bg: var(--p-green-50);
+  --color-success-text: var(--p-green-700);
+  --color-info-bg: var(--p-blue-50);
+  --color-info-text: var(--p-blue-700);
+  --color-warning-bg: var(--p-amber-50);
+  --color-warning-text: var(--p-amber-800);
+  --color-danger-bg: var(--p-red-50);
+  --color-danger-text: var(--p-red-700);
+  --color-danger-action: var(--p-red-700);
+  --color-danger-hover: var(--p-red-800);
+  --color-scrim: var(--p-scrim);
+  --font-body: var(--p-font-sans);
+  --font-editorial: var(--p-font-serif);
+  --font-code: var(--p-font-mono);
+  --text-body: var(--p-text-md);
+  --text-label: var(--p-text-sm);
+  --text-caption: var(--p-text-xs);
+  --text-page-title: var(--p-text-2xl);
+  --text-section-title: var(--p-text-xl);
+  --text-display: var(--p-text-display);
+  --leading-body: var(--p-leading-body);
+  --leading-heading: var(--p-leading-heading);
+  --weight-regular: var(--p-weight-regular);
+  --weight-semibold: var(--p-weight-semibold);
+  --weight-bold: var(--p-weight-bold);
+  --space-inline: var(--p-space-2);
+  --space-field: var(--p-space-3);
+  --space-component: var(--p-space-4);
+  --space-group: var(--p-space-6);
+  --space-layout: var(--p-space-8);
+  --space-public-section: var(--p-space-20);
+  --space-admin-section: var(--p-space-6);
+  --page-gutter: var(--p-space-4);
+  --layout-public-max: 75rem;
+  --layout-admin-max: 90rem;
+  --layout-reading-max: 65ch;
+  --layout-sidebar: 14rem;
+  --layout-inbox-list: 17rem;
+  --radius-control: var(--p-radius-sm);
+  --radius-card: var(--p-radius-md);
+  --radius-panel: var(--p-radius-lg);
+  --radius-badge: var(--p-radius-pill);
+  --stroke: var(--p-stroke);
+  --focus-width: var(--p-focus-width);
+  --focus-offset: var(--p-focus-offset);
+  --motion-fast: var(--p-duration-fast);
+  --motion-normal: var(--p-duration-normal);
+  --motion-ease: var(--p-ease);
+  --shadow-card: var(--p-shadow-sm);
+  --shadow-dialog: var(--p-shadow-lg);
+  --z-sticky: 10;
+  --z-overlay: 40;
+  --z-toast: 50;
+
+  /* 3. COMPONENT — consume semantic tokens; components never choose raw colors. */
+  --button-bg: var(--color-primary);
+  --button-fg: var(--color-on-primary);
+  --button-hover-bg: var(--color-primary-hover);
+  --button-active-bg: var(--color-primary-active);
+  --button-height: var(--p-control-md);
+  --button-public-height: var(--p-control-lg);
+  --button-padding-x: var(--space-component);
+  --button-radius: var(--radius-control);
+  --input-bg: var(--color-surface);
+  --input-fg: var(--color-text);
+  --input-border: var(--color-control-border);
+  --input-height: var(--p-control-md);
+  --input-padding: var(--space-field);
+  --input-radius: var(--radius-control);
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border);
+  --card-padding: var(--space-group);
+  --card-radius: var(--radius-card);
+  --badge-padding-x: var(--space-field);
+  --badge-padding-y: var(--p-space-1);
+  --badge-radius: var(--radius-badge);
+  --message-inbound-bg: var(--color-surface-soft);
+  --message-inbound-fg: var(--color-text);
+  --message-outbound-bg: var(--color-info-bg);
+  --message-outbound-fg: var(--color-text);
+  --message-radius: var(--radius-card);
+  --nav-active-bg: var(--color-surface-soft);
+  --nav-active-fg: var(--color-primary);
+  --table-header-bg: var(--color-surface-soft);
+  --table-row-height: 3.5rem;
+  --dialog-bg: var(--color-surface);
+  --dialog-max-width: 32rem;
+  --dialog-radius: var(--radius-panel);
+}
+
+/* Foundation only; application layouts belong in components, not in tokens. */
+* { box-sizing: border-box; }
+html { color-scheme: light; }
+body { margin: 0; background: var(--color-page); color: var(--color-text); font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); }
+button, input, select, textarea { font: inherit; }
+button, a, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
+button, a, summary { touch-action: manipulation; }
+:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+button, input, select, textarea { scroll-margin-block: var(--space-layout); }
+input, textarea, select { accent-color: var(--color-primary); }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+img, svg { max-width: 100%; }
+[hidden] { display: none !important; }
+.numeral { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

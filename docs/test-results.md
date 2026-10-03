@@ -1,0 +1,66 @@
+# Bukti pengujian lokal
+
+Tanggal: 3 Oktober 2026 (Asia/Jakarta). Versi: working tree milestone lokal v0.1.0, belum ada commit. Lingkungan: Windows, Node 24.16.0, npm 11.13.0, Next 16.3.8, React 19.3.0. Paket dikunci pada package-lock.json.
+
+## Hasil
+
+| Pemeriksaan | Status | Hasil aktual dan cakupan |
+| --- | --- | --- |
+| `npm.cmd run typecheck` | PASS | Route types dan TypeScript valid. |
+| Percobaan salah yang disengaja | PASS | `tests/check-checks.ts` memasukkan string ke number; typecheck gagal TS2322. File percobaan dihapus, build selanjutnya lulus. |
+| `npm.cmd run lint` | PASS | Tanpa error atau warning. |
+| `npm.cmd test` | PASS | 11 tes Vitest; katalog/tenant/public DTO, filter, harga bigint, WIB, URL WhatsApp, environment dan helper izin. |
+| `node scripts/check-design.mjs` | PASS | 9 pasangan warna teks lulus, rasio terendah 4,83:1. |
+| `npm.cmd run build` | PASS | Build produksi, route publik/internal dan batas import server/client berhasil. |
+| `npm.cmd run test:e2e` | PASS | 10 tes Playwright: lima skenario masing-masing pada desktop 1440×1000 dan mobile 360×800; tambahan landscape 800×360. |
+| Pemeriksaan bundle client | PASS | Pencarian pada `.next/static` tidak menemukan nama env privileged atau marker privat fixture. Ini pemeriksaan terbatas, bukan audit keamanan penuh. |
+| Pemeriksaan screenshot | PASS | Screenshot desktop dan mobile ditinjau; tidak ada overflow atau elemen bertumpuk pada halaman yang diuji. |
+| `npm.cmd run test:db` | NOT RUN | Menolak berjalan dengan exit 1 karena TEST_DATABASE_URL dan konfirmasi target uji tidak tersedia. |
+| Migrasi / seed dua kali / Auth nyata / RLS | NOT RUN | Tidak ada Supabase atau PostgreSQL uji. SQL belum dianggap tervalidasi. |
+| AI live / WhatsApp / Inngest / hosting | NOT RUN | Akses belum tersedia; adapter/pipeline penuh belum dibuat. |
+
+## Data awal dan hasil yang diharapkan
+
+- Organisasi A mempunyai 9 listing contoh, organisasi B 1 listing. Publik A hanya melihat 6 listing aktif/published.
+- Dimas: Bekasi, rumah, budget Rp700 juta, minimal 2 kamar. Hasil harus BKS-001 dan BKS-002. Aktual sesuai.
+- Draft, paused, sold, dan listing B harus tidak tampil pada pencarian atau URL detail publik A. Aktual sesuai pada preview.
+- Penanda privat yang disuntikkan ke row sumber tidak boleh lolos DTO. Aktual marker dan kolom tambahan hilang dari hasil allowlist.
+- Harga 9007199254740993 harus tidak dibulatkan. Aktual tepat melalui bigint/string.
+- 16:59:59 UTC dan 17:00:00 UTC harus berada pada dua tanggal WIB berbeda. Aktual sesuai.
+- Tidak ada nomor WhatsApp konfigurasi. Aktual menampilkan status kanal belum aktif dan tidak membuat link wa.me.
+- `/app` dan `/app/properti` tanpa sesi harus ke `/login`. Aktual sesuai dalam mode preview; ini tidak membuktikan RLS nyata.
+
+## Interaksi yang diperiksa
+
+| Kontrol / alur | Bukti |
+| --- | --- |
+| Lokasi + tipe + anggaran → Cari properti | URL filter berubah, katalog menampilkan hasil yang cocok. |
+| Minimal kamar → Cari properti | Bekasi/Rp700 juta/2 kamar menghasilkan 2 listing. |
+| Hapus filter | Katalog kembali ke 6 listing publik sintetis. |
+| Link BKS-001 | Navigasi ke detail dengan harga, kode, dan spesifikasi benar. |
+| Kategori rumah / apartemen / tanah | Masing-masing membuka filter kategori yang sesuai. |
+| Pintasan Depok | Membuka hasil Rumah Teras Sukmajaya. |
+| Wordmark header | Kembali ke beranda. |
+| Konsultasi | Navigasi ke anchor `#konsultasi`. |
+| Privasi | Membuka informasi privasi demo. |
+| Masuk tim | Membuka halaman login dengan status belum dikonfigurasi. |
+| Lihat pratinjau dashboard | Membuka `/preview`, terpisah dari route internal. |
+| Pilihan Sales Sari | Dimas tidak tampil; Nadia tampil. |
+| Pencarian prospek yang tidak ada | Menampilkan empty state. |
+| Tab pertama + Enter | Skip link mendapat fokus dan menuju `#main`. |
+| Reduced motion | Computed scroll-behavior berubah menjadi auto. |
+| Route listing tidak terbit / tenant B | Halaman tidak ditemukan. |
+
+Link lain yang menuju target sama diperiksa melalui href dan target route. Form login live, logout dengan sesi, state kegagalan Supabase, upload, serta kontrol bisnis yang belum dibangun tidak diklaim sudah diuji.
+
+Tes awal menemukan selector alert ambigu karena route announcer Next.js, serta label kategori mobile yang lebih pendek. Selector diperbaiki untuk mengikuti peran/konten yang terlihat. Tes akhir lulus tanpa melemahkan pemeriksaan perilaku. Satu run Windows tertahan saat cleanup server oleh sandbox; proses tes milik sesi dihentikan secara terarah dan run diulang dengan izin proses. Dev server pengguna port 3000 tetap berjalan.
+
+## Artefak
+
+- `tests/integration/foundation.test.ts`
+- `tests/e2e/site.spec.ts`
+- `supabase/tests/access.test.sql`, `supabase/tests/integrity.test.sql` (belum dieksekusi)
+- `test-results/.last-run.json`, `playwright-report/index.html` (hasil lokal, tidak masuk Git)
+- `docs/evidence/landing-desktop.png`, `docs/evidence/landing-mobile.png`
+
+Hasil lokal tidak menggantikan T-013, T-025, T-030, T-039, T-041, atau UAT/produksi.
