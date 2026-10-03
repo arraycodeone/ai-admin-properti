@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { demoLeads } from "../../../../tests/fixtures/leads";
+import { demoLeads } from "@/demo/leads";
 import { formatRupiah } from "@/lib/money";
 
 const stageLabels: Record<string, string> = { new: "Baru", contacted: "Dihubungi sales", survey_scheduled: "Survei terjadwal", won: "Won" };

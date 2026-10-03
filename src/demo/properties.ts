@@ -1,4 +1,4 @@
-import type { PropertyRecord } from "../../src/modules/properties/types";
+import type { PropertyRecord } from "@/modules/properties/types";
 
 export const organizationA = "10000000-0000-4000-8000-000000000001";
 export const organizationB = "10000000-0000-4000-8000-000000000002";

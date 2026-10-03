@@ -1,7 +1,7 @@
 import "server-only";
 import { getEnv } from "@/server/env";
 import { systemClient } from "@/server/db/system-client";
-import { properties } from "../../../tests/fixtures/properties";
+import { properties } from "@/demo/properties";
 import { filterSchema } from "./schemas";
 import { searchProperties } from "./service";
 import type { PropertyFilters, PublicProperty } from "./types";

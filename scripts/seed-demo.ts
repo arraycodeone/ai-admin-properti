@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
-import { properties, organizationA, organizationB, privateMarker } from "../tests/fixtures/properties";
-import { knowledge } from "../tests/fixtures/knowledge";
-import { demoLeads } from "../tests/fixtures/leads";
+import { properties, organizationA, organizationB, privateMarker } from "../src/demo/properties";
+import { knowledge } from "../src/demo/knowledge";
+import { demoLeads } from "../src/demo/leads";
 
 if (process.env.DEMO_SEED_CONFIRM_ISOLATED !== "true" || process.env.APP_ENV === "production") {
   throw new Error("Seed hanya untuk proyek uji terisolasi. Isi DEMO_SEED_CONFIRM_ISOLATED=true setelah memeriksa target.");
