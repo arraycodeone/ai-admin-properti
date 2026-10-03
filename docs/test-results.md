@@ -1,5 +1,13 @@
 # Bukti pengujian lokal
 
+## Verifikasi setup Supabase, 4 Oktober 2026
+
+Typecheck, lint, dan 21 tes Vitest lulus. Empat tes tambahan memastikan checker menolak produksi, target belum dikonfirmasi, SQL beda proyek, dan TLS tanpa verifikasi sebelum membuka koneksi, tanpa mencetak nilai secret tiruan.
+
+`check:supabase` lulus pada proyek uji hosted dalam mode `supabase`/`test`: Auth health, Auth Admin baca saja, dan PostgreSQL `select 1` dalam transaksi baca saja. Koneksi SQL melalui Session pooler port 5432 dengan `sslmode=verify-full` dan CA resmi Supabase. Kegagalan awal `SELF_SIGNED_CERT_IN_CHAIN` selesai setelah CA ditambahkan ke `sslrootcert` lokal. Lihat [setup dan target uji](supabase-setup.md).
+
+Migrasi, seed, login pengguna, dan `test:db` belum dijalankan. Hasil koneksi ini tidak membuktikan RLS. Build/E2E tidak diulang karena perubahan hanya script setup, tes, dan dokumentasi; kode aplikasi tidak berubah. Hasil milestone terdahulu di bawah dipertahankan sebagai riwayat.
+
 ## Verifikasi perapihan struktur, 4 Oktober 2026
 
 Lingkungan: Windows, Node 24.16.0. Dependensi dan lockfile tidak berubah.

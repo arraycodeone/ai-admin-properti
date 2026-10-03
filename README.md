@@ -61,9 +61,13 @@ E2E memakai build produksi pada `127.0.0.1:3100`, terpisah dari dev server. Jala
 
 ## Menyiapkan Supabase uji
 
+Ikuti [panduan setup dan pemeriksaan koneksi](docs/supabase-setup.md) untuk issue #3. Jalankan `npm.cmd run check:supabase` setelah konfigurasi target uji lengkap; pemeriksaan ini bisa berjalan sebelum migrasi dan seed.
+
+**Hasil 4 Oktober 2026:** koneksi nyata Auth, Auth Admin, dan PostgreSQL baca saja lulus pada proyek uji melalui Session pooler dengan TLS terverifikasi. Aplikasi tetap memakai preview sampai migrasi tersedia. Migrasi, seed, login pengguna, dan RLS belum diuji.
+
 1. Siapkan proyek Supabase terisolasi. Alternatif lokal memerlukan Docker dan Supabase CLI; keduanya belum tersedia saat implementasi ini.
-2. Terapkan kedua file SQL dalam `supabase/migrations/` secara berurutan melalui workflow migrasi Supabase. Jangan menargetkan produksi.
-3. Salin `.env.example` menjadi `.env.local`. Isi URL/publishable key/secret key milik proyek uji, `APP_MODE=supabase`, dan `APP_ENV=test`.
+2. Bila belum ada, salin `.env.example` menjadi `.env.local`. Isi URL/publishable key/secret key serta koneksi SQL milik proyek uji dan `APP_ENV=test`. Jalankan checker dalam mode `supabase` sesuai panduan di atas.
+3. Pada issue #4, terapkan kedua file SQL dalam `supabase/migrations/` secara berurutan melalui workflow migrasi Supabase. Jangan menargetkan produksi. Aktifkan `APP_MODE=supabase` untuk aplikasi setelah skema tersedia.
 4. Tetapkan password demo unik minimal 16 karakter pada `DEMO_SEED_PASSWORD`, serta `DEMO_SEED_CONFIRM_ISOLATED=true`.
 5. Jalankan `npm.cmd run seed:demo`. Seed menggunakan Auth Admin API dan tidak mengubah password akun yang sudah ada. Seed menolak organisasi non-demo atau organisasi di luar dua fixture.
 6. Isi `TEST_DATABASE_URL` dari database uji yang sama dan `TEST_DATABASE_CONFIRM_ISOLATED=true`, lalu jalankan `npm.cmd run test:db`.

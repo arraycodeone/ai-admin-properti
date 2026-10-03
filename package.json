@@ -13,6 +13,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint . --max-warnings=0",
     "test": "vitest run",
+    "check:supabase": "tsx scripts/check-supabase.ts",
     "test:db": "node scripts/test-db.mjs",
     "test:e2e": "playwright test",
     "seed:demo": "tsx --env-file=.env.local scripts/seed-demo.ts"
