@@ -1,0 +1,18 @@
+{
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/*.tsbuildinfo": true,
+    "playwright-report": true,
+    "test-results": true,
+    "coverage": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/*.tsbuildinfo": true,
+    "playwright-report": true,
+    "test-results": true,
+    "coverage": true
+  }
+}

@@ -1,5 +1,7 @@
 # Design system — Website Agen & AI Admin Properti
 
+> Arsip desain lama. Acuan visual aktif adalah [DESIGN.md](../../../../DESIGN.md). Token dan preview di folder ini tidak diimpor aplikasi.
+
 Versi 0.1 · 3 Oktober 2026 · **usulan visual, belum identitas merek final**.
 
 Cakupan yang dipilih: **website publik dan dashboard owner/sales**. Design system ini menjadi panduan implementasi pada proyek yang sudah direncanakan. Pratinjau merupakan contoh komponen dan interaksi lokal, bukan aplikasi yang telah terhubung dengan database, AI, atau WhatsApp.
@@ -13,7 +15,7 @@ Cakupan yang dipilih: **website publik dan dashboard owner/sales**. Design syste
 | [preview.html](./preview.html) | Pratinjau website, dashboard, dan katalog komponen. Buka langsung di browser, tanpa instalasi. |
 | [check.cjs](./check.cjs) | Pemeriksaan referensi token, pasangan kontras, struktur dasar HTML, dan sintaks JavaScript. |
 
-Acuan produk: [plan demo](../../plan-ship-demo-ai-admin-properti.md), [struktur folder](../../struktur-folder-ai-admin-properti.md), [database](../../desain-database-ai-admin-properti.md), [role/skenario](../../role-dan-skenario-bisnis-ai-admin-properti.md), dan [task implementasi/testing](../../task-implementasi-dan-testing-ai-admin-properti.md).
+Acuan produk: [plan demo](../../../roadmap.md), [struktur folder](../../../architecture.md), [database](../../../database.md), [role/skenario](../../../business.md), dan [task implementasi/testing](../../../backlog.md).
 
 Keputusan bisnis tetap sama: layanan pembuatan/maintenance untuk agensi; pelanggan berinteraksi lewat WhatsApp; dua role login internal. Website tidak menggunakan menu paket SaaS, trial, atau pendaftaran akun pelanggan.
 
@@ -250,7 +252,7 @@ Checklist untuk implementasi aplikasi:
 Jalankan dari root workspace:
 
 ```powershell
-node design-system/ai-admin-properti/check.cjs
+node docs/archive/design-system/ai-admin-properti/check.cjs
 ```
 
 Script memeriksa referensi token, siklus alias, pasangan kontras yang dipilih, ID/tautan/label dasar HTML, serta sintaks JavaScript preview. Script tidak menguji RLS, AI, WhatsApp, rendering browser, pembaca layar, atau integrasi bisnis.

@@ -2,8 +2,24 @@
 
 Tanggal: 27 September 2026  
 Revisi: 3 Oktober 2026 — website agen dengan CTA WhatsApp, model jasa maintenance, SEO, pemulihan pekerjaan, urutan pesan, handoff, dan cadangan waktu.  
-Status: rencana implementasi; belum ada aplikasi backend atau deployment dari pekerjaan ini.  
+Status: rencana target demo; fondasi aplikasi lokal tersedia, integrasi end-to-end dan deployment belum selesai. Status aktual: [implementation-status.md](implementation-status.md).
+
 Dasar: spesifikasi MVP AI Admin Properti tanggal 26 September 2026 dan mockup ArrayCodeone.
+
+## Membaca roadmap setelah perapihan 4 Oktober 2026
+
+[Arsitektur aktif](architecture.md) menjelaskan kode yang sudah tersedia. Dokumen ini dan [backlog](backlog.md) menjelaskan target pekerjaan. ID T-001 sampai T-058 tetap dipertahankan.
+
+| Tahap berikutnya | Lokasi saat diimplementasikan |
+| --- | --- |
+| CRUD properti dan FAQ | `src/modules/properties/`, lalu `src/modules/knowledge/` |
+| Prospek, inbox, survei, tugas | Modul fitur terkait di `src/modules/` |
+| Adapter AI, WhatsApp, Storage | `src/server/integrations/` |
+| Urutan pesan, handoff, send gate | `src/server/conversations/` |
+| Dispatcher, outbox, pemulihan | `src/server/jobs/` |
+| Tipe database hasil generator | `src/types/database.generated.ts` setelah migrasi diuji |
+
+Folder tersebut dibuat ketika task-nya dikerjakan, bukan sebagai scaffold kosong. [Rancangan folder sebelumnya](archive/architecture-plan.md) menyimpan rincian historis alur target. Kontrak bisnis dan database tetap mengikuti [business.md](business.md) dan [database.md](database.md).
 
 ## 1. Hasil akhir yang ingin kita ship
 

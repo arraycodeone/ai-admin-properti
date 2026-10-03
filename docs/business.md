@@ -2,7 +2,7 @@
 
 Tanggal: 3 Oktober 2026  
 Status: rancangan operasional dan bahan uji penerimaan; belum merupakan fitur yang sudah berjalan.  
-Acuan: [plan demo](./plan-ship-demo-ai-admin-properti.md), [struktur folder](./struktur-folder-ai-admin-properti.md), dan [desain database](./desain-database-ai-admin-properti.md).
+Acuan: [plan demo](roadmap.md), [struktur folder](architecture.md), dan [desain database](database.md).
 
 Dokumen ini menjelaskan siapa yang menggunakan sistem, apa wewenangnya, dan bagaimana sistem seharusnya bekerja dalam bisnis agen properti. Nama orang, harga, dan kejadian adalah contoh sintetis untuk latihan. “Positif” berarti alur berjalan sesuai tujuan; “negatif” mencakup kegagalan teknis, kekeliruan operasional, serta hasil bisnis yang tidak sesuai harapan. Penanganan yang benar tetap dapat berakhir tanpa penjualan.
 

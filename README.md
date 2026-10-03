@@ -1,8 +1,24 @@
 # Ruang Properti
 
-Fondasi lokal Website Agen dan AI Admin Properti. Next.js, TypeScript, Tailwind, Supabase Auth/PostgreSQL. Struktur kode mengikuti `struktur-folder-ai-admin-properti.md`.
+Fondasi lokal Website Agen dan AI Admin Properti. Next.js, TypeScript, Tailwind, Supabase Auth/PostgreSQL.
 
 **Status 3 Oktober 2026:** website, katalog/filter/detail, halaman privasi, halaman login, dan pratinjau dashboard dapat dijalankan lokal. Data preview sintetis. WhatsApp, AI, jobs, handoff, dan operasional sales belum diimplementasikan. Migrasi, RLS, login Supabase, serta seed sudah ditulis tetapi belum diuji pada database nyata. Ini belum rilis demo end-to-end.
+
+## Mulai membaca proyek
+
+| Kebutuhan | Baca / buka |
+| --- | --- |
+| Petunjuk kerja AI agent | [AGENTS.md](AGENTS.md) |
+| Struktur kode dan alur data saat ini | [Arsitektur](docs/architecture.md) |
+| Halaman / fitur / infrastruktur | `src/app/` / `src/modules/` / `src/server/` |
+| Data sintetis preview dan seed | `src/demo/` |
+| Desain yang berlaku | [DESIGN.md](DESIGN.md) |
+| Skema database dan aturan akses | [Database](docs/database.md) |
+| Aktor dan skenario produk | [Bisnis](docs/business.md) |
+| Rencana / task / status aktual | [Roadmap](docs/roadmap.md) / [Backlog](docs/backlog.md) / [Status](docs/implementation-status.md) |
+| Gambar siap pakai dan file sumber | `public/asset/` dan [assets-source](assets-source/README.md) |
+
+Mulai dari file yang terkait tugas. `docs/archive/` menyimpan rancangan lama, bukan acuan implementasi aktif. Konfigurasi Next.js, TypeScript, lint, dan tes tetap di root.
 
 ## Menjalankan lokal
 
@@ -69,7 +85,9 @@ Seed bersifat reset fixture: menjalankan ulang akan mengembalikan katalog dan em
 
 ## Desain dan progres
 
-Arahan terbaru mengikuti [DESIGN.md](DESIGN.md), dengan struktur pencarian/katalog terinspirasi [Pinhome](https://www.pinhome.id/). Panduan hijau/serif lama di `design-system/ai-admin-properti/` tetap disimpan sebagai artefak sebelumnya dan tidak diimpor aplikasi.
+Arahan terbaru mengikuti [DESIGN.md](DESIGN.md), dengan struktur pencarian/katalog terinspirasi [Pinhome](https://www.pinhome.id/). Panduan hijau/serif lama di `docs/archive/design-system/ai-admin-properti/` tetap disimpan sebagai artefak sebelumnya dan tidak diimpor aplikasi.
+
+Paket gambar Nusa Property telah dipisahkan ke `public/asset/` dan `assets-source/`. Paket itu belum dipetakan ke katalog Ruang Properti/Bekasi; halaman tetap memakai placeholder. Metadata paket bukan sumber data aplikasi.
 
 - [Keputusan desain terbaru](docs/decisions/001-design-and-local-scope.md)
 - [Delivery Gate Anti Slop](docs/anti-slop-check.md)

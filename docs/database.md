@@ -2,8 +2,9 @@
 
 Tanggal: 3 Oktober 2026  
 Status: rancangan logis dan aturan integritas; belum menjadi migrasi SQL yang dijalankan.  
-Acuan: [plan shipping demo](./plan-ship-demo-ai-admin-properti.md).  
-Pasangan dokumen: [struktur folder](./struktur-folder-ai-admin-properti.md).
+Acuan: [plan shipping demo](roadmap.md).
+
+Pasangan dokumen: [struktur folder](architecture.md).
 
 ## 1. Keputusan dasar
 

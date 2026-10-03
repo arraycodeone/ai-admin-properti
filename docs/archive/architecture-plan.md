@@ -1,9 +1,13 @@
 # Struktur folder — Website Agen dan AI Admin Properti
 
+> Arsip rancangan 3 Oktober 2026. Struktur aktif: [architecture.md](../architecture.md). Pohon folder dan status di bawah adalah catatan historis, bukan keadaan kode saat ini.
+
 Tanggal: 3 Oktober 2026  
-Status: target struktur implementasi; sebagian folder/kode sudah dibuat pada milestone lokal 3 Oktober 2026. Status aktual ada di [docs/implementation-status.md](./docs/implementation-status.md).  
-Acuan: [plan shipping demo](./plan-ship-demo-ai-admin-properti.md).  
-Pasangan dokumen: [desain database](./desain-database-ai-admin-properti.md).
+Status: target struktur implementasi; sebagian folder/kode sudah dibuat pada milestone lokal 3 Oktober 2026. Status aktual ada di [docs/implementation-status.md](../implementation-status.md).
+
+Acuan: [plan shipping demo](../roadmap.md).
+
+Pasangan dokumen: [desain database](../database.md).
 
 ## 1. Bentuk aplikasi
 
@@ -268,4 +272,4 @@ Script yang ditargetkan: `dev`, `typecheck`, `lint`, `build`, `test`, `test:db`,
 
 ## 8. Batas keputusan dokumen
 
-Struktur ini adalah desain, belum scaffold aplikasi. Versi dependency dikunci ketika P1 dimulai. Koordinasi pengiriman/handoff lintas instance dan mapping callback status provider harus dibuktikan melalui pengujian integrasi sebelum dinyatakan memenuhi plan. Migrasi database disusun dari [dokumen desain database](./desain-database-ai-admin-properti.md), bukan dari diagram folder saja.
+Struktur ini adalah desain, belum scaffold aplikasi. Versi dependency dikunci ketika P1 dimulai. Koordinasi pengiriman/handoff lintas instance dan mapping callback status provider harus dibuktikan melalui pengujian integrasi sebelum dinyatakan memenuhi plan. Migrasi database disusun dari [dokumen desain database](../database.md), bukan dari diagram folder saja.

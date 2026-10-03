@@ -2,16 +2,16 @@
 
 Tanggal penyusunan: 3 Oktober 2026. Status: **implementasi lokal dimulai; demo end-to-end belum selesai**.
 
-Pembaruan 3 Oktober 2026: fondasi lokal dan UI preview telah dibangun. Status rinci serta hambatan ada di [docs/implementation-status.md](./docs/implementation-status.md); bukti aktual ada di [docs/test-results.md](./docs/test-results.md). Akses layanan eksternal belum tersedia. Checkbox berikut hanya mencentang task yang seluruh hasil milestone-nya sudah dibuktikan.
+Pembaruan 3 Oktober 2026: fondasi lokal dan UI preview telah dibangun. Status rinci serta hambatan ada di [docs/implementation-status.md](implementation-status.md); bukti aktual ada di [docs/test-results.md](test-results.md). Akses layanan eksternal belum tersedia. Checkbox berikut hanya mencentang task yang seluruh hasil milestone-nya sudah dibuktikan.
 
 Dokumen ini memecah rencana menjadi urutan pekerjaan yang bisa dicentang. Ada **48 task untuk demo (T-001–T-048)** dan **10 task persiapan produksi (T-049–T-058)**. T-052 dan T-053 bersifat kondisional. Satu task merupakan satu hasil kerja yang dapat diperiksa, bukan selalu satu hari kerja.
 
 Acuan:
 
-- [Plan demo](./plan-ship-demo-ai-admin-properti.md).
-- [Struktur folder](./struktur-folder-ai-admin-properti.md).
-- [Desain database](./desain-database-ai-admin-properti.md).
-- [Role dan skenario bisnis](./role-dan-skenario-bisnis-ai-admin-properti.md).
+- [Plan demo](roadmap.md).
+- [Struktur folder](architecture.md).
+- [Desain database](database.md).
+- [Role dan skenario bisnis](business.md).
 
 File ini menambahkan backlog pelaksanaan; keputusan yang masih terbuka dalam acuan tetap harus dibuktikan saat implementasi. Menulis task tidak berarti fitur sudah tersedia.
 
