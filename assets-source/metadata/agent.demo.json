@@ -1,0 +1,16 @@
+{
+  "name": "Michael Santoso",
+  "title": "Property Consultant",
+  "isDemo": true,
+  "disclosure": "Profil fiktif untuk demo; potret dibuat dengan AI.",
+  "photo": "/asset/images/agent/michael-santoso-demo.webp",
+  "avatar": "/asset/images/agent/michael-santoso-demo-avatar.webp",
+  "areas": [
+    "BSD",
+    "Alam Sutera",
+    "Bintaro"
+  ],
+  "phone": null,
+  "email": null,
+  "instagram": null
+}

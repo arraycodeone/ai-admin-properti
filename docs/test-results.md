@@ -1,5 +1,30 @@
 # Bukti pengujian lokal
 
+## Verifikasi perapihan struktur, 4 Oktober 2026
+
+Lingkungan: Windows, Node 24.16.0. Dependensi dan lockfile tidak berubah.
+
+| Pemeriksaan | Hasil |
+| --- | --- |
+| `npm.cmd run typecheck` | PASS: route types dan TypeScript valid. |
+| `npm.cmd run lint` | PASS: tanpa error atau warning. |
+| `npm.cmd test` | PASS: 17 tes dalam 2 file. Enam tes tambahan memeriksa query internal setelah dipindahkan. |
+| `node scripts/check-design.mjs` | PASS: 9 pasangan warna; minimum 4,83:1. CSS tidak berubah. |
+| `npm.cmd run build` | PASS: semua route lama tetap dibangun. |
+| `npm.cmd run test:e2e` | PASS: 10 tes desktop/mobile, termasuk filter, detail, redirect login, preview, keyboard, dan overflow. |
+| Perbandingan screenshot beranda | PASS: SHA-256 desktop dan mobile hasil E2E identik dengan `docs/evidence/landing-desktop.png` dan `landing-mobile.png`. |
+| Integritas pemindahan aset | PASS: seluruh 181 file cocok dengan SHA-256 sebelum pemindahan; setelahnya hanya README paket diperbarui. |
+| Referensi metadata aset | PASS: 298 path/URL pada metadata diperiksa dan file tujuan tersedia. |
+| Tautan dokumentasi lokal | PASS: tautan relatif pada README, AGENTS, DESIGN, dokumen aktif/arsip, dan README aset menunjuk ke target yang ada. |
+| Kesetaraan data demo | PASS: isi tiga file sama dengan fixture awal setelah baris import dinormalisasi. |
+| Batas import | PASS: tidak ada import fixture lama di `src`, `scripts`, atau tes; aturan ESLint menolak contoh import aplikasi dari `tests`. |
+| `git diff --check` | PASS: tidak ada kesalahan whitespace. |
+| `npm.cmd run test:db` | NOT RUN: exit 1 karena URL database uji dan konfirmasi isolasi belum tersedia. |
+
+Tes query baru memakai mock untuk memastikan pembacaan tanpa actor ditolak sebelum membuka client, organisasi B tetap menjadi scope query actor B, dan error database tidak berubah menjadi data demo atau membocorkan detail internal. Ini bukan pembuktian Auth/RLS pada Supabase nyata. Migrasi dan isi seed tidak diubah; seed tidak dijalankan.
+
+## Bukti milestone sebelumnya
+
 Tanggal: 3 Oktober 2026 (Asia/Jakarta). Versi: working tree milestone lokal v0.1.0, belum ada commit. Lingkungan: Windows, Node 24.16.0, npm 11.13.0, Next 16.3.8, React 19.3.0. Paket dikunci pada package-lock.json.
 
 ## Hasil

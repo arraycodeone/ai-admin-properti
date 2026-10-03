@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "uniqueImages": 45,
+  "propertyCount": 10,
+  "galleries": [
+    {
+      "slug": "modern-house-bsd",
+      "count": 4
+    },
+    {
+      "slug": "premium-cluster-bsd",
+      "count": 4
+    },
+    {
+      "slug": "minimalist-house-bsd",
+      "count": 4
+    },
+    {
+      "slug": "luxury-residence-bsd",
+      "count": 4
+    },
+    {
+      "slug": "apartment-alam-sutera",
+      "count": 4
+    },
+    {
+      "slug": "family-house-alam-sutera",
+      "count": 4
+    },
+    {
+      "slug": "premium-apartment-alam-sutera",
+      "count": 4
+    },
+    {
+      "slug": "modern-house-bintaro",
+      "count": 4
+    },
+    {
+      "slug": "townhouse-bintaro",
+      "count": 4
+    },
+    {
+      "slug": "luxury-house-bintaro",
+      "count": 4
+    }
+  ],
+  "optimizedBytes": 10925938,
+  "sourceBytes": 121456753
+}

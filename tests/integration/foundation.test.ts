@@ -6,7 +6,7 @@ import { whatsappLink } from "@/lib/whatsapp-link";
 import { searchProperties } from "@/modules/properties/service";
 import { filterSchema, propertySchema } from "@/modules/properties/schemas";
 import { canReadLead, requireOwner } from "@/server/auth/permissions";
-import { organizationA, organizationB, properties, privateMarker } from "../fixtures/properties";
+import { organizationA, organizationB, properties, privateMarker } from "@/demo/properties";
 
 describe("katalog publik", () => {
   it("memilih rumah Dimas tanpa melewati tenant, publikasi, anggaran, atau jumlah kamar", () => {

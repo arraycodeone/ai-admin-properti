@@ -1,5 +1,18 @@
 # Status implementasi
 
+## Perapihan struktur 4 Oktober 2026
+
+- Dokumentasi aktif dipusatkan di `docs/`; [architecture.md](architecture.md) menjelaskan implementasi sekarang, dan roadmap/backlog tetap menyimpan target fitur.
+- Panduan kerja singkat ada di [AGENTS.md](../AGENTS.md); rancangan struktur dan desain lama disimpan di `docs/archive/`.
+- Data preview/seed dipindahkan ke `src/demo/`; aplikasi dan script tidak lagi mengimpor dari `tests/`.
+- Aset siap pakai berada di `public/asset/`, sumber dan metadata di `assets-source/`. Paket Nusa Property belum dipetakan ke katalog Ruang Properti.
+- Query dashboard dipindahkan ke modul dengan verifikasi actor dan scope organisasi tetap berlaku. JSX beranda dan dashboard dirapikan tanpa perubahan tampilan.
+- Pemeriksaan lokal: typecheck, lint, 17 tes Vitest, build, 10 tes E2E lulus. Rincian dan batas pengujian ada di [test-results.md](test-results.md).
+
+Perapihan ini tidak menyelesaikan task integrasi layanan eksternal. ID dan status task fitur di bawah tetap mengikuti milestone 3 Oktober.
+
+## Status fitur 3 Oktober 2026
+
 3 Oktober 2026. Status ini adalah catatan pelaksanaan pendamping backlog asli. Checkbox task hanya selesai bila seluruh kriteria task terbukti. Pengguna mengonfirmasi akses eksternal belum tersedia dan meminta pengerjaan lokal terlebih dahulu.
 
 | Task | Status | Hasil / pekerjaan tersisa |

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Kevin",
+    "location": "BSD",
+    "rating": 5,
+    "quote": "Pilihan rumahnya membantu kami membandingkan kebutuhan ruang dan anggaran.",
+    "isDemo": true,
+    "label": "Contoh testimoni fiktif"
+  },
+  {
+    "name": "Nadia",
+    "location": "Alam Sutera",
+    "rating": 5,
+    "quote": "Informasi properti tersusun jelas, jadi kami lebih mudah menentukan unit yang ingin dilihat.",
+    "isDemo": true,
+    "label": "Contoh testimoni fiktif"
+  },
+  {
+    "name": "Rizky",
+    "location": "Bintaro",
+    "rating": 5,
+    "quote": "Foto dan rincian listing memudahkan kami menyiapkan pertanyaan sebelum berkonsultasi.",
+    "isDemo": true,
+    "label": "Contoh testimoni fiktif"
+  }
+]
