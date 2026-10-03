@@ -1,0 +1,452 @@
+[
+  {
+    "slug": "modern-house-bsd",
+    "title": "Modern House BSD",
+    "location": "BSD",
+    "price": 1850000000,
+    "propertyType": "house",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/modern-house-bsd.webp",
+    "ogImage": "/asset/og/modern-house-bsd.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/modern-house-bsd/01-exterior.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI tampak depan Modern House BSD",
+        "thumbnail": "/asset/thumbnails/modern-house-bsd/01-exterior.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/modern-house-bsd/02-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Modern House BSD",
+        "thumbnail": "/asset/thumbnails/modern-house-bsd/02-living-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/modern-house-bsd/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Modern House BSD",
+        "thumbnail": "/asset/thumbnails/modern-house-bsd/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/modern-house-bsd/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Modern House BSD",
+        "thumbnail": "/asset/thumbnails/modern-house-bsd/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "premium-cluster-bsd",
+    "title": "Premium Cluster BSD",
+    "location": "BSD",
+    "price": 3200000000,
+    "propertyType": "house",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/premium-cluster-bsd.webp",
+    "ogImage": "/asset/og/premium-cluster-bsd.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/premium-cluster-bsd/01-exterior.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI tampak depan Premium Cluster BSD",
+        "thumbnail": "/asset/thumbnails/premium-cluster-bsd/01-exterior.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/premium-cluster-bsd/02-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Premium Cluster BSD",
+        "thumbnail": "/asset/thumbnails/premium-cluster-bsd/02-living-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/premium-cluster-bsd/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Premium Cluster BSD",
+        "thumbnail": "/asset/thumbnails/premium-cluster-bsd/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/premium-cluster-bsd/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Premium Cluster BSD",
+        "thumbnail": "/asset/thumbnails/premium-cluster-bsd/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "minimalist-house-bsd",
+    "title": "Minimalist House BSD",
+    "location": "BSD",
+    "price": 1400000000,
+    "propertyType": "house",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/minimalist-house-bsd.webp",
+    "ogImage": "/asset/og/minimalist-house-bsd.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/minimalist-house-bsd/01-exterior.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI tampak depan Minimalist House BSD",
+        "thumbnail": "/asset/thumbnails/minimalist-house-bsd/01-exterior.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/minimalist-house-bsd/02-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Minimalist House BSD",
+        "thumbnail": "/asset/thumbnails/minimalist-house-bsd/02-living-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/minimalist-house-bsd/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Minimalist House BSD",
+        "thumbnail": "/asset/thumbnails/minimalist-house-bsd/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/minimalist-house-bsd/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Minimalist House BSD",
+        "thumbnail": "/asset/thumbnails/minimalist-house-bsd/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "luxury-residence-bsd",
+    "title": "Luxury Residence BSD",
+    "location": "BSD",
+    "price": 5500000000,
+    "propertyType": "house",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/luxury-residence-bsd.webp",
+    "ogImage": "/asset/og/luxury-residence-bsd.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/luxury-residence-bsd/01-exterior.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI tampak depan Luxury Residence BSD",
+        "thumbnail": "/asset/thumbnails/luxury-residence-bsd/01-exterior.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/luxury-residence-bsd/02-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Luxury Residence BSD",
+        "thumbnail": "/asset/thumbnails/luxury-residence-bsd/02-living-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/luxury-residence-bsd/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Luxury Residence BSD",
+        "thumbnail": "/asset/thumbnails/luxury-residence-bsd/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/luxury-residence-bsd/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Luxury Residence BSD",
+        "thumbnail": "/asset/thumbnails/luxury-residence-bsd/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "apartment-alam-sutera",
+    "title": "Apartment Alam Sutera",
+    "location": "Alam Sutera",
+    "price": 950000000,
+    "propertyType": "apartment",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/apartment-alam-sutera.webp",
+    "ogImage": "/asset/og/apartment-alam-sutera.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/apartment-alam-sutera/01-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Apartment Alam Sutera",
+        "thumbnail": "/asset/thumbnails/apartment-alam-sutera/01-living-room.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/apartment-alam-sutera/02-balcony.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI balkon Apartment Alam Sutera",
+        "thumbnail": "/asset/thumbnails/apartment-alam-sutera/02-balcony.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/apartment-alam-sutera/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Apartment Alam Sutera",
+        "thumbnail": "/asset/thumbnails/apartment-alam-sutera/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/apartment-alam-sutera/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Apartment Alam Sutera",
+        "thumbnail": "/asset/thumbnails/apartment-alam-sutera/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "family-house-alam-sutera",
+    "title": "Family House Alam Sutera",
+    "location": "Alam Sutera",
+    "price": 2400000000,
+    "propertyType": "house",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/family-house-alam-sutera.webp",
+    "ogImage": "/asset/og/family-house-alam-sutera.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/family-house-alam-sutera/01-exterior.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI tampak depan Family House Alam Sutera",
+        "thumbnail": "/asset/thumbnails/family-house-alam-sutera/01-exterior.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/family-house-alam-sutera/02-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Family House Alam Sutera",
+        "thumbnail": "/asset/thumbnails/family-house-alam-sutera/02-living-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/family-house-alam-sutera/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Family House Alam Sutera",
+        "thumbnail": "/asset/thumbnails/family-house-alam-sutera/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/family-house-alam-sutera/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Family House Alam Sutera",
+        "thumbnail": "/asset/thumbnails/family-house-alam-sutera/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "premium-apartment-alam-sutera",
+    "title": "Premium Apartment Alam Sutera",
+    "location": "Alam Sutera",
+    "price": 1800000000,
+    "propertyType": "apartment",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/premium-apartment-alam-sutera.webp",
+    "ogImage": "/asset/og/premium-apartment-alam-sutera.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/premium-apartment-alam-sutera/01-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Premium Apartment Alam Sutera",
+        "thumbnail": "/asset/thumbnails/premium-apartment-alam-sutera/01-living-room.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/premium-apartment-alam-sutera/02-dining-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang makan Premium Apartment Alam Sutera",
+        "thumbnail": "/asset/thumbnails/premium-apartment-alam-sutera/02-dining-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/premium-apartment-alam-sutera/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Premium Apartment Alam Sutera",
+        "thumbnail": "/asset/thumbnails/premium-apartment-alam-sutera/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/premium-apartment-alam-sutera/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Premium Apartment Alam Sutera",
+        "thumbnail": "/asset/thumbnails/premium-apartment-alam-sutera/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "modern-house-bintaro",
+    "title": "Modern House Bintaro",
+    "location": "Bintaro",
+    "price": 2100000000,
+    "propertyType": "house",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/modern-house-bintaro.webp",
+    "ogImage": "/asset/og/modern-house-bintaro.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/modern-house-bintaro/01-exterior.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI tampak depan Modern House Bintaro",
+        "thumbnail": "/asset/thumbnails/modern-house-bintaro/01-exterior.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/modern-house-bintaro/02-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Modern House Bintaro",
+        "thumbnail": "/asset/thumbnails/modern-house-bintaro/02-living-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/modern-house-bintaro/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Modern House Bintaro",
+        "thumbnail": "/asset/thumbnails/modern-house-bintaro/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/modern-house-bintaro/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Modern House Bintaro",
+        "thumbnail": "/asset/thumbnails/modern-house-bintaro/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "townhouse-bintaro",
+    "title": "Townhouse Bintaro",
+    "location": "Bintaro",
+    "price": 1600000000,
+    "propertyType": "house",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/townhouse-bintaro.webp",
+    "ogImage": "/asset/og/townhouse-bintaro.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/townhouse-bintaro/01-exterior.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI tampak depan Townhouse Bintaro",
+        "thumbnail": "/asset/thumbnails/townhouse-bintaro/01-exterior.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/townhouse-bintaro/02-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Townhouse Bintaro",
+        "thumbnail": "/asset/thumbnails/townhouse-bintaro/02-living-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/townhouse-bintaro/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Townhouse Bintaro",
+        "thumbnail": "/asset/thumbnails/townhouse-bintaro/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/townhouse-bintaro/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Townhouse Bintaro",
+        "thumbnail": "/asset/thumbnails/townhouse-bintaro/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "luxury-house-bintaro",
+    "title": "Luxury House Bintaro",
+    "location": "Bintaro",
+    "price": 4800000000,
+    "propertyType": "house",
+    "isDemo": true,
+    "disclosure": "Listing dan gambar hanya untuk demo. Harga contoh berasal dari PRD; bukan penawaran properti nyata.",
+    "cover": "/asset/cards/luxury-house-bintaro.webp",
+    "ogImage": "/asset/og/luxury-house-bintaro.jpg",
+    "images": [
+      {
+        "src": "/asset/images/properties/luxury-house-bintaro/01-exterior.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI tampak depan Luxury House Bintaro",
+        "thumbnail": "/asset/thumbnails/luxury-house-bintaro/01-exterior.webp",
+        "sortOrder": 1
+      },
+      {
+        "src": "/asset/images/properties/luxury-house-bintaro/02-living-room.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI ruang keluarga Luxury House Bintaro",
+        "thumbnail": "/asset/thumbnails/luxury-house-bintaro/02-living-room.webp",
+        "sortOrder": 2
+      },
+      {
+        "src": "/asset/images/properties/luxury-house-bintaro/03-bedroom.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI kamar tidur Luxury House Bintaro",
+        "thumbnail": "/asset/thumbnails/luxury-house-bintaro/03-bedroom.webp",
+        "sortOrder": 3
+      },
+      {
+        "src": "/asset/images/properties/luxury-house-bintaro/04-kitchen.webp",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Ilustrasi AI dapur Luxury House Bintaro",
+        "thumbnail": "/asset/thumbnails/luxury-house-bintaro/04-kitchen.webp",
+        "sortOrder": 4
+      }
+    ]
+  }
+]

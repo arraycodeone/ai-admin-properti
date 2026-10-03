@@ -1,0 +1,17 @@
+{
+  "pass": true,
+  "uniqueGeneratedImages": 45,
+  "galleries": 10,
+  "imagesPerGallery": 4,
+  "distribution": {
+    "BSD": 4,
+    "Alam Sutera": 3,
+    "Bintaro": 3
+  },
+  "imageFiles": 170,
+  "totalFiles": 180,
+  "totalBytes": 137245897,
+  "allImageFilesReadable": true,
+  "allMetadataPathsExist": true,
+  "originalsUnique": true
+}

@@ -4,7 +4,7 @@ Tanggal: 3 Oktober 2026. Sumber keputusan: permintaan pengguna untuk implementas
 
 ## Arah desain yang berlaku
 
-`DESIGN.md` menjadi acuan visual terbaru. Dokumen tersebut merupakan analisis desain marketplace dengan kanvas putih, teks #222222, aksen #ff385c, sans-serif, foto dominan, dan rounded card. `design-system/ai-admin-properti/MASTER.md` sebelumnya mengusulkan hijau/serif; usulan lama disimpan tetapi tidak dipakai aplikasi.
+`DESIGN.md` menjadi acuan visual terbaru. Dokumen tersebut merupakan analisis desain marketplace dengan kanvas putih, teks #222222, aksen #ff385c, sans-serif, foto dominan, dan rounded card. `docs/archive/design-system/ai-admin-properti/MASTER.md` sebelumnya mengusulkan hijau/serif; usulan lama disimpan tetapi tidak dipakai aplikasi.
 
 Reading this as: landing page agensi properti untuk calon pembeli Indonesia, dengan bahasa visual marketplace putih dan aksen merah muda. ENERGY 1 / RHYTHM 2 / MOTION 1. Dashboard mengutamakan nama prospek, kebutuhan, penanggung jawab, dan tahap.
 

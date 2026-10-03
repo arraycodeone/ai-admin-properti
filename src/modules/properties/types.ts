@@ -23,4 +23,9 @@ export type PropertyRecord = PublicProperty & {
 
 export type PropertyFilters = { location?: string; budget?: string; bedrooms?: number; type?: PublicProperty["property_type"] };
 
+export type InternalProperty = Pick<
+  PropertyRecord,
+  "id" | "public_code" | "title" | "city" | "area" | "availability" | "publication_status"
+>;
+
 export const propertyTypeLabels = { house: "Rumah", apartment: "Apartemen", land: "Tanah" } as const;
