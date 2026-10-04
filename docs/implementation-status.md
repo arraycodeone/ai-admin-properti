@@ -1,5 +1,14 @@
 # Status implementasi
 
+## Actor, RLS dan grant, 4 Oktober 2026
+
+- T-010 / issue #5: `test:access` lulus pada Supabase uji nyata dengan login lima akun Auth sementara dan client anon. Owner A/B dibatasi organisasi, Andi/Sari dibatasi lead serta kontak, akun nonaktif ditolak, dan kontak privat pemilik unit hanya terbaca owner organisasi terkait.
+- Insert membership, perubahan role/assignment/organisasi, delete lead dan RPC katalog langsung ditolak. Sesi sales yang sama kehilangan akses setelah membership dinonaktifkan. Anon ditolak pada 21 tabel dan tiga RPC pembaca.
+- Audit RLS/grant 21 tabel, lima fungsi, search path dan bucket privat lulus. Storage belum memiliki policy objek, sehingga tetap tertutup; upload/download berizin dan pencabutan cache belum diimplementasikan.
+- `requireActor` diuji terhadap sesi kosong/gagal, membership tidak sah, metadata role/organisasi palsu dan error database. Client pengguna/sistem serta scope server tetap sesuai rancangan; tidak diperlukan perubahan policy atau kode aplikasi dari hasil pemeriksaan ini.
+- Typecheck, lint, 36 tes lokal, build, 10 E2E branch fondasi dan `test:db -- --schema` lulus. Dua organisasi, lima akun Auth dan data sementara dibersihkan setelah pengujian. Panduan, batas cakupan dan pemulihan ada di [access-verification.md](access-verification.md).
+- Seed berulang (#6), sesi/login browser (#8) dan matriks gabungan (#9) tetap belum selesai. Aplikasi tetap preview; tidak ada aktivasi WhatsApp atau deployment.
+
 ## Migrasi dan tipe database 4 Oktober 2026
 
 - T-009 / issue #4 selesai diverifikasi: dua migrasi diterapkan dari proyek kosong, 21 tabel dengan RLS aktif, bucket privat, dan riwayat migrasi cocok dengan file SQL.

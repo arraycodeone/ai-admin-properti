@@ -17,6 +17,7 @@
     "db:bootstrap": "tsx scripts/migrate-db.ts",
     "db:types": "tsx scripts/generate-db-types.ts",
     "test:db": "tsx scripts/test-db.ts",
+    "test:access": "tsx tests/live/access.ts",
     "test:e2e": "playwright test",
     "seed:demo": "tsx --env-file=.env.local scripts/seed-demo.ts"
   },

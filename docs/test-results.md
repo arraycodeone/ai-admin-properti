@@ -1,5 +1,26 @@
 # Bukti pengujian lokal
 
+## Actor dan akses Supabase nyata, 4 Oktober 2026
+
+Issue #5 / T-010. Node 24.16.0, proyek Supabase uji yang sudah dimigrasi, target API/SQL cocok dan TLS terverifikasi. Mode aplikasi tetap preview. Tidak menjalankan seed.
+
+| Pemeriksaan | Hasil |
+| --- | --- |
+| Typecheck, lint, `npm.cmd test` | PASS: 36 tes lokal, termasuk 7 tes actor dan 8 tes guard dua runner. |
+| Build dan E2E | PASS: 10 tes desktop/mobile pada branch fondasi dari develop, terpisah dari 22 tes PR desain Nusa. |
+| `npm.cmd run test:db -- --schema` | PASS: constraint/default akses, semua fixture SQL di-rollback. Suite berseed belum dijalankan. |
+| `npm.cmd run test:access` | PASS: lima login Auth nyata, sesi diverifikasi melalui `getUser`, Data API memakai JWT pengguna dan publishable key. |
+| Owner A / Owner B | Hanya properti, lead, kontak dan detail privat organisasi sendiri; ID lead organisasi lain kosong. |
+| Andi / Sari | Hanya lead dan kontak yang ditugaskan; properti organisasi sendiri tersedia; detail privat kosong. |
+| Anggota nonaktif | Properti, lead, kontak, detail privat dan membership aktif tidak tersedia. |
+| Mutasi langsung | Insert membership lintas organisasi; update role, assignment, organisasi properti; delete lead; RPC katalog: seluruh akun menerima `42501`. |
+| Anon | SELECT seluruh 21 tabel serta tiga RPC pembaca menerima `42501`. |
+| Pencabutan | Membership Andi dinonaktifkan melalui setup SQL; request berikutnya dengan sesi lama menghasilkan lead kosong. |
+| Grant / Storage | RLS 21 tabel, grant lima fungsi dan search path sesuai; bucket privat, tanpa policy objek. Daftar objek semua akun kosong. |
+| Cleanup | Dua organisasi, dua properti/detail privat, tiga kontak/lead, lima membership dan lima akun Auth sementara dibersihkan. |
+
+Policy dan kode aplikasi yang ada memenuhi cakupan ini; tidak ada migrasi baru. Tes actor memakai mock untuk kontrak server; bukti Data API di atas memakai akun Auth nyata. Tidak mengklaim login/logout browser, sesi kedaluwarsa, seed dua kali, seluruh tabel dengan fixture, atau akses aset/RPC bisnis yang belum tersedia. Lihat [cara menjalankan dan pemulihan cleanup](access-verification.md).
+
 ## Verifikasi migrasi dan tipe database, 4 Oktober 2026
 
 | Pemeriksaan | Hasil |
