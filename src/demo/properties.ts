@@ -1,5 +1,5 @@
 import type { PropertyRecord, PublicProperty } from "@/modules/properties/types";
-import listingAssets from "../../assets-source/metadata/properties.demo.json";
+import listingAssets from "../../assets-source/metadata/properties.demo.json" with { type: "json" };
 
 export const organizationA = "10000000-0000-4000-8000-000000000001";
 export const organizationB = "10000000-0000-4000-8000-000000000002";

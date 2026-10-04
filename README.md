@@ -2,7 +2,7 @@
 
 Fondasi lokal Website Agen dan AI Admin Properti. Next.js, TypeScript, Tailwind, Supabase Auth/PostgreSQL.
 
-**Status 4 Oktober 2026:** website, katalog, dan profil agensi dapat dijalankan lokal dalam mode preview. Dua migrasi untuk 21 tabel, seed berulang, constraint dan batas akses dengan akun Auth nyata sudah terverifikasi pada Supabase uji. Login/logout browser dan matriks akses lengkap belum diuji. WhatsApp, AI, jobs, handoff, dan operasional sales masih backlog. Ini belum rilis demo end-to-end.
+**Status 4 Oktober 2026:** website, katalog, dan profil agensi dapat dijalankan lokal dalam mode preview. Dua migrasi untuk 21 tabel, seed berulang, batas akses serta login/logout browser lokal sudah terverifikasi pada Supabase uji. Verifikasi sesi pada URL HTTPS dan matriks akses lengkap masih menunggu. WhatsApp, AI, jobs, handoff, dan operasional sales masih backlog. Ini belum rilis demo end-to-end.
 
 ## Mulai membaca proyek
 
@@ -63,11 +63,13 @@ E2E memakai build produksi pada `127.0.0.1:3100`, terpisah dari dev server. Jala
 
 `npm.cmd run test:seed` menjalankan seed dua kali pada target uji yang telah dikonfirmasi, lalu memeriksa hitungan, ID, membership, assignment dan password akun lama. Dua run dan suite `test:db` berseed lulus pada 4 Oktober 2026 dengan 14 properti Nusa (10 publik dan 4 fixture akses). Fixture tetap tersimpan; lihat [bukti dan pemulihan seed](docs/seed-verification.md).
 
+`npm.cmd run test:auth` memakai server uji sendiri pada port 3100 dan akun seed untuk menguji login/logout, membership, pergantian akun, refresh serta expiry. Delapan skenario lokal lulus; preview HTTPS belum diuji. Jalankan build terlebih dahulu dan jangan bersamaan dengan E2E preview. Lihat [panduan sesi browser](docs/auth-verification.md).
+
 ## Menyiapkan Supabase uji
 
 Ikuti [panduan setup dan pemeriksaan koneksi](docs/supabase-setup.md) untuk issue #3. Jalankan `npm.cmd run check:supabase` setelah konfigurasi target uji lengkap; pemeriksaan ini bisa berjalan sebelum migrasi dan seed.
 
-**Hasil 4 Oktober 2026:** koneksi Auth/PostgreSQL, dua migrasi, tes schema, generation tipe, seed dua kali dan tes database berseed lulus. Actor/RLS diuji dengan sesi akun nyata melalui `test:access`. Aplikasi tetap preview; login/logout browser dan matriks akses lengkap menjadi tahap berikutnya.
+**Hasil 4 Oktober 2026:** koneksi Auth/PostgreSQL, dua migrasi, tes schema, generation tipe, seed dua kali, tes database berseed dan sesi browser lokal lulus. Actor/RLS diuji melalui `test:access`; sesi browser melalui `test:auth`. Aplikasi tetap preview; URL HTTPS dan matriks akses lengkap menjadi tahap berikutnya.
 
 1. Siapkan proyek Supabase terisolasi. Alternatif lokal memerlukan Docker dan Supabase CLI; keduanya belum tersedia saat implementasi ini.
 2. Bila belum ada, salin `.env.example` menjadi `.env.local`. Isi URL/publishable key/secret key serta koneksi SQL milik proyek uji dan `APP_ENV=test`. Jalankan checker dalam mode `supabase` sesuai panduan di atas.
@@ -75,7 +77,7 @@ Ikuti [panduan setup dan pemeriksaan koneksi](docs/supabase-setup.md) untuk issu
 4. Tetapkan password demo unik minimal 16 karakter pada `DEMO_SEED_PASSWORD`, serta `DEMO_SEED_CONFIRM_ISOLATED=true`.
 5. Jalankan `npm.cmd run seed:demo`. Seed menggunakan Auth Admin API dan tidak mengubah password akun yang sudah ada. Seed menolak organisasi non-demo atau organisasi di luar dua fixture.
 6. Isi `TEST_DATABASE_URL` dari database uji yang sama dan `TEST_DATABASE_CONFIRM_ISOLATED=true`, lalu jalankan `npm.cmd run test:db`.
-7. Seed dua kali dan isolasi akses Data API sudah lulus. Berikutnya uji login/logout owner/sales/nonaktif melalui browser serta matriks gabungan pada issue #8/#9.
+7. Seed, isolasi Data API dan sesi browser lokal sudah lulus. Berikutnya ulangi sesi pada URL HTTPS setelah issue #7 dan selesaikan matriks gabungan #9.
 
 Akun fixture: `owner.a@example.test`, `andi@example.test`, `sari@example.test`, `inactive@example.test`, `owner.b@example.test`. Password hanya berasal dari environment. Situs tetap terikat organisasi A melalui konfigurasi server; Owner B adalah identitas uji isolasi.
 

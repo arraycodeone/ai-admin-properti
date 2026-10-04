@@ -1,5 +1,12 @@
 # Status implementasi
 
+## Sesi browser lokal, 4 Oktober 2026
+
+- T-012 / issue #8: 8 skenario `test:auth` lulus pada browser lokal dengan Supabase nyata, mencakup login salah/benar owner/Andi/Sari, logout, URL langsung, membership nonaktif/lintas organisasi, pergantian akun, refresh dan expiry sesi server.
+- Proxy membersihkan cookie pada error Auth yang tidak dapat diulang; gangguan sementara tidak memicu logout. Import metadata JSON diberi atribut untuk runner Node 24. Typecheck, lint, 54 tes lokal dan build lulus.
+- Sesi tes dibersihkan, fixture seed dipertahankan. Mode aplikasi tetap preview di luar server uji. Bukti dan metode expiry ada di [auth-verification.md](auth-verification.md).
+- URL preview HTTPS masih menunggu #7, sehingga T-012 belum selesai untuk seluruh lingkungan. Matriks akses gabungan tetap #9.
+
 ## Seed Nusa terverifikasi, 4 Oktober 2026
 
 - T-011 / issue #6 selesai: dua seed pada Supabase uji menghasilkan 2 organisasi, 14 properti (10 publik), 20 FAQ, 5 akun/membership dan 4 kontak/lead tanpa duplikasi. ID, assignment, sales default serta password akun lama tetap sesuai.
