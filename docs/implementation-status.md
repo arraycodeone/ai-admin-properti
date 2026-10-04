@@ -1,13 +1,12 @@
 # Status implementasi
 
-## Actor, RLS dan grant, 4 Oktober 2026
+## Persiapan verifikasi seed, 4 Oktober 2026
 
-- T-010 / issue #5: `test:access` lulus pada Supabase uji nyata dengan login lima akun Auth sementara dan client anon. Owner A/B dibatasi organisasi, Andi/Sari dibatasi lead serta kontak, akun nonaktif ditolak, dan kontak privat pemilik unit hanya terbaca owner organisasi terkait.
-- Insert membership, perubahan role/assignment/organisasi, delete lead dan RPC katalog langsung ditolak. Sesi sales yang sama kehilangan akses setelah membership dinonaktifkan. Anon ditolak pada 21 tabel dan tiga RPC pembaca.
-- Audit RLS/grant 21 tabel, lima fungsi, search path dan bucket privat lulus. Storage belum memiliki policy objek, sehingga tetap tertutup; upload/download berizin dan pencabutan cache belum diimplementasikan.
-- `requireActor` diuji terhadap sesi kosong/gagal, membership tidak sah, metadata role/organisasi palsu dan error database. Client pengguna/sistem serta scope server tetap sesuai rancangan; tidak diperlukan perubahan policy atau kode aplikasi dari hasil pemeriksaan ini.
-- Typecheck, lint, 36 tes lokal, build, 10 E2E branch fondasi dan `test:db -- --schema` lulus. Dua organisasi, lima akun Auth dan data sementara dibersihkan setelah pengujian. Panduan, batas cakupan dan pemulihan ada di [access-verification.md](access-verification.md).
-- Seed berulang (#6), sesi/login browser (#8) dan matriks gabungan (#9) tetap belum selesai. Aplikasi tetap preview; tidak ada aktivasi WhatsApp atau deployment.
+- T-011 / issue #6 belum selesai. `test:seed` tersedia untuk menjalankan seed dua kali dan memeriksa hitungan, ID, membership, assignment, sales default, serta password akun lama.
+- Seed kini mewajibkan mode test, konfirmasi database dan seed, kecocokan API/SQL, serta password minimal 16 karakter. Pemeriksaan organisasi demo/paused dan allowlist akun dilakukan sebelum mutasi pertama. Error tidak mencetak respons layanan atau kredensial.
+- Definisi lima akun dibagikan dari `src/demo/accounts.ts`; hitungan katalog/FAQ mengikuti fixture aktual agar sesuai setelah PR desain Nusa digabungkan.
+- Typecheck, lint dan 38 tes lokal lulus, termasuk 13 tes guard/pemulihan seed. Runner nyata menghasilkan `NOT RUN: konfigurasi` karena konfirmasi khusus seed belum true dan password belum tersedia. Tidak ada seed yang dijalankan atau data Supabase yang diubah pada pekerjaan ini.
+- Persiapan, dampak reset fixture, dan pemulihan kegagalan sebagian dicatat pada [seed-verification.md](seed-verification.md). Pembuktian dua run serta suite database berseed menunggu konfigurasi tersebut.
 
 ## Migrasi dan tipe database 4 Oktober 2026
 
