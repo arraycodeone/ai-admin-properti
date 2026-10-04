@@ -20,6 +20,7 @@
     "test:access": "tsx tests/live/access.ts",
     "test:seed": "tsx tests/live/seed.ts",
     "test:e2e": "playwright test",
+    "test:auth": "playwright test --config playwright.auth.config.ts",
     "seed:demo": "tsx --env-file=.env.local scripts/seed-demo.ts"
   },
   "dependencies": {
