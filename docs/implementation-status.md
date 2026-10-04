@@ -1,24 +1,13 @@
 # Status implementasi
 
-## Font, motion dan profil Nusa, 4 Oktober 2026
+## Actor, RLS dan grant, 4 Oktober 2026
 
-- Penyempurnaan hero lanjutan: judul masuk per baris (24 px, stagger 70 ms, 900 ms), foto zoom-out 1.08 ke 1 di dalam bingkai. Tautan hero hanya fade agar area klik tidak bergerak saat menerima fokus. Reduced motion dan tampilan tanpa JavaScript tetap didukung.
-- T-019 / T-020 / T-022: `/tentang` tersedia dengan konten agensi demo, foto interior dari aset, pendekatan layanan, kawasan bersama, dan CTA mengikuti status kanal sebenarnya. Profil Michael tetap pada landing.
-- Tipografi publik memakai Cormorant Garamond 500 normal/italic dan Manrope 400–600 lokal berlisensi. Filter klik/pointer tanpa outline luar; keyboard memakai indikator charcoal inset 2 px tanpa perubahan ukuran field.
-- Reveal dan parallax memakai API browser tanpa dependency tambahan, mendukung reduced motion serta cleanup saat navigasi. HTML dan form GET publik berfungsi tanpa JavaScript; mobile tanpa JavaScript menampilkan navigasi langsung.
-- Tautan login/dashboard tidak ada dalam HTML publik. `/preview` serta komponen dashboard khususnya dihapus, URL lama 404. `/login` tetap bisa diakses langsung dan `/app` tetap memerlukan sesi/membership. Fixture seed/tes dipertahankan.
-- Typecheck, lint, 26 tes logika, build, 22 E2E dan pemeriksaan kontras lulus. Screenshot landing/profil pada 360, 768, 1440 px serta detail diperiksa. Bukti: [test-results.md](test-results.md).
-- Tidak mengubah API pencarian, DTO, database, autentikasi atau RLS pada penyempurnaan ini. Seed, Auth/RLS nyata, aktivasi kanal dan deployment tidak dijalankan. Status integrasi backlog tetap.
-
-## Redesign Nusa Property, 4 Oktober 2026
-
-- T-019 / T-020 / T-022: landing premium hangat, identitas Nusa, pencarian responsif, katalog, favicon, galeri detail keyboard, kawasan dan profil agen demo tersedia. Status integrasi produksi tetap mengikuti tabel backlog; redesign bukan penyelesaian seluruh task tersebut.
-- Sepuluh listing publik mengikuti metadata aset Nusa. Spesifikasi sintetis ditambahkan dengan persetujuan pengguna; empat fixture akses tetap dipertahankan, total 14 properti.
-- Media hanya ditambahkan pada mode preview sesudah penyaringan publik. DTO Supabase, otorisasi, scope organisasi dan kebijakan tanpa fallback tetap berlaku.
-- Typecheck, lint, 26 tes Vitest, build dan 12 tes E2E lulus; kontras teks/kontrol serta screenshot desktop, tablet, mobile dan detail diperiksa. Lihat [bukti](test-results.md) dan [Delivery Gate](anti-slop-check.md).
-- Seed dan referensi fixture SQL diselaraskan pada kode saja. Seed, database aktif, login nyata, RLS nyata dan WhatsApp tidak dijalankan atau diubah dalam pekerjaan ini.
-
-Bagian di bawah merekam hasil pekerjaan sebelumnya.
+- T-010 / issue #5: `test:access` lulus pada Supabase uji nyata dengan login lima akun Auth sementara dan client anon. Owner A/B dibatasi organisasi, Andi/Sari dibatasi lead serta kontak, akun nonaktif ditolak, dan kontak privat pemilik unit hanya terbaca owner organisasi terkait.
+- Insert membership, perubahan role/assignment/organisasi, delete lead dan RPC katalog langsung ditolak. Sesi sales yang sama kehilangan akses setelah membership dinonaktifkan. Anon ditolak pada 21 tabel dan tiga RPC pembaca.
+- Audit RLS/grant 21 tabel, lima fungsi, search path dan bucket privat lulus. Storage belum memiliki policy objek, sehingga tetap tertutup; upload/download berizin dan pencabutan cache belum diimplementasikan.
+- `requireActor` diuji terhadap sesi kosong/gagal, membership tidak sah, metadata role/organisasi palsu dan error database. Client pengguna/sistem serta scope server tetap sesuai rancangan; tidak diperlukan perubahan policy atau kode aplikasi dari hasil pemeriksaan ini.
+- Typecheck, lint, 36 tes lokal, build, 10 E2E branch fondasi dan `test:db -- --schema` lulus. Dua organisasi, lima akun Auth dan data sementara dibersihkan setelah pengujian. Panduan, batas cakupan dan pemulihan ada di [access-verification.md](access-verification.md).
+- Seed berulang (#6), sesi/login browser (#8) dan matriks gabungan (#9) tetap belum selesai. Aplikasi tetap preview; tidak ada aktivasi WhatsApp atau deployment.
 
 ## Migrasi dan tipe database 4 Oktober 2026
 

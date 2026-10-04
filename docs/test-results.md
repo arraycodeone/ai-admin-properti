@@ -1,62 +1,25 @@
 # Bukti pengujian lokal
 
-## Penyempurnaan animasi hero, 4 Oktober 2026
+## Actor dan akses Supabase nyata, 4 Oktober 2026
 
-Judul hero masuk per baris dengan translate 24 px, jeda 70 ms dan durasi 900 ms. Foto zoom-out 1.08 ke 1 dalam bingkai tetap. Keyframe aktual diperiksa pada browser dan screenshot saat animasi ditinjau. Tautan hero memakai fade tanpa transform supaya klik cepat tidak terganggu saat fokus masuk.
-
-Typecheck, lint, 26 tes logika, build, pemeriksaan kontras, dan 22 E2E lulus kembali. E2E mencakup klik CTA hero, tampilan desktop/mobile, sekali per kunjungan, reduced motion dan konten tanpa JavaScript. Tidak ada dependency tambahan.
-
-## Font, motion, profil dan navigasi Nusa, 4 Oktober 2026
-
-Windows, Node 24.16.0, build produksi dalam mode preview. Dependency tidak ditambah. Server Playwright memakai port 3100 dan dihentikan setelah pengujian; dev server pengguna tidak dihentikan.
+Issue #5 / T-010. Node 24.16.0, proyek Supabase uji yang sudah dimigrasi, target API/SQL cocok dan TLS terverifikasi. Mode aplikasi tetap preview. Tidak menjalankan seed.
 
 | Pemeriksaan | Hasil |
 | --- | --- |
-| `npm.cmd run typecheck` | PASS. |
-| `npm.cmd run lint` | PASS tanpa warning. |
-| `npm.cmd test` | PASS: 26 tes pada 5 file. |
-| `node scripts/check-design.mjs` | PASS: teks 4,76–14,09:1; kontrol/fokus 3,21–14,09:1, termasuk indikator keyboard charcoal. |
-| `npm.cmd run build` | PASS: `/tentang` dibangun, `/preview` tidak ada. |
-| `npm.cmd run test:e2e` | PASS: 22 tes pada desktop 1440 dan mobile 360 px; screenshot tambahan 768 px, profil pada ketiga lebar; overflow juga diperiksa pada landscape 800 px. |
-| Tinjauan visual | Landing, profil dan detail diperiksa; judul, input 16 px, harga dan gambar tampil tanpa overflow. |
+| Typecheck, lint, `npm.cmd test` | PASS: 36 tes lokal, termasuk 7 tes actor dan 8 tes guard dua runner. |
+| Build dan E2E | PASS: 10 tes desktop/mobile pada branch fondasi dari develop, terpisah dari 22 tes PR desain Nusa. |
+| `npm.cmd run test:db -- --schema` | PASS: constraint/default akses, semua fixture SQL di-rollback. Suite berseed belum dijalankan. |
+| `npm.cmd run test:access` | PASS: lima login Auth nyata, sesi diverifikasi melalui `getUser`, Data API memakai JWT pengguna dan publishable key. |
+| Owner A / Owner B | Hanya properti, lead, kontak dan detail privat organisasi sendiri; ID lead organisasi lain kosong. |
+| Andi / Sari | Hanya lead dan kontak yang ditugaskan; properti organisasi sendiri tersedia; detail privat kosong. |
+| Anggota nonaktif | Properti, lead, kontak, detail privat dan membership aktif tidak tersedia. |
+| Mutasi langsung | Insert membership lintas organisasi; update role, assignment, organisasi properti; delete lead; RPC katalog: seluruh akun menerima `42501`. |
+| Anon | SELECT seluruh 21 tabel serta tiga RPC pembaca menerima `42501`. |
+| Pencabutan | Membership Andi dinonaktifkan melalui setup SQL; request berikutnya dengan sesi lama menghasilkan lead kosong. |
+| Grant / Storage | RLS 21 tabel, grant lima fungsi dan search path sesuai; bucket privat, tanpa policy objek. Daftar objek semua akun kosong. |
+| Cleanup | Dua organisasi, dua properti/detail privat, tiga kontak/lead, lima membership dan lima akun Auth sementara dibersihkan. |
 
-Cakupan tambahan:
-
-- Klik desktop dan tap mobile pada filter landing/katalog tanpa outline luar; Tab/Shift+Tab menghasilkan inset bawah charcoal 2 px. Ukuran field tetap; tombol mempertahankan outline keyboard. Select tetap native.
-- Tiga WOFF2 dimuat dari origin lokal tanpa request Google Fonts. FontFace normal/body dan italic pada halaman yang memakainya terkonfirmasi loaded; heading bobot 500.
-- Reveal sekali saat scroll, scroll cepat ke footer lalu kembali, navigasi ke profil/beranda, parallax desktop dibatasi 12 px dan mati pada mobile. Reduced motion sejak awal dan perubahan preferensi saat terbuka mengakhiri animasi, tanpa pageerror.
-- Tanpa JavaScript, landing/profil tampil dan formulir GET dapat disubmit dengan keyboard. Navigasi mobile tetap terlihat. Loading suspense publik sebelumnya menyembunyikan konten akhir; boundary publik itu dihapus, loading dashboard tetap tersedia.
-- HTML server dan DOM seluruh halaman publik tidak mengandung tautan `/login`, `/app`, `/preview`. `/preview` berstatus HTTP 404; `/app` dan `/app/properti` tanpa sesi menuju `/login`, dengan status login belum aktif pada mode preview.
-- Profil agensi tidak memuat Michael; ketiga kawasan membuka filter sesuai lokasi. Semua alur pencarian, 10 detail, galeri keyboard, menu mobile, noindex, kanal nonaktif, dan larangan listing nonpublik tetap lulus.
-
-Saat menulis tes, pemeriksaan font diperbaiki agar memeriksa keluarga utama yang benar-benar digunakan; font fallback lokal atau italic pada halaman tanpa teks italic tidak wajib diinstansiasi browser. Pengiriman form tanpa JavaScript diuji melalui Tab/Enter karena otomatisasi klik offscreen Chromium tertahan pada viewport mobile; alur klik dengan JavaScript tetap diuji.
-
-Bukti sementara yang diabaikan Git: `test-results/landing-{desktop,mobile}.png`, `landing-*-viewport.png`, `landing-tablet-*.png`, `about-{360,768,1440}-*.png`, dan `detail-*.png`.
-
-Seed, database, sesi Supabase/RLS nyata, WhatsApp dan deployment tidak dijalankan. Tes fixture/mock tidak membuktikan akses database nyata. Bagian berikut adalah riwayat pemeriksaan sebelumnya, termasuk route preview yang kini sudah dihapus.
-
-## Redesign Nusa Property, 4 Oktober 2026
-
-Windows, Node 24.16.0, mode preview. Tidak ada dependency baru.
-
-| Pemeriksaan | Hasil |
-| --- | --- |
-| `npm.cmd run typecheck` | PASS. |
-| `npm.cmd run lint` | PASS tanpa warning. |
-| `npm.cmd test` | PASS: 26 tes pada 5 file. |
-| `node scripts/check-design.mjs` | PASS: teks 4,76–14,09:1; kontrol/fokus 3,21–6,52:1. |
-| `npm.cmd run build` | PASS. |
-| `npm.cmd run test:e2e` | PASS: 12 tes, desktop 1440 px dan mobile 360 px; tambahan viewport 768 px dan landscape 800 px. |
-| Pemeriksaan visual | Screenshot landing desktop/mobile/tablet, viewport awal dan detail ditinjau; tidak ada overflow atau gambar gagal dimuat. |
-| Database / seed | Tidak dijalankan. Perubahan SQL hanya penunjukan fixture dengan UUID stabil, tanpa migrasi schema. |
-
-Interaksi yang diverifikasi: filter BSD/Rumah/Rp2 miliar/minimal 2 kamar; NUSA-001 dan NUSA-003; seluruh 10 kartu menuju detailnya; empat thumbnail galeri dengan keyboard; tiga kategori dan tiga kawasan melalui shortcut serta kartu; anchor pilihan/kawasan/konsultasi; menu mobile/Escape; header/footer/login/privasi/preview; reset, hasil kosong, filter invalid dan preservasi nilai filter di luar preset. Listing draft/paused/sold/organisasi B tetap 404. Kanal kosong tidak menghasilkan tautan wa.me. Noindex, reduced motion, skip link dan pemuatan semua gambar landing diuji.
-
-Pemetaan aset diuji terhadap file lokal: cover, empat galeri dan thumbnail untuk setiap listing. Adapter Supabase diuji tidak menerima field privat atau media sintetis. Mock dan fixture bukan bukti Auth/RLS nyata.
-
-Tes awal dalam sandbox mengalami `uv_os_get_passwd` pada runtime tsx; seluruh suite lulus ketika dijalankan dengan izin proses Windows. Selector tautan ambigu pada iterasi pertama E2E diperbaiki menjadi exact match. Tinjauan visual juga memperbaiki posisi pencarian mobile dan visibilitas skip link pada navigasi pointer.
-
-Bukti sementara (diabaikan Git): `test-results/landing-desktop.png`, `landing-mobile.png`, `landing-*-viewport.png`, `landing-tablet-desktop.png`, serta `detail-desktop.png` dan `detail-mobile.png`. Server E2E memakai port 3100 sendiri dan dihentikan oleh Playwright.
+Policy dan kode aplikasi yang ada memenuhi cakupan ini; tidak ada migrasi baru. Tes actor memakai mock untuk kontrak server; bukti Data API di atas memakai akun Auth nyata. Tidak mengklaim login/logout browser, sesi kedaluwarsa, seed dua kali, seluruh tabel dengan fixture, atau akses aset/RPC bisnis yang belum tersedia. Lihat [cara menjalankan dan pemulihan cleanup](access-verification.md).
 
 ## Verifikasi migrasi dan tipe database, 4 Oktober 2026
 
