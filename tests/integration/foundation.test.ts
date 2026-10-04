@@ -10,8 +10,8 @@ import { organizationA, organizationB, properties, privateMarker } from "@/demo/
 
 describe("katalog publik", () => {
   it("memilih rumah Dimas tanpa melewati tenant, publikasi, anggaran, atau jumlah kamar", () => {
-    const rows = searchProperties(properties, organizationA, { location: "bekasi", budget: "700000000", bedrooms: 2, type: "house" });
-    expect(rows.map(row => row.public_code)).toEqual(["BKS-001", "BKS-002"]);
+    const rows = searchProperties(properties, organizationA, { location: "bsd", budget: "2000000000", bedrooms: 2, type: "house" });
+    expect(rows.map(row => row.public_code)).toEqual(["NUSA-001", "NUSA-003"]);
     expect(searchProperties(properties, organizationA, { budget: "100000000" })).toEqual([]);
   });
   it("menghasilkan DTO allowlist walaupun row sumber membawa field privat tambahan", () => {
@@ -20,10 +20,10 @@ describe("katalog publik", () => {
     expect(serialized).not.toMatch(/PRIVATE_OWNER|do-not-expose|organization_id|published_at|AGB-001|BKS-006|BKS-007|BKS-008/);
   });
   it("menampilkan perubahan harga dan penarikan listing pada pembacaan berikutnya", () => {
-    const changed = properties.map(row => row.public_code === "BKS-001" ? { ...row, price_rupiah: "710000000" } : row);
-    expect(searchProperties(changed, organizationA, { budget: "700000000", bedrooms: 2, location: "Bekasi" }).map(row => row.public_code)).toEqual(["BKS-002"]);
+    const changed = properties.map(row => row.public_code === "NUSA-001" ? { ...row, price_rupiah: "2100000000" } : row);
+    expect(searchProperties(changed, organizationA, { budget: "2000000000", bedrooms: 2, location: "BSD" }).map(row => row.public_code)).toEqual(["NUSA-003"]);
     changed[0] = { ...changed[0], availability: "paused" };
-    expect(searchProperties(changed, organizationA).some(row => row.public_code === "BKS-001")).toBe(false);
+    expect(searchProperties(changed, organizationA).some(row => row.public_code === "NUSA-001")).toBe(false);
   });
   it("memperlakukan teks pencarian sebagai data", () => {
     expect(searchProperties(properties, organizationA, { location: "%' OR true --" })).toEqual([]);

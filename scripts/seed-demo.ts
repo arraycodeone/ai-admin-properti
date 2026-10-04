@@ -23,14 +23,14 @@ if (existingOrganizations.data.some(row => !row.is_demo || ![organizationA, orga
   throw new Error("Target berisi organisasi di luar fixture demo. Seed dibatalkan.");
 }
 await upsert("organizations", [
-  { id: organizationA, name: "Ruang Properti (demo)", slug: "ruang-properti-demo", is_demo: true, processing_paused: true },
+  { id: organizationA, name: "Nusa Property (demo)", slug: "nusa-property-demo", is_demo: true, processing_paused: true },
   { id: organizationB, name: "Agensi B (uji isolasi)", slug: "agensi-b-test", is_demo: true, processing_paused: true },
 ]);
 await upsert("properties", properties);
 await upsert("knowledge_entries", knowledge);
 await upsert("property_private_details", [{ organization_id: organizationA, property_id: properties[0].id, owner_name: privateMarker, internal_notes: privateMarker }], "organization_id,property_id");
 await upsert("site_settings", [
-  { organization_id: organizationA, brand_name: "Ruang Properti", headline: "Temukan ruang untuk cerita berikutnya.", about_text: "Agensi contoh dengan data sintetis.", canonical_origin: "https://ruang-properti.example", seo_title: "Ruang Properti", seo_description: "Katalog demo sintetis.", privacy_text: "Lingkungan demo. Jangan memasukkan data pelanggan nyata.", indexing_enabled: false },
+  { organization_id: organizationA, brand_name: "Nusa Property", headline: "Temukan rumah untuk cerita berikutnya.", about_text: "Agensi contoh dengan data sintetis di BSD, Alam Sutera, dan Bintaro.", canonical_origin: "https://nusa-property.example", seo_title: "Nusa Property", seo_description: "Katalog demo sintetis.", privacy_text: "Lingkungan demo. Jangan memasukkan data pelanggan nyata.", indexing_enabled: false },
   { organization_id: organizationB, brand_name: "Agensi B", headline: "Uji isolasi", about_text: "Fixture organisasi kedua.", canonical_origin: "https://agensi-b.example", seo_title: "Uji isolasi", seo_description: "Data test.", privacy_text: "Data sintetis.", indexing_enabled: false },
 ], "organization_id");
 await upsert("channels", [{ id: "40000000-0000-4000-8000-000000000001", organization_id: organizationA, kind: "simulator", label: "Simulator demo (belum aktif)", environment: "test", status: "paused" }]);
@@ -66,4 +66,4 @@ for (const [index, lead] of demoLeads.entries()) {
   await upsert("contacts", [{ id: contactId, organization_id: organizationA, display_name: lead.name, demo_key: `fixture:${index + 1}` }]);
   await upsert("leads", [{ id: lead.id, organization_id: organizationA, contact_id: contactId, assigned_user_id: users.get(lead.assigned === "Andi" ? "andi@example.test" : "sari@example.test"), stage: lead.stage, budget_max_rupiah: lead.budget, preferred_area: lead.area, summary: lead.summary, source_kind: "manual", min_bedrooms: 2, closed_at: lead.stage === "won" ? "2026-10-02T03:00:00Z" : null }]);
 }
-console.log("Seed selesai: 2 organisasi, 10 properti, 20 FAQ, 5 akun, 4 prospek sintetis. Password tidak diubah untuk akun yang sudah ada.");
+console.log(`Seed selesai: 2 organisasi, ${properties.length} properti, 20 FAQ, 5 akun, 4 prospek sintetis. Password tidak diubah untuk akun yang sudah ada.`);

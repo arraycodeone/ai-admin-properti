@@ -1,8 +1,8 @@
-# Ruang Properti
+# Nusa Property
 
 Fondasi lokal Website Agen dan AI Admin Properti. Next.js, TypeScript, Tailwind, Supabase Auth/PostgreSQL.
 
-**Status 4 Oktober 2026:** website dan preview dapat dijalankan lokal. Dua migrasi untuk 21 tabel sudah diterapkan pada Supabase uji; constraint dasar dan tipe hasil generator terverifikasi. Seed, login pengguna, dan matriks RLS lengkap belum diuji. WhatsApp, AI, jobs, handoff, dan operasional sales masih backlog. Ini belum rilis demo end-to-end.
+**Status 4 Oktober 2026:** website, katalog, dan profil agensi dapat dijalankan lokal dalam mode preview. Dua migrasi untuk 21 tabel sudah diterapkan pada Supabase uji; constraint dasar dan tipe hasil generator terverifikasi. Seed, login pengguna, dan matriks RLS lengkap belum diuji. WhatsApp, AI, jobs, handoff, dan operasional sales masih backlog. Ini belum rilis demo end-to-end.
 
 ## Mulai membaca proyek
 
@@ -35,13 +35,13 @@ Buka `http://localhost:3000`. Tidak memerlukan `.env.local` untuk preview sintet
 | --- | --- |
 | `/` | Landing page dengan pencarian, kategori, lokasi, dan katalog contoh. |
 | `/properti` | Filter lokasi, tipe, anggaran, dan minimal kamar. |
-| `/properti/rumah-taman-naraya-bekasi` | Detail fixture BKS-001. |
+| `/properti/modern-house-bsd` | Detail fixture NUSA-001 dan galeri ilustrasi. |
+| `/tentang` | Profil agensi Nusa, pendekatan layanan, kawasan, dan status konsultasi. |
 | `/privasi` | Penjelasan penggunaan data pada demo. |
 | `/login` | Status koneksi atau login Supabase, sesuai mode. |
-| `/preview` | Pratinjau visual owner/Andi/Sari dari fixture, hanya pada mode preview. |
 | `/app`, `/app/properti` | Memerlukan pengguna Supabase dan membership aktif. |
 
-`/preview` tidak menguji RLS dan bukan simulator pesan. Pergantian peran di sana hanya menyaring fixture publik sintetis. `/app` tetap dilindungi.
+Navigasi pelanggan tidak memuat tautan login atau dashboard. `/login` hanya tersedia melalui URL langsung; `/app` tetap dilindungi sesi dan membership aktif. Route `/preview` dihapus dan menghasilkan 404. Mode preview lokal tidak mengaktifkan login Supabase. Fixture prospek tetap tersedia untuk seed dan pengujian.
 
 ## Pemeriksaan
 
@@ -88,14 +88,16 @@ Seed bersifat reset fixture: menjalankan ulang akan mengembalikan katalog dan em
 - Semua 21 tabel memakai RLS. Mutasi langsung pengguna dicabut; RPC mutasi bisnis dan Storage upload belum tersedia.
 - Kanal uji belum aktif. Tidak ada nomor acak pada CTA dan tidak ada pengiriman WhatsApp.
 - `noindex` berlaku pada metadata dan HTTP header. Sitemap kosong selama demo. `APP_ENV=production` ditolak sampai gate produksi dikerjakan.
-- Foto masih placeholder jujur. Jangan memakai katalog ini sebagai penawaran nyata.
+- Mode preview memakai 10 listing Nusa dengan foto AI dan spesifikasi sintetis berlabel demo. Mode Supabase belum memiliki integrasi foto. Jangan memakai katalog ini sebagai penawaran nyata.
 - Tipe database di `src/types/database.generated.ts` dihasilkan dengan `npm.cmd run db:types`. Client aplikasi memakai koreksi kontrak di `src/types/database.ts`; DTO publik tetap eksplisit dan uang berupa string.
 
 ## Desain dan progres
 
-Arahan terbaru mengikuti [DESIGN.md](DESIGN.md), dengan struktur pencarian/katalog terinspirasi [Pinhome](https://www.pinhome.id/). Panduan hijau/serif lama di `docs/archive/design-system/ai-admin-properti/` tetap disimpan sebagai artefak sebelumnya dan tidak diimpor aplikasi.
+Arahan terbaru mengikuti [DESIGN.md](DESIGN.md): Nusa Property, premium hangat, ivory/charcoal/bronze, judul serif, foto arsitektur besar, serta pencarian responsif. Dokumen dalam `docs/archive/` merupakan sejarah, bukan desain aktif.
 
-Paket gambar Nusa Property telah dipisahkan ke `public/asset/` dan `assets-source/`. Paket itu belum dipetakan ke katalog Ruang Properti/Bekasi; halaman tetap memakai placeholder. Metadata paket bukan sumber data aplikasi.
+Halaman publik memakai Cormorant Garamond 500 dan Manrope 400–600 melalui `next/font/local`, lengkap dengan lisensi. Reveal dan parallax ringan memakai API browser, mendukung reduced motion. Filter menghilangkan outline luar saat klik/tap dan menampilkan garis bawah inset untuk keyboard. Konten publik dan pencarian GET tetap tersedia tanpa JavaScript.
+
+Paket gambar Nusa Property pada `public/asset/` sudah dipetakan melalui metadata `assets-source/` ke 10 listing preview; empat fixture nonpublik/organisasi lain tetap dipertahankan. Galeri, kawasan, dan profil agen diberi label ilustrasi. Seed telah diselaraskan tetapi tidak dijalankan saat redesign; tidak ada perubahan database aktif.
 
 - [Keputusan desain terbaru](docs/decisions/001-design-and-local-scope.md)
 - [Delivery Gate Anti Slop](docs/anti-slop-check.md)
