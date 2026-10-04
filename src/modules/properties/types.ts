@@ -1,3 +1,11 @@
+export type PropertyImage = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  thumbnail: string;
+};
+
 export type PublicProperty = {
   id: string;
   public_code: string;
@@ -12,6 +20,7 @@ export type PublicProperty = {
   bathrooms: number;
   land_area_m2: string | null;
   building_area_m2: string | null;
+  media?: { cover: string; images: PropertyImage[] };
 };
 
 export type PropertyRecord = PublicProperty & {

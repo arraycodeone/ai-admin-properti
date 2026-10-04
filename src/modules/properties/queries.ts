@@ -3,7 +3,7 @@ import { getEnv } from "@/server/env";
 import { systemClient } from "@/server/db/system-client";
 import { userClient } from "@/server/db/user-client";
 import { requireActor } from "@/server/auth/actor-context";
-import { properties } from "@/demo/properties";
+import { properties, withDemoMedia } from "@/demo/properties";
 import { filterSchema, publicPropertySchema, internalPropertySchema } from "./schemas";
 import { searchProperties } from "./service";
 import type { InternalProperty, PropertyFilters, PublicProperty } from "./types";
@@ -11,7 +11,7 @@ import type { InternalProperty, PropertyFilters, PublicProperty } from "./types"
 export async function getPublicProperties(filters: PropertyFilters = {}): Promise<PublicProperty[]> {
   const env = getEnv();
   const parsed = filterSchema.parse(filters);
-  if (env.APP_MODE === "preview") return searchProperties(properties, env.SITE_ORGANIZATION_ID, parsed);
+  if (env.APP_MODE === "preview") return searchProperties(properties, env.SITE_ORGANIZATION_ID, parsed).map(withDemoMedia);
   const { data, error } = await systemClient().rpc("search_public_properties", {
     p_organization_id: env.SITE_ORGANIZATION_ID, p_location: parsed.location || undefined,
     p_budget: parsed.budget, p_bedrooms: parsed.bedrooms, p_type: parsed.type,
