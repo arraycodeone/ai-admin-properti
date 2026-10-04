@@ -176,7 +176,8 @@ Bukti setiap task dicatat saat pengerjaan, misalnya di `docs/test-results.md`: I
 
 #### T-009 — Buat seluruh schema dasar dan constraint
 
-- [ ] **Selesai**
+- [x] **Selesai**
+- **Bukti 4 Oktober 2026:** [migrasi, constraint, dan tipe database](supabase-migrations.md).
 - **Dependensi:** T-004 dan database uji T-003.
 - **Kerjakan:** buat migrasi berurutan untuk 21 tabel dari desain database, termasuk tabel pesan/jobs/outbox sejak fondasi. Pasang tipe, FK tenant, unique key, indeks, RLS default tertutup, pemisahan detail privat, dan constraint benturan survei. RPC fitur ditambahkan ketika fiturnya dikerjakan.
 - **Hasil:** schema dasar dapat dibuat dari database kosong; tipe database TypeScript dihasilkan dari schema.
@@ -184,7 +185,7 @@ Bukti setiap task dicatat saat pengerjaan, misalnya di `docs/test-results.md`: I
 
 #### T-010 — Implementasikan konteks actor, RLS, dan grant
 
-- [ ] **Selesai**
+- [x] **Selesai**. Bukti 4 Oktober 2026: [pengujian akun Auth nyata, grant dan batas Storage](access-verification.md); hasil pada [test-results.md](test-results.md). Alur browser dan matriks gabungan tetap T-012/T-013.
 - **Dependensi:** T-009.
 - **Kerjakan:** bedakan client pengguna dan client sistem. Validasi sesi serta membership aktif; owner dibatasi organisasinya, sales dibatasi lead yang ditugaskan. Atur Storage dan akses fungsi/RPC. Mutasi kritis melalui fungsi yang memeriksa actor, bukan direct update bebas.
 - **Hasil:** batas akses berlaku pada database dan server, termasuk pada route/API yang dipanggil langsung.

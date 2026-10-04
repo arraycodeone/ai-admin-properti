@@ -14,7 +14,10 @@
     "lint": "eslint . --max-warnings=0",
     "test": "vitest run",
     "check:supabase": "tsx scripts/check-supabase.ts",
-    "test:db": "node scripts/test-db.mjs",
+    "db:bootstrap": "tsx scripts/migrate-db.ts",
+    "db:types": "tsx scripts/generate-db-types.ts",
+    "test:db": "tsx scripts/test-db.ts",
+    "test:seed": "tsx tests/live/seed.ts",
     "test:e2e": "playwright test",
     "seed:demo": "tsx --env-file=.env.local scripts/seed-demo.ts"
   },
@@ -29,6 +32,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
+    "@supabase/postgrest-typegen": "0.4.0",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "26.6.4",
     "@types/pg": "8.23.1",
@@ -37,6 +41,7 @@
     "eslint": "9.39.5",
     "eslint-config-next": "16.3.8",
     "pg": "8.23.1",
+    "prettier": "3.8.5",
     "tailwindcss": "4.3.3",
     "tsx": "4.23.15",
     "typescript": "6.0.3",

@@ -1,13 +1,14 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { parseConfig } from "@/server/config";
+import type { Database } from "@/types/database";
 
 export async function proxy(request: NextRequest) {
   const env = parseConfig(process.env);
   let response = NextResponse.next({ request });
   response.headers.set("Cache-Control", "private, no-store");
   if (env.APP_MODE !== "supabase") return response;
-  const client = createServerClient(env.NEXT_PUBLIC_SUPABASE_URL!, env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!, {
+  const client = createServerClient<Database>(env.NEXT_PUBLIC_SUPABASE_URL!, env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!, {
     cookies: {
       getAll: () => request.cookies.getAll(),
       setAll(values) {

@@ -1,5 +1,24 @@
 # Status implementasi
 
+## Persiapan verifikasi seed, 4 Oktober 2026
+
+- T-011 / issue #6 belum selesai. `test:seed` tersedia untuk menjalankan seed dua kali dan memeriksa hitungan, ID, membership, assignment, sales default, serta password akun lama.
+- Seed kini mewajibkan mode test, konfirmasi database dan seed, kecocokan API/SQL, serta password minimal 16 karakter. Pemeriksaan organisasi demo/paused dan allowlist akun dilakukan sebelum mutasi pertama. Error tidak mencetak respons layanan atau kredensial.
+- Definisi lima akun dibagikan dari `src/demo/accounts.ts`; hitungan katalog/FAQ mengikuti fixture aktual agar sesuai setelah PR desain Nusa digabungkan.
+- Typecheck, lint dan 38 tes lokal lulus, termasuk 13 tes guard/pemulihan seed. Runner nyata menghasilkan `NOT RUN: konfigurasi` karena konfirmasi khusus seed belum true dan password belum tersedia. Tidak ada seed yang dijalankan atau data Supabase yang diubah pada pekerjaan ini.
+- Persiapan, dampak reset fixture, dan pemulihan kegagalan sebagian dicatat pada [seed-verification.md](seed-verification.md). Pembuktian dua run serta suite database berseed menunggu konfigurasi tersebut.
+
+## Migrasi dan tipe database 4 Oktober 2026
+
+- T-009 / issue #4 selesai diverifikasi: dua migrasi diterapkan dari proyek kosong, 21 tabel dengan RLS aktif, bucket privat, dan riwayat migrasi cocok dengan file SQL.
+- Uji rollback sebelum penerapan membuktikan schema dapat dibangun dari kosong; uji ulang schema setelah penerapan lulus. FK lintas organisasi, uang bigint, interval/benturan survei, unique key, default akses, dan DTO katalog diuji dengan fixture sementara.
+- Grant bawaan anon pada helper dicabut secara eksplisit sebelum migrasi permanen. Extension `btree_gist` berada di schema `extensions`.
+- Tipe resmi dihasilkan melalui `db:types`, digunakan pada client aplikasi, dan adapter mempertahankan nominal string serta allowlist DTO. Lihat [panduan migrasi](supabase-migrations.md).
+- Typecheck, lint, 25 tes Vitest, build, dan 10 tes E2E preview lulus. Tes schema database nyata lulus; suite berseed menghasilkan `NOT RUN` karena seed belum tersedia.
+- Target tetap tanpa organisasi/akun setelah rollback fixture. Berikutnya issue #5 untuk actor/RLS/grant, lalu #6 untuk seed berulang. Aplikasi tetap preview sampai data dan akses siap.
+
+Catatan setup/perapihan serta tabel 3 Oktober di bawah adalah riwayat; status terbaru T-009 ada pada bagian ini.
+
 ## Persiapan Supabase 4 Oktober 2026
 
 - Bagian Supabase dari T-003 (issue #3) telah diverifikasi pada `feature/supabase-test-setup`. Layanan eksternal lain dalam T-003 belum disiapkan.

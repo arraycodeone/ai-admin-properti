@@ -7,14 +7,13 @@ Diperbarui 4 Oktober 2026. Dokumen ini menjelaskan kode yang ada. Target AI, Wha
 ```text
 src/
   app/                  Route, layout, metadata, loading, dan error Next.js
-    (public)/           Website, katalog, detail, privasi
+    (public)/           Website, katalog, detail, tentang, privasi, font lokal
     (auth)/login/       Halaman login
     app/                Dashboard berizin pada URL /app
-    preview/            Dashboard sintetis tanpa sesi, hanya mode preview
   modules/
     properties/         Filter, DTO, aturan katalog, query publik/internal, kartu
-    dashboard/          Query ringkasan internal dan komponen preview
-    site/               Profil agensi dan nomor kanal publik yang siap
+    dashboard/          Query ringkasan internal
+    site/               Profil agensi, konten/kartu kawasan bersama, kanal publik
   components/
     ui/                 Ikon umum
     public/             Header, footer, CTA
@@ -26,10 +25,11 @@ src/
     env.ts              Pembacaan environment khusus server
   lib/                  Helper murni untuk uang, waktu, dan link WhatsApp
   demo/                 Data sintetis bersama untuk preview, seed, dan tes
+  types/                Tipe database generated dan koreksi kontrak wire RPC
   proxy.ts              Refresh sesi Supabase
 public/asset/           Gambar demo dan brand siap dilayani sebagai URL /asset/*
 assets-source/          PNG asli, metadata paket, prompt, dan lembar pratinjau
-scripts/                Seed, tes database, dan pemeriksaan warna
+scripts/                Bootstrap database uji, generation tipe, seed, dan pemeriksaan
 supabase/migrations/    Migrasi SQL berurutan
 supabase/tests/         Tes SQL akses dan integritas
 tests/integration/     Tes logika lokal; tidak membutuhkan layanan eksternal
@@ -48,7 +48,8 @@ docs/archive/          Rancangan yang sudah digantikan
 - Profil: `modules/site/queries.ts` membaca profil sintetis atau `site_settings` dan kanal siap milik organisasi website.
 - Dashboard internal: halaman → query modul → `requireActor()` → `userClient()` → query dengan scope organisasi. Query ringkasan mengembalikan actor terverifikasi beserta jumlah listing.
 - Login/logout: form/sidebar → Server Actions `server/auth/session.ts`. `proxy.ts` membantu refresh sesi; izin tetap diverifikasi saat data dibaca.
-- Preview dashboard: route `/preview` memeriksa mode → komponen client memakai `demo/leads.ts`. Pilihan peran hanya filter contoh, bukan autentikasi.
+- Halaman `/tentang`: route membaca kanal melalui `getSite()`, lalu menyusun `AgencyProfile`. Konten pendekatan dan kawasan berada di modul site; kawasan dipakai bersama dengan landing.
+- Presentasi publik: `PublicExperience` mengatur modalitas fokus, reveal sekali per kunjungan, dan parallax foto melalui IntersectionObserver/Web Animations/rAF. Data tetap di server. Font berlisensi berada di `(public)/fonts` dan dilayani lokal.
 - Seed: `scripts/seed-demo.ts` memakai data `src/demo/` setelah guard target uji. Tes menggunakan data yang sama dan fixture tambahan sesuai skenario.
 
 ## Batas tanggung jawab
@@ -65,13 +66,17 @@ docs/archive/          Rancangan yang sudah digantikan
 
 Query database ditandai `server-only`. Query internal memverifikasi actor sendiri dan menggunakan client sesi agar RLS ikut berlaku. Client sistem untuk katalog publik memakai organisasi dari konfigurasi server serta RPC/DTO yang membatasi field. Tidak ada fallback ke data demo bila Supabase gagal. Ketentuan database lengkap ada di [database.md](database.md).
 
+Route `/preview` dan komponen dashboard sintetisnya dihapus. Fixture prospek tetap digunakan seed/tes. `/login` dan `/app` tidak ditautkan dari HTML publik; autentikasi dan membership tetap wajib untuk dashboard. Layout publik tidak memakai `loading.tsx`/Suspense yang menyembunyikan HTML akhir di balik script streaming, sehingga kunjungan tanpa JavaScript memperoleh konten dan formulir GET lengkap. Loading dashboard, error boundary, empty state, dan not-found tetap tersedia.
+
+Client aplikasi memakai tipe dari `src/types/database.ts`, yang memperbaiki bigint input dan nullability RPC dari hasil generator. `database.generated.ts` hanya diperbarui melalui `npm.cmd run db:types`. Adapter query memvalidasi respons menjadi DTO publik/internal. Bootstrap dan batas pengujian dijelaskan di [panduan migrasi](supabase-migrations.md).
+
 Gunakan import langsung dengan alias `@/` untuk lintas folder `src`, dan import relatif di dalam satu modul. Hindari barrel export yang mencampur kode server dan browser. Pertahankan `properties/service.ts` sebagai fungsi murni yang bisa diuji tanpa database.
 
 ## Data dan aset
 
-`src/demo/` mempertahankan ID dua organisasi, sepuluh properti, dua puluh FAQ, dan empat prospek. Marker sintetis untuk menguji field privat juga dipakai seed. `tests/fixtures/ai-scenarios.json` tetap khusus evaluasi.
+`src/demo/` mempertahankan ID dua organisasi, dua puluh FAQ, dan empat prospek. Katalog memiliki sepuluh listing Nusa dan empat fixture akses (draft, paused, sold, organisasi B); UUID fixture akses tetap. Marker sintetis untuk menguji field privat juga dipakai seed. `tests/fixtures/ai-scenarios.json` tetap khusus evaluasi.
 
-`public/asset/` berisi paket gambar demo Nusa Property; URL metadata tetap `/asset/...`. `assets-source/` memuat PNG asli, prompt, metadata, serta bukti pembuatan. Paket tersebut belum dipetakan ke listing Ruang Properti/Bekasi dan tidak diimpor aplikasi. Lihat [petunjuk aset](../assets-source/README.md). Foto listing produksi yang memerlukan pencabutan akses tetap mengikuti rancangan Storage privat, bukan folder publik ini.
+`public/asset/` berisi gambar demo Nusa Property dengan URL `/asset/...`. `assets-source/` memuat PNG asli, prompt, metadata, serta bukti pembuatan. Metadata listing dipakai fixture preview; media opsional (cover dan galeri) ditambahkan query setelah filter/DTO publik, khusus mode preview. Respons database tidak diberi media sintetis. Lihat [petunjuk aset](../assets-source/README.md). Foto produksi yang memerlukan pencabutan akses tetap mengikuti rancangan Storage privat.
 
 ## Menambah fitur
 

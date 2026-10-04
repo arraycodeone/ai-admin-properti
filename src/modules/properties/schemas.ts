@@ -26,3 +26,26 @@ export const filterSchema = z.object({
   bedrooms: z.coerce.number().int().min(0).max(100).optional(),
   type: z.enum(["house", "apartment", "land"]).optional(),
 });
+
+export const publicPropertySchema = z.object({
+  id: z.string().uuid(),
+  public_code: z.string(),
+  slug: z.string(),
+  title: z.string(),
+  description: z.string(),
+  city: z.string(),
+  area: z.string(),
+  property_type: propertySchema.shape.property_type,
+  price_rupiah: moneySchema,
+  bedrooms: z.number().int().nonnegative(),
+  bathrooms: z.number().int().nonnegative(),
+  land_area_m2: z.string().nullable(),
+  building_area_m2: z.string().nullable(),
+});
+
+export const internalPropertySchema = publicPropertySchema.pick({
+  id: true, public_code: true, title: true, city: true, area: true,
+}).extend({
+  availability: propertySchema.shape.availability,
+  publication_status: propertySchema.shape.publication_status,
+});
