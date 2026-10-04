@@ -193,7 +193,7 @@ Bukti setiap task dicatat saat pengerjaan, misalnya di `docs/test-results.md`: I
 
 #### T-011 — Buat seed yang dapat dijalankan ulang
 
-- [ ] **Selesai**
+- [x] **Selesai**. Dua run Supabase uji dan suite berseed lulus pada 4 Oktober 2026; [bukti hitungan, assignment dan password](seed-verification.md).
 - **Dependensi:** T-002, T-009, T-010.
 - **Kerjakan:** seed organisasi/katalog/FAQ lebih dahulu; buat/temukan akun melalui Auth Admin API, lalu membership, sales default, dan lead. Gunakan ID stabil untuk fixture dan identitas simulator terpisah dari nomor WhatsApp nyata.
 - **Hasil:** satu perintah seed menghasilkan lingkungan demo/uji yang diketahui isinya.
