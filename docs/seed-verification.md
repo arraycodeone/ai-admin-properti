@@ -1,6 +1,6 @@
 # Verifikasi seed demo
 
-Issue #6 / T-011. Implementasi pemeriksaan tersedia; pembuktian dua kali pada Supabase **belum dijalankan**. Konfirmasi khusus seed dan password belum disiapkan pada 4 Oktober 2026.
+Issue #6 / T-011 selesai diverifikasi pada Supabase uji, 4 Oktober 2026. Dua run menghasilkan data yang sama tanpa duplikasi atau perubahan password akun lama; suite database berseed juga lulus.
 
 ## Menjalankan
 
@@ -11,7 +11,7 @@ Gunakan proyek Supabase uji terisolasi yang sudah dimigrasi. Konfigurasi API/SQL
 3. Jalankan `npm.cmd run test:seed`. Perintah menjalankan seed dua kali dan meninggalkan fixture untuk pengujian login selanjutnya.
 4. Jalankan `npm.cmd run test:db` sesudah seed lulus. Pengujian sesi browser tetap issue #8; matriks akses lengkap tetap #9.
 
-Runner menggunakan definisi fixture aktual untuk menghitung properti/FAQ dan memeriksa ID. Branch develop saat ini memuat 10 properti; PR desain Nusa #16 memuat 14 (10 publik dan 4 fixture akses). Gunakan dataset dari branch yang diuji, jangan menghapus fixture akses untuk memenuhi angka lama issue.
+Runner menggunakan definisi fixture aktual untuk menghitung properti/FAQ dan memeriksa ID. Setelah PR desain Nusa #16 digabungkan, katalog memuat 14 properti (10 publik dan 4 fixture akses). Angka ini menggantikan 10 properti pada deskripsi awal issue; fixture akses tetap dipertahankan.
 
 ## Pemeriksaan
 
@@ -32,6 +32,17 @@ Jangan menjalankan dua seed bersamaan. Sebelum mengulang, pastikan proses lama s
 
 ## Hasil aktual
 
-Typecheck, lint, 38 tes lokal, build dan 10 E2E branch fondasi lulus pada 4 Oktober 2026. `test:seed` dijalankan untuk memeriksa guard dan berhenti dengan `NOT RUN: konfigurasi` sebelum membuka koneksi.
+Target awal kosong: seluruh hitungan tabel fixture dan akun Auth 0. Sesudah run pertama dan kedua, hasil identik:
 
-Belum ada hasil hitungan Supabase sebelum/sesudah untuk issue #6. Seed nyata ditahan karena `DEMO_SEED_CONFIRM_ISOLATED` belum true dan password belum tersedia. T-011 tetap belum selesai sampai kedua run dan suite berseed benar-benar lulus.
+| Data | Run 1 | Run 2 |
+| --- | --- | --- |
+| Organisasi | 2 | 2 |
+| Properti | 14 | 14 |
+| FAQ | 20 | 20 |
+| Akun Auth / membership | 5 / 5 | 5 / 5 |
+| Kontak / lead | 4 / 4 | 4 / 4 |
+| Site settings / kanal / detail privat | 2 / 1 / 1 | 2 / 1 / 1 |
+
+ID, role, status membership, sales default, assignment, tahap, budget, area dan password akun lama sesuai. `test:db` lulus untuk `access.test.sql` dan `integrity.test.sql`; transaksi pengujian dibatalkan, seed tetap tersimpan. Identitas seed diselaraskan dengan Nusa setelah hasil merge masih menyimpan nama lama. Password acak hanya disimpan pada `.env.local` yang diabaikan Git. Aplikasi tetap preview; kanal simulator paused dan tidak ada pengiriman pesan.
+
+Tes lokal sebelumnya membuktikan guard serta pemulihan Auth sebagian dengan mock; kegagalan provider nyata tidak sengaja dipicu. Login/logout browser dan matriks lengkap tetap issue #8/#9.

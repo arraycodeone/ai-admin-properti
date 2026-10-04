@@ -65,8 +65,8 @@ try {
   await upsert("organizations", [
     {
       id: organizationA,
-      name: "Ruang Properti (demo)",
-      slug: "ruang-properti-demo",
+      name: "Nusa Property (demo)",
+      slug: "nusa-property-demo",
       is_demo: true,
       processing_paused: true,
     },
@@ -97,11 +97,11 @@ try {
     [
       {
         organization_id: organizationA,
-        brand_name: "Ruang Properti",
-        headline: "Temukan ruang untuk cerita berikutnya.",
-        about_text: "Agensi contoh dengan data sintetis.",
-        canonical_origin: "https://ruang-properti.example",
-        seo_title: "Ruang Properti",
+        brand_name: "Nusa Property",
+        headline: "Temukan rumah untuk cerita berikutnya.",
+        about_text: "Agensi contoh dengan data sintetis di BSD, Alam Sutera, dan Bintaro.",
+        canonical_origin: "https://nusa-property.example",
+        seo_title: "Nusa Property",
         seo_description: "Katalog demo sintetis.",
         privacy_text:
           "Lingkungan demo. Jangan memasukkan data pelanggan nyata.",

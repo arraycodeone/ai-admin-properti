@@ -1,5 +1,12 @@
 # Status implementasi
 
+## Seed Nusa terverifikasi, 4 Oktober 2026
+
+- T-011 / issue #6 selesai: dua seed pada Supabase uji menghasilkan 2 organisasi, 14 properti (10 publik), 20 FAQ, 5 akun/membership dan 4 kontak/lead tanpa duplikasi. ID, assignment, sales default serta password akun lama tetap sesuai.
+- `test:db` berseed lulus untuk akses dan integritas. Fixture tetap tersimpan, sedangkan perubahan transaksi tes dibatalkan. Aplikasi tetap preview dan kanal paused.
+- Sisa konflik merge diperbaiki: identitas seed kembali Nusa, dan command `test:access` dipulihkan. Bukti dan prosedur ada di [seed-verification.md](seed-verification.md).
+- Berikutnya #8 untuk sesi/login/logout browser dan #9 untuk matriks gabungan. Catatan persiapan di bawah adalah riwayat sebelum seed diizinkan.
+
 ## Persiapan verifikasi seed, 4 Oktober 2026
 
 - T-011 / issue #6 belum selesai. `test:seed` tersedia untuk menjalankan seed dua kali dan memeriksa hitungan, ID, membership, assignment, sales default, serta password akun lama.
