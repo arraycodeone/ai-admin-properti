@@ -3,9 +3,10 @@ import { getEnv } from "@/server/env";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "Ruang Properti | Temukan ruang untuk pulang", template: "%s | Ruang Properti" },
+  title: { default: "Nusa Property | Ruang baru, cerita berikutnya", template: "%s | Nusa Property" },
   description: "Pratinjau website agensi properti. Cari contoh rumah, apartemen, dan tanah sesuai lokasi serta anggaran.",
   robots: { index: false, follow: false },
+  icons: { icon: "/asset/brand/favicon.svg", apple: "/asset/brand/apple-touch-icon.png" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

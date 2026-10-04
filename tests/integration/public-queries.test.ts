@@ -19,6 +19,7 @@ describe("adapter katalog dengan tipe database", () => {
     expect(rows[0]).not.toHaveProperty("organization_id");
     expect(rows[0]).not.toHaveProperty("internal_notes");
     expect(rows[0]).not.toHaveProperty("publication_status");
+    expect(rows[0]).not.toHaveProperty("media");
   });
 
   it.each([

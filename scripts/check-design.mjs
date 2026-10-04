@@ -7,6 +7,12 @@ function luminance(hex) {
     .map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4)
     .reduce((sum, value, i) => sum + value * [.2126, .7152, .0722][i], 0);
 }
+for (const [foreground, background] of [["control", "canvas"], ["control", "soft"], ["focus", "canvas"], ["focus", "soft"], ["ink", "canvas"]]) {
+  const values = [foreground, background].map(name => luminance(colors[`color-${name}`])).sort((a, b) => b - a);
+  const ratio = (values[0] + .05) / (values[1] + .05);
+  if (ratio < 3) throw new Error(`Kontras kontrol ${foreground}/${background} gagal: ${ratio.toFixed(2)}`);
+  console.log(`PASS kontrol ${foreground}/${background}: ${ratio.toFixed(2)}:1`);
+}
 for (const [foreground, background] of [
   ["ink", "canvas"], ["body", "canvas"], ["muted", "canvas"], ["muted", "soft"],
   ["muted", "strong"], ["muted", "brand-soft"], ["on-primary", "primary"],

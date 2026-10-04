@@ -1,7 +1,7 @@
 do $$
 begin
   begin
-    update public.properties set price_rupiah = -1 where public_code = 'BKS-001';
+    update public.properties set price_rupiah = -1 where id = '20000000-0000-4000-8000-000000000001';
     raise exception 'negative price accepted';
   exception when check_violation then null; end;
   begin
@@ -9,7 +9,7 @@ begin
     raise exception 'cross-tenant property accepted';
   exception when foreign_key_violation then null; end;
   begin
-    update public.properties set public_code = 'BKS-001' where public_code = 'BKS-002';
+    update public.properties set public_code = (select public_code from public.properties where id = '20000000-0000-4000-8000-000000000001') where id = '20000000-0000-4000-8000-000000000002';
     raise exception 'duplicate code accepted';
   exception when unique_violation then null; end;
   begin
