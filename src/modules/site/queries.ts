@@ -4,7 +4,7 @@ import { systemClient } from "@/server/db/system-client";
 
 export async function getSite() {
   const env = getEnv();
-  if (env.APP_MODE === "preview") return { name: "Ruang Properti", phone: null as string | null, preview: true };
+  if (env.APP_MODE === "preview") return { name: "Nusa Property", phone: null as string | null, preview: true };
   const db = systemClient();
   const { data, error } = await db.from("site_settings").select("brand_name, cta_channel_id")
     .eq("organization_id", env.SITE_ORGANIZATION_ID).single();

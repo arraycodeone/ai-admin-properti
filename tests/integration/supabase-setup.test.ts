@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 
-describe("pemeriksaan koneksi Supabase", () => {
+describe.each(["scripts/check-supabase.ts", "tests/live/access.ts"])("guard %s", script => {
   it.each([
     { name: "produksi", APP_ENV: "production", TEST_DATABASE_CONFIRM_ISOLATED: "true" },
     { name: "target belum dikonfirmasi", APP_ENV: "test", TEST_DATABASE_CONFIRM_ISOLATED: "false" },
@@ -18,7 +18,7 @@ describe("pemeriksaan koneksi Supabase", () => {
       TEST_DATABASE_URL: "postgresql://postgres:SQL_SECRET_MARKER@db.testproject.supabase.co:5432/postgres?sslmode=disable",
     },
   ])("menolak $name sebelum koneksi tanpa menampilkan secret", overrides => {
-    const result = spawnSync(process.execPath, ["--import", "tsx", "scripts/check-supabase.ts"], {
+    const result = spawnSync(process.execPath, ["--import", "tsx", script], {
       cwd: process.cwd(),
       encoding: "utf8",
       timeout: 5_000,
