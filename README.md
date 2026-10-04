@@ -61,6 +61,8 @@ E2E memakai build produksi pada `127.0.0.1:3100`, terpisah dari dev server. Jala
 
 `npm.cmd run test:db -- --schema` menguji constraint dan default akses sebelum seed, dengan fixture SQL sementara yang seluruhnya di-rollback. Petunjuk bootstrap proyek kosong dan `db:types` ada di [panduan migrasi](docs/supabase-migrations.md).
 
+`npm.cmd run test:seed` menjalankan seed dua kali pada target uji yang telah dikonfirmasi, lalu memeriksa hitungan, ID, membership, assignment dan password akun lama. Fixture tetap tersimpan. Perintah belum dijalankan pada Supabase; lihat [guard, persiapan dan pemulihan seed](docs/seed-verification.md).
+
 ## Menyiapkan Supabase uji
 
 Ikuti [panduan setup dan pemeriksaan koneksi](docs/supabase-setup.md) untuk issue #3. Jalankan `npm.cmd run check:supabase` setelah konfigurasi target uji lengkap; pemeriksaan ini bisa berjalan sebelum migrasi dan seed.

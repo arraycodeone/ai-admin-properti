@@ -1,5 +1,13 @@
 # Status implementasi
 
+## Persiapan verifikasi seed, 4 Oktober 2026
+
+- T-011 / issue #6 belum selesai. `test:seed` tersedia untuk menjalankan seed dua kali dan memeriksa hitungan, ID, membership, assignment, sales default, serta password akun lama.
+- Seed kini mewajibkan mode test, konfirmasi database dan seed, kecocokan API/SQL, serta password minimal 16 karakter. Pemeriksaan organisasi demo/paused dan allowlist akun dilakukan sebelum mutasi pertama. Error tidak mencetak respons layanan atau kredensial.
+- Definisi lima akun dibagikan dari `src/demo/accounts.ts`; hitungan katalog/FAQ mengikuti fixture aktual agar sesuai setelah PR desain Nusa digabungkan.
+- Typecheck, lint dan 38 tes lokal lulus, termasuk 13 tes guard/pemulihan seed. Runner nyata menghasilkan `NOT RUN: konfigurasi` karena konfirmasi khusus seed belum true dan password belum tersedia. Tidak ada seed yang dijalankan atau data Supabase yang diubah pada pekerjaan ini.
+- Persiapan, dampak reset fixture, dan pemulihan kegagalan sebagian dicatat pada [seed-verification.md](seed-verification.md). Pembuktian dua run serta suite database berseed menunggu konfigurasi tersebut.
+
 ## Migrasi dan tipe database 4 Oktober 2026
 
 - T-009 / issue #4 selesai diverifikasi: dua migrasi diterapkan dari proyek kosong, 21 tabel dengan RLS aktif, bucket privat, dan riwayat migrasi cocok dengan file SQL.

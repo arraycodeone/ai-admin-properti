@@ -1,5 +1,13 @@
 # Bukti pengujian lokal
 
+## Persiapan seed dua kali, 4 Oktober 2026
+
+- Typecheck dan lint lulus; `npm.cmd test` lulus 38 tes pada 5 file, termasuk 13 tes seed.
+- Build dan 10 E2E desktop/mobile pada branch fondasi lulus. PR desain Nusa tetap terpisah.
+- Tes seed memeriksa penolakan produksi/demo, kedua konfirmasi isolasi, password pendek, key kosong, target API/SQL berbeda, organisasi non-demo/aktif/asing, dan akun asing sebelum mutasi. Mock juga membuktikan jalur akun lama tidak membuat ulang akun serta kegagalan createUser sebagian dapat dilanjutkan.
+- `npm.cmd run test:seed` pada konfigurasi lokal menghasilkan `NOT RUN: konfigurasi` dengan exit 1. Ini membuktikan guard, bukan kelulusan dua seed nyata.
+- `DEMO_SEED_CONFIRM_ISOLATED` belum true dan password belum tersedia; seed, perbandingan password database dan suite `test:db` berseed belum dijalankan. Tidak ada migrasi atau data database yang diubah.
+
 ## Verifikasi migrasi dan tipe database, 4 Oktober 2026
 
 | Pemeriksaan | Hasil |
