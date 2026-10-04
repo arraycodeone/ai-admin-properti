@@ -17,5 +17,5 @@ export async function getSite() {
     if (channelError) throw new Error("Kanal konsultasi belum dapat dimuat.");
     phone = channel?.public_phone_e164 ?? null;
   }
-  return { name: data.brand_name as string, phone, preview: false };
+  return { name: data.brand_name, phone, preview: false };
 }

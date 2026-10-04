@@ -26,10 +26,11 @@ src/
     env.ts              Pembacaan environment khusus server
   lib/                  Helper murni untuk uang, waktu, dan link WhatsApp
   demo/                 Data sintetis bersama untuk preview, seed, dan tes
+  types/                Tipe database generated dan koreksi kontrak wire RPC
   proxy.ts              Refresh sesi Supabase
 public/asset/           Gambar demo dan brand siap dilayani sebagai URL /asset/*
 assets-source/          PNG asli, metadata paket, prompt, dan lembar pratinjau
-scripts/                Seed, tes database, dan pemeriksaan warna
+scripts/                Bootstrap database uji, generation tipe, seed, dan pemeriksaan
 supabase/migrations/    Migrasi SQL berurutan
 supabase/tests/         Tes SQL akses dan integritas
 tests/integration/     Tes logika lokal; tidak membutuhkan layanan eksternal
@@ -64,6 +65,8 @@ docs/archive/          Rancangan yang sudah digantikan
 | `tests` | Memakai kode aplikasi; aplikasi dan script tidak bergantung pada folder ini. |
 
 Query database ditandai `server-only`. Query internal memverifikasi actor sendiri dan menggunakan client sesi agar RLS ikut berlaku. Client sistem untuk katalog publik memakai organisasi dari konfigurasi server serta RPC/DTO yang membatasi field. Tidak ada fallback ke data demo bila Supabase gagal. Ketentuan database lengkap ada di [database.md](database.md).
+
+Client aplikasi memakai tipe dari `src/types/database.ts`, yang memperbaiki bigint input dan nullability RPC dari hasil generator. `database.generated.ts` hanya diperbarui melalui `npm.cmd run db:types`. Adapter query memvalidasi respons menjadi DTO publik/internal. Bootstrap dan batas pengujian dijelaskan di [panduan migrasi](supabase-migrations.md).
 
 Gunakan import langsung dengan alias `@/` untuk lintas folder `src`, dan import relatif di dalam satu modul. Hindari barrel export yang mencampur kode server dan browser. Pertahankan `properties/service.ts` sebagai fungsi murni yang bisa diuji tanpa database.
 

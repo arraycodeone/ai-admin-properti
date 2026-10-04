@@ -1,5 +1,22 @@
 # Bukti pengujian lokal
 
+## Verifikasi migrasi dan tipe database, 4 Oktober 2026
+
+| Pemeriksaan | Hasil |
+| --- | --- |
+| `db:bootstrap -- --check` pada proyek kosong | PASS: dua migrasi dan tes schema; seluruh DDL/fixture di-rollback. |
+| `db:bootstrap` | PASS: 21 tabel/RLS, bucket privat, dua versi riwayat; tanpa seed tersimpan. |
+| `test:db -- --schema` | PASS: constraint, akses default, RPC/DTO dan presisi bigint di database nyata. |
+| `db:types` | PASS: generator resmi menghasilkan schema public dan client aplikasi lolos typecheck. |
+| `typecheck`, `lint`, `test`, `build`, `test:e2e` | PASS: 25 tes Vitest dan 10 tes E2E mode preview. |
+| HTTP RPC dengan budget string bigint maksimum | PASS: HTTP 200; katalog kosong sesuai kondisi belum seed. |
+| Bootstrap ulang setelah schema tersedia | Ditolak sesuai guard; tidak ada reset. |
+| `test:db` tanpa flag | NOT RUN: fixture seed belum siap; bukan tes akses yang lulus. |
+
+Detail constraint, target, perbaikan grant, dan batas generator: [panduan migrasi](supabase-migrations.md). Sesudah tes tidak ada organisasi atau akun Auth tersimpan. Matriks RLS lengkap dan login pengguna belum diuji.
+
+Saat instalasi dependency, audit npm melaporkan lima temuan high pada rantai development ESLint (`braces`/`micromatch`/`fast-glob`), bukan generator baru. Tidak dilakukan downgrade besar otomatis melalui `audit fix --force`; tindak lanjut dependency perlu ditangani terpisah.
+
 ## Verifikasi setup Supabase, 4 Oktober 2026
 
 Typecheck, lint, dan 21 tes Vitest lulus. Empat tes tambahan memastikan checker menolak produksi, target belum dikonfirmasi, SQL beda proyek, dan TLS tanpa verifikasi sebelum membuka koneksi, tanpa mencetak nilai secret tiruan.

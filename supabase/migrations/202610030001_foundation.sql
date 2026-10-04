@@ -1,4 +1,4 @@
-create extension if not exists btree_gist;
+create extension if not exists btree_gist with schema extensions;
 
 create table public.organizations (
   id uuid primary key default gen_random_uuid(), name text not null, slug text not null unique,
@@ -308,5 +308,5 @@ begin
     end if;
   end loop;
 end $$;
-revoke execute on function public.check_message_reference() from public;
-revoke execute on function public.touch_updated_at() from public;
+revoke execute on function public.check_message_reference() from public,anon,authenticated;
+revoke execute on function public.touch_updated_at() from public,anon,authenticated;
