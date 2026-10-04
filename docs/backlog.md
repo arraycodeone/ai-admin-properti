@@ -176,7 +176,8 @@ Bukti setiap task dicatat saat pengerjaan, misalnya di `docs/test-results.md`: I
 
 #### T-009 — Buat seluruh schema dasar dan constraint
 
-- [ ] **Selesai**
+- [x] **Selesai**
+- **Bukti 4 Oktober 2026:** [migrasi, constraint, dan tipe database](supabase-migrations.md).
 - **Dependensi:** T-004 dan database uji T-003.
 - **Kerjakan:** buat migrasi berurutan untuk 21 tabel dari desain database, termasuk tabel pesan/jobs/outbox sejak fondasi. Pasang tipe, FK tenant, unique key, indeks, RLS default tertutup, pemisahan detail privat, dan constraint benturan survei. RPC fitur ditambahkan ketika fiturnya dikerjakan.
 - **Hasil:** schema dasar dapat dibuat dari database kosong; tipe database TypeScript dihasilkan dari schema.

@@ -4,6 +4,8 @@ Lingkup [issue #3](https://github.com/arraycodeone/ai-admin-properti/issues/3): 
 
 ## Status 4 Oktober 2026
 
+Update setelah issue #4: kedua migrasi dan tes schema sudah lulus; rincian terbaru ada di [panduan migrasi](supabase-migrations.md). Catatan di bawah merekam tahap koneksi issue #3. Mode aplikasi tetap preview sampai seed dan pengujian akses siap.
+
 - Pengguna sudah login ke dashboard dan menyatakan proyek uji sudah dibuat.
 - Target uji: project ref `awzaykziwppimnagermn`, hosted Supabase. API dan username Session pooler cocok dengan proyek tersebut; pengguna mengonfirmasi proyek khusus uji.
 - URL/key dan koneksi SQL tersedia di `.env.local`. Gunakan file ini untuk konfigurasi; nilainya diprioritaskan terhadap `.env` oleh Next.js. Checker membaca `.env.local`.
@@ -44,7 +46,7 @@ npm.cmd run check:supabase
 Remove-Item Env:APP_MODE
 ```
 
-Perintah ini memvalidasi mode/target, memeriksa Auth dengan publishable key, membaca satu halaman Auth Admin tanpa mencetak data pengguna, lalu menjalankan `select 1` dalam transaksi SQL baca saja. Tidak membuat tabel, akun, atau data seed. Setiap operasi jaringan memiliki batas waktu 10 detik. Endpoint Auth mengikuti [spesifikasi resmi](https://github.com/supabase/auth/blob/master/openapi.yaml); akses Admin memakai [listUsers](https://supabase.com/docs/reference/javascript/auth-admin-listusers).
+Perintah ini memvalidasi mode/target, memeriksa Auth dengan publishable key, membaca satu halaman Auth Admin tanpa mencetak data pengguna, lalu menjalankan `select 1` dalam transaksi SQL baca saja. Tidak membuat tabel, akun, atau data seed. Koneksi/Auth dibatasi 10 detik; statement SQL 30 detik. Endpoint Auth mengikuti [spesifikasi resmi](https://github.com/supabase/auth/blob/master/openapi.yaml); akses Admin memakai [listUsers](https://supabase.com/docs/reference/javascript/auth-admin-listusers).
 
 - `NOT RUN: konfigurasi`: periksa kelengkapan variabel, mode test, konfirmasi isolasi, kecocokan proyek API/SQL, dan pengaturan TLS.
 - `FAIL: Auth dengan publishable key`: periksa Project URL, publishable key, status proyek, dan jaringan.

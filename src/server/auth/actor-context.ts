@@ -14,6 +14,6 @@ export async function requireActor(): Promise<Actor> {
     .select("role, display_name").eq("organization_id", env.SITE_ORGANIZATION_ID)
     .eq("user_id", user.id).eq("is_active", true).maybeSingle();
   if (membershipError) throw new Error("Tidak dapat memeriksa akses. Silakan coba lagi.");
-  if (!data || !["owner", "sales"].includes(data.role)) redirect("/login?error=membership");
+  if (!data || (data.role !== "owner" && data.role !== "sales")) redirect("/login?error=membership");
   return { userId: user.id, organizationId: env.SITE_ORGANIZATION_ID, role: data.role, displayName: data.display_name };
 }

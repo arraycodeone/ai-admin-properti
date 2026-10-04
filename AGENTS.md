@@ -19,6 +19,7 @@
 | Komponen umum, header/footer, navigasi | `src/components/` |
 | Identitas, sesi, dan izin | `src/server/auth/` |
 | Client database dan konfigurasi | `src/server/db/`, `src/server/config.ts`, `src/server/env.ts` |
+| Tipe database dan generation | `src/types/database.ts`, `src/types/database.generated.ts`, `scripts/generate-db-types.ts` |
 | Format uang, waktu, URL WhatsApp | `src/lib/` |
 | Data sintetis untuk preview/seed | `src/demo/` |
 | Migrasi dan tes akses database | `supabase/migrations/`, `supabase/tests/` |
@@ -38,6 +39,7 @@
 - `systemClient` hanya untuk operasi terkontrol dengan scope organisasi dan DTO publik.
 - Pertahankan validasi, otorisasi, dan filter organisasi saat memindahkan kode.
 - Pisahkan export server dari kode client. Jangan membuat barrel yang mencampur keduanya.
+- Jangan edit `database.generated.ts` manual; jalankan `npm.cmd run db:types`. Client aplikasi memakai `Database` dari `src/types/database.ts`; rupiah tetap string, bukan `Number`.
 - Buat folder/lapisan baru hanya ketika ada kode yang membutuhkannya.
 - Tulis JSX multiline agar perubahan mudah dibaca; jangan gabungkan satu halaman ke satu baris.
 

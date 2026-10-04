@@ -1,5 +1,16 @@
 # Status implementasi
 
+## Migrasi dan tipe database 4 Oktober 2026
+
+- T-009 / issue #4 selesai diverifikasi: dua migrasi diterapkan dari proyek kosong, 21 tabel dengan RLS aktif, bucket privat, dan riwayat migrasi cocok dengan file SQL.
+- Uji rollback sebelum penerapan membuktikan schema dapat dibangun dari kosong; uji ulang schema setelah penerapan lulus. FK lintas organisasi, uang bigint, interval/benturan survei, unique key, default akses, dan DTO katalog diuji dengan fixture sementara.
+- Grant bawaan anon pada helper dicabut secara eksplisit sebelum migrasi permanen. Extension `btree_gist` berada di schema `extensions`.
+- Tipe resmi dihasilkan melalui `db:types`, digunakan pada client aplikasi, dan adapter mempertahankan nominal string serta allowlist DTO. Lihat [panduan migrasi](supabase-migrations.md).
+- Typecheck, lint, 25 tes Vitest, build, dan 10 tes E2E preview lulus. Tes schema database nyata lulus; suite berseed menghasilkan `NOT RUN` karena seed belum tersedia.
+- Target tetap tanpa organisasi/akun setelah rollback fixture. Berikutnya issue #5 untuk actor/RLS/grant, lalu #6 untuk seed berulang. Aplikasi tetap preview sampai data dan akses siap.
+
+Catatan setup/perapihan serta tabel 3 Oktober di bawah adalah riwayat; status terbaru T-009 ada pada bagian ini.
+
 ## Persiapan Supabase 4 Oktober 2026
 
 - Bagian Supabase dari T-003 (issue #3) telah diverifikasi pada `feature/supabase-test-setup`. Layanan eksternal lain dalam T-003 belum disiapkan.

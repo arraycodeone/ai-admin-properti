@@ -2,7 +2,7 @@ create function public.active_role(p_organization_id uuid) returns text
 language sql stable security definer set search_path = '' as $$
   select m.role from public.memberships m where m.organization_id = p_organization_id and m.user_id = auth.uid() and m.is_active
 $$;
-revoke all on function public.active_role(uuid) from public;
+revoke all on function public.active_role(uuid) from public,anon,authenticated;
 grant execute on function public.active_role(uuid) to authenticated;
 
 create function public.can_read_lead(p_organization_id uuid,p_lead_id uuid) returns boolean
@@ -10,7 +10,7 @@ language sql stable security definer set search_path = '' as $$
   select exists (select 1 from public.leads l join public.memberships m on m.organization_id = l.organization_id and m.user_id = auth.uid() and m.is_active
     where l.organization_id = p_organization_id and l.id = p_lead_id and (m.role = 'owner' or l.assigned_user_id = m.user_id))
 $$;
-revoke all on function public.can_read_lead(uuid,uuid) from public;
+revoke all on function public.can_read_lead(uuid,uuid) from public,anon,authenticated;
 grant execute on function public.can_read_lead(uuid,uuid) to authenticated;
 
 grant select on public.organizations,public.memberships,public.channels,public.site_settings,public.properties,public.property_private_details,public.property_assets,public.knowledge_entries,public.contacts,public.leads,public.conversations,public.messages,public.surveys,public.tasks,public.audit_events,public.site_daily_metrics to authenticated;
