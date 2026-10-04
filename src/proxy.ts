@@ -1,4 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
+import { isAuthRetryableFetchError } from "@supabase/supabase-js";
 import { NextResponse, type NextRequest } from "next/server";
 import { parseConfig } from "@/server/config";
 import type { Database } from "@/types/database";
@@ -19,7 +20,8 @@ export async function proxy(request: NextRequest) {
       },
     },
   });
-  await client.auth.getUser();
+  const { error } = await client.auth.getUser();
+  if (error && !isAuthRetryableFetchError(error)) await client.auth.signOut({ scope: "local" });
   return response;
 }
 

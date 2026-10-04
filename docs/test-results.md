@@ -1,5 +1,23 @@
 # Bukti pengujian lokal
 
+## Autentikasi browser nyata lokal, 4 Oktober 2026
+
+`npm.cmd run test:auth` lulus 8 skenario dengan akun seed dan layanan Auth/Data API Supabase nyata: tanpa sesi, password salah/benar tiga peran, logout, nonaktif/organisasi lain, pergantian akun dan Back, refresh serta penolakan sesi yang `not_after`-nya diubah khusus untuk tes. Cookie expiry dibersihkan; response internal `no-store`. Metode dan batas: [auth-verification.md](auth-verification.md).
+
+Typecheck, lint, 54 tes lokal dan build lulus. Empat tes proxy melindungi penanganan expiry tanpa logout saat layanan terganggu. Trace/video/screenshot dan storage state tidak disimpan; sesi yang dibuat suite dibersihkan. Akun dan data demo tetap tersedia.
+
+Regresi `test:e2e` mode preview lulus 22 tes desktop/mobile. Suite `test:db` berseed juga tetap lulus untuk akses dan integritas setelah cleanup sesi. Tidak ada migrasi baru.
+
+Pengujian preview HTTPS **NOT RUN**, menunggu issue #7. Tidak menunggu JWT habis secara alami: SDK cache dipaksa refresh dengan JWT asli, lalu lifetime sesi server khusus tes dibuat lampau. Tidak mengubah pengaturan Auth proyek, password, atau membership.
+
+## Seed Nusa pada Supabase nyata, 4 Oktober 2026
+
+`test:seed` lulus dua run dari target awal kosong: masing-masing 2 organisasi, 14 properti, 20 FAQ, 5 akun/membership, 4 kontak/lead, 2 site settings, 1 kanal dan 1 detail privat. ID, assignment, sales default serta password lama terjaga. Hash dibandingkan hanya di PostgreSQL; tidak dicetak.
+
+`test:db` berseed lulus (`access.test.sql`, `integrity.test.sql`). Fixture seed dipertahankan untuk tes sesi berikutnya, transaksi tes di-rollback. Ini belum membuktikan login/logout browser atau seluruh matriks tabel/aset. Lihat [bukti rinci](seed-verification.md).
+
+Typecheck, lint, 50 tes lokal, build dan 22 E2E Nusa lulus. Setelah menambahkan pemeriksaan identitas agensi, dua run seed tambahan lulus pada target yang sudah berisi fixture dengan hitungan identik. `test:access` yang command-nya dipulihkan juga lulus; akun dan organisasi sementaranya dibersihkan, fixture demo tetap utuh.
+
 ## Persiapan seed dua kali, 4 Oktober 2026
 
 - Typecheck dan lint lulus; `npm.cmd test` lulus 38 tes pada 5 file, termasuk 13 tes seed.
