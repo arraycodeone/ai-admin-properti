@@ -3,12 +3,13 @@ import type { Database as GeneratedDatabase } from "./database.generated";
 type PublicSchema = GeneratedDatabase["public"];
 type Catalog = PublicSchema["Functions"]["search_public_properties"];
 type SaveProperty = PublicSchema["Functions"]["save_property"];
+type SaveFaq = PublicSchema["Functions"]["save_knowledge_entry"];
 
 // PostgREST accepts bigint input as decimal text. Number would lose precision.
 // RETURNS TABLE does not expose the nullable area casts to the generator.
 export type Database = Omit<GeneratedDatabase, "public"> & {
   public: Omit<PublicSchema, "Functions"> & {
-    Functions: Omit<PublicSchema["Functions"], "search_public_properties" | "save_property"> & {
+    Functions: Omit<PublicSchema["Functions"], "search_public_properties" | "save_property" | "save_knowledge_entry"> & {
       search_public_properties: Omit<Catalog, "Args" | "Returns"> & {
         Args: Omit<Catalog["Args"], "p_budget"> & { p_budget?: string };
         Returns: (Omit<Catalog["Returns"][number], "land_area_m2" | "building_area_m2"> & {
@@ -18,6 +19,9 @@ export type Database = Omit<GeneratedDatabase, "public"> & {
       };
       save_property: Omit<SaveProperty, "Args"> & {
         Args: Omit<SaveProperty["Args"], "p_property_id"> & { p_property_id: string | null };
+      };
+      save_knowledge_entry: Omit<SaveFaq, "Args"> & {
+        Args: Omit<SaveFaq["Args"], "p_entry_id"> & { p_entry_id: string | null };
       };
     };
   };

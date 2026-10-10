@@ -63,6 +63,10 @@ test("font lokal dan tautan pelanggan tersedia di HTML publik", async ({ page, r
 test("profil, kawasan dan tampilan pada tiga lebar layar", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/tentang");
+  await expect(page.getByRole("heading", { name: "Yang sering ditanyakan." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Apakah rumah dalam katalog ini nyata?" })).toBeVisible();
+  await expect(page.locator("main")).not.toContainText("FIXTURE_INACTIVE_FAQ");
+  await expect(page.locator("main")).not.toContainText("FIXTURE_OTHER_TENANT_FAQ");
   await page.getByRole("link", { name: "Kenali pendekatan kami" }).click();
   await expect(page).toHaveURL(/#pendekatan$/);
   await expect(page.locator(".approach-list li")).toHaveCount(3);

@@ -31,7 +31,7 @@ export function assertSeedOrganizations(
     )
   ) {
     throw new Error(
-      "Target harus hanya berisi organisasi fixture demo yang paused.",
+      "Target harus hanya berisi organisasi fixture uji yang paused.",
     );
   }
 }

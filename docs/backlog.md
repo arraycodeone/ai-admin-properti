@@ -20,7 +20,7 @@ Diperbarui 11 Oktober 2026. ID task dipertahankan dari [rencana rinci sebelumnya
 | T-014 | Sebagian | Tinjauan fondasi tersedia; gerbang T-012/T-013 tetap terbuka. |
 | T-015 | Lokal | Editor owner dan RPC atomik sudah tergabung lewat PR #26; gerbang akses masih terbuka. |
 | T-016 | Belum | Upload, metadata, route aset privat, dan pencabutan akses setelah unpublish. |
-| T-017 | Sebagian | Pencarian listing ada; editor FAQ dan uji scope belum ada. |
+| T-017 | Lokal | Editor owner, pembaca FAQ publik, RPC audit, dan uji scope lulus pada target terisolasi; gerbang akses HTTPS tetap terbuka. |
 | T-018 | Belum | Uji katalog, aset, FAQ, publikasi, dan isolasi kontak privat bersama. |
 | T-019 | Sebagian | Website dan katalog Supabase tersedia; materi saat ini masih konsep. |
 | T-020 | Sebagian | Metadata/noindex tersedia; canonical, OG, dan sitemap rilis menunggu konten nyata. |

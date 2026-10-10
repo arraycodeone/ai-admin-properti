@@ -56,17 +56,17 @@ try {
     if (error) throw new Error("Auth Admin tidak dapat membaca akun uji.");
     for (const user of data.users) {
       if (!demoAccounts.some((account) => account.email === user.email))
-        throw new Error("Target berisi akun di luar fixture demo.");
+        throw new Error("Target berisi akun di luar fixture uji.");
       users.set(user.email!, user.id);
     }
     if (data.users.length < 100) break;
-    if (page >= 10) throw new Error("Terlalu banyak akun untuk proyek demo.");
+    if (page >= 10) throw new Error("Terlalu banyak akun untuk proyek uji.");
   }
   await upsert("organizations", [
     {
       id: organizationA,
-      name: "Nusa Property (demo)",
-      slug: "nusa-property-demo",
+      name: "Nusa Property (uji)",
+      slug: "nusa-property-test",
       is_demo: true,
       processing_paused: true,
     },
@@ -102,9 +102,9 @@ try {
         about_text: "Agensi contoh dengan data sintetis di BSD, Alam Sutera, dan Bintaro.",
         canonical_origin: "https://nusa-property.example",
         seo_title: "Nusa Property",
-        seo_description: "Katalog demo sintetis.",
+        seo_description: "Katalog konsep dengan ilustrasi.",
         privacy_text:
-          "Lingkungan demo. Jangan memasukkan data pelanggan nyata.",
+          "Lingkungan uji. Jangan memasukkan data pelanggan nyata.",
         indexing_enabled: false,
       },
       {
@@ -126,7 +126,7 @@ try {
       id: "40000000-0000-4000-8000-000000000001",
       organization_id: organizationA,
       kind: "simulator",
-      label: "Simulator demo (belum aktif)",
+      label: "Simulator uji (belum aktif)",
       environment: "test",
       status: "paused",
     },
@@ -134,13 +134,13 @@ try {
 
   for (const account of demoAccounts) {
     if (!users.has(account.email)) {
-      stage = "pembuatan akun demo";
+      stage = "pembuatan akun uji";
       const { data, error } = await db.auth.admin.createUser({
         email: account.email,
         password,
         email_confirm: true,
       });
-      if (error) throw new Error("Auth Admin gagal membuat akun demo.");
+      if (error) throw new Error("Auth Admin gagal membuat akun uji.");
       users.set(account.email, data.user.id);
     }
     await upsert(
@@ -163,7 +163,7 @@ try {
     .update({ default_sales_user_id: users.get("andi@example.test") })
     .eq("id", organizationA);
   if (defaultSalesError)
-    throw new Error("Gagal menetapkan sales default demo.");
+    throw new Error("Gagal menetapkan sales default uji.");
 
   for (const [index, lead] of demoLeads.entries()) {
     const contactId = `60000000-0000-4000-8000-${String(index + 1).padStart(12, "0")}`;

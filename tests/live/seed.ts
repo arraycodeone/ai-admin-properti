@@ -115,7 +115,7 @@ try {
       `select o.name,o.slug,s.brand_name from public.organizations o
        join public.site_settings s on s.organization_id=o.id where o.id=$1`, [organizationA],
     );
-    assert.deepEqual(identity.rows, [{ name: "Nusa Property (demo)", slug: "nusa-property-demo", brand_name: "Nusa Property" }]);
+    assert.deepEqual(identity.rows, [{ name: "Nusa Property (uji)", slug: "nusa-property-test", brand_name: "Nusa Property" }]);
     const assignments: pg.QueryResult<{ id: string; organization_id: string; stage: string; budget: string; preferred_area: string; email: string }> =
       await database.query(`select l.id, l.organization_id, l.stage, l.budget_max_rupiah::text as budget, l.preferred_area,
       u.email from public.leads l join auth.users u on u.id = l.assigned_user_id`);
@@ -150,7 +150,7 @@ try {
     );
   }
   console.log(
-    "Fixture demo tersimpan. Lanjutkan test:db dan pengujian sesi browser pada issue berikutnya.",
+    "Fixture uji tersimpan. Lanjutkan test:db dan pengujian sesi browser.",
   );
 } catch {
   console.error(

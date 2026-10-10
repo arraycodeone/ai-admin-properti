@@ -68,19 +68,19 @@ try {
     has_function_privilege('authenticated', p.oid, 'EXECUTE') as authenticated
     from pg_proc p join pg_namespace n on n.oid = p.pronamespace
     where n.nspname = 'public' and p.proname = any($1::text[])`,
-  [["active_role", "can_read_lead", "search_public_properties", "get_property_for_edit", "save_property", "check_message_reference", "touch_updated_at"]]);
-  assert.equal(functions.length, 7);
+  [["active_role", "can_read_lead", "search_public_properties", "get_property_for_edit", "save_property", "save_knowledge_entry", "check_message_reference", "touch_updated_at"]]);
+  assert.equal(functions.length, 8);
   for (const fn of functions) {
     assert.equal(fn.anon, false);
-    assert.equal(fn.authenticated, ["active_role", "can_read_lead", "get_property_for_edit", "save_property"].includes(fn.proname));
+    assert.equal(fn.authenticated, ["active_role", "can_read_lead", "get_property_for_edit", "save_property", "save_knowledge_entry"].includes(fn.proname));
     assert.ok(fn.proconfig?.includes('search_path=""'));
-    assert.equal(fn.prosecdef, ["active_role", "can_read_lead", "save_property"].includes(fn.proname));
+    assert.equal(fn.prosecdef, ["active_role", "can_read_lead", "save_property", "save_knowledge_entry"].includes(fn.proname));
   }
   const bucket = await database.query("select public from storage.buckets where id = 'property-media'");
   assert.deepEqual(bucket.rows, [{ public: false }]);
   const policies = await database.query("select policyname from pg_policies where schemaname = 'storage' and tablename = 'objects'");
   assert.equal(policies.rowCount, 0, "Policy Storage perlu ditinjau ulang saat fitur upload tersedia.");
-  console.log("PASS: RLS/grant 21 tabel, 7 fungsi, bucket privat dan Storage tertutup.");
+  console.log("PASS: RLS/grant 21 tabel, 8 fungsi, bucket privat dan Storage tertutup.");
 
   stage = "akun Auth sementara";
   admin = client(process.env.SUPABASE_SECRET_KEY!);
@@ -171,8 +171,18 @@ try {
     denied(await session.rpc("save_property", {
       p_organization_id: organizations[1 - account.org], p_property_id: propertyIds[1 - account.org], p_data: {},
     }));
+    denied(await session.rpc("save_knowledge_entry", {
+      p_organization_id: organizations[1 - account.org], p_entry_id: null,
+      p_question: "Pertanyaan dari organisasi lain?", p_answer: "Jawaban dari organisasi lain.",
+      p_visibility: "public", p_is_active: true,
+    }));
     if (account.role === "sales") denied(await session.rpc("save_property", {
       p_organization_id: organizations[account.org], p_property_id: propertyIds[account.org], p_data: {},
+    }));
+    if (account.role === "sales") denied(await session.rpc("save_knowledge_entry", {
+      p_organization_id: organizations[account.org], p_entry_id: null,
+      p_question: "Pertanyaan oleh sales?", p_answer: "Jawaban oleh sales ditolak.",
+      p_visibility: "public", p_is_active: true,
     }));
     const ownerOrganizations = account.active && account.role === "owner" ? [organizations[account.org]] : [];
     for (const table of ["channels", "site_settings", "audit_events", "site_daily_metrics"] as const) {
@@ -234,6 +244,8 @@ try {
   denied(await anon.rpc("search_public_properties", { p_organization_id: organizations[0] }));
   denied(await anon.rpc("get_property_for_edit", { p_organization_id: organizations[0], p_property_id: propertyIds[0] }));
   denied(await anon.rpc("save_property", { p_organization_id: organizations[0], p_property_id: null, p_data: {} }));
+  denied(await anon.rpc("save_knowledge_entry", { p_organization_id: organizations[0], p_entry_id: null,
+    p_question: "Pertanyaan tanpa sesi?", p_answer: "Jawaban tanpa sesi.", p_visibility: "public", p_is_active: true }));
   assert.notEqual((await anon.storage.from("property-media").download(storagePath)).error, null);
   console.log("PASS: anon ditolak pada 21 tabel dan seluruh RPC pembaca.");
 
