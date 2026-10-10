@@ -55,7 +55,7 @@ Simulator membantu pembangunan dan pemulihan presentasi. Jika akun atau integras
 - Reminder berupa tugas di dashboard. Pengiriman follow-up otomatis WhatsApp di luar jendela layanan ditunda; kanal wajib menolak pengiriman yang tidak memenuhi aturan.
 - Marketplace lintas agensi, aplikasi mobile native, voice note, komisi sales, dan kampanye massal berada setelah demo. Penagihan jasa maintenance berada di luar aplikasi demo.
 
-Estimasi perencanaan setelah penambahan website agen: **sekitar 75–120 jam fokus atau 15–24 hari kerja**, termasuk cadangan 20–30% dari estimasi dasar 59–92 jam dan pembulatan. Dasarnya adalah aplikasi 47–72 jam ditambah website/SEO/CTA 12–20 jam, dengan asumsi identitas, foto, dan konten siap. Ini bukan janji tanggal selesai. Waktu menunggu akses akun, persetujuan platform, data, atau billing berada di luar jam implementasi. Jika hanya tersedia 2 jam sehari, gunakan sekitar 38–60 hari kerja sebagai konversi awal. Evaluasi ulang estimasi setelah P2 berdasarkan hasil pengerjaan fondasi dan uji koneksi awal; hitung kembali cadangan jika estimasi dasar berubah.
+Estimasi perencanaan awal setelah penambahan website agen: **sekitar 75–120 jam fokus atau 15–24 hari kerja**, termasuk cadangan 20–30% dari estimasi dasar 59–92 jam dan pembulatan. Dasarnya adalah aplikasi 47–72 jam ditambah website/SEO/CTA 12–20 jam, dengan asumsi identitas, foto, dan konten siap. Ini bukan janji tanggal selesai. Waktu menunggu akses akun, persetujuan platform, data, atau billing berada di luar jam implementasi. Tinjauan T-014 pada 11 Oktober 2026 menghasilkan [estimasi maju sekitar 125–220 jam fokus tersisa](foundation-review.md); angka awal di bawah dipertahankan sebagai riwayat perencanaan, bukan sisa pekerjaan.
 
 ## 3. Keputusan teknis awal
 
@@ -94,7 +94,7 @@ API key dan password dimasukkan langsung pada konfigurasi rahasia layanan; `.env
 
 ## 5. Backlog berurutan dan kriteria selesai
 
-Rentang berikut berjumlah sekitar 59–92 jam: aplikasi 47–72 jam dan P3a untuk website/SEO/CTA 12–20 jam. Cadangan 20–30% menghasilkan sekitar 71–120 jam, dibulatkan menjadi anggaran 75–120 jam. Cadangan digunakan untuk debugging integrasi, izin data, dan pengujian kegagalan. Angka ini tetap estimasi awal yang ditinjau setelah P2; penambahan website memperluas estimasi aplikasi sebelumnya.
+Rentang awal berikut berjumlah sekitar 59–92 jam: aplikasi 47–72 jam dan P3a untuk website/SEO/CTA 12–20 jam. Cadangan 20–30% menghasilkan sekitar 71–120 jam, dibulatkan menjadi anggaran 75–120 jam. Cadangan digunakan untuk debugging integrasi, izin data, dan pengujian kegagalan. Angka ini adalah estimasi awal seluruh demo; [tinjauan T-014](foundation-review.md) memuat estimasi pekerjaan tersisa yang berlaku sekarang.
 
 Kerjakan tahap sesuai dependensinya. P1a adalah uji kanal awal selama P1–P2; alokasi 1–2 jam dipindahkan dari P7 sehingga tidak dihitung dua kali. P2–P6 dapat berjalan jika P1a tertunda karena akses Meta, tetapi P7 dan rilis WhatsApp tetap memerlukan P1a lulus. Persiapan akun dapat berjalan bersamaan dengan coding tanpa memerlukan agent tambahan.
 

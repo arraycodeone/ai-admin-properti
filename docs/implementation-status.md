@@ -1,8 +1,14 @@
 # Status implementasi
 
+## Tinjauan fondasi, 11 Oktober 2026
+
+- PR #23 telah digabung ke `develop`; issue #10 untuk identitas/aset Nusa ditutup. T-002 lebih luas tetap terbuka untuk fixture kegagalan provider dan evaluasi AI pada T-039.
+- [Tinjauan T-014](foundation-review.md) mencatat bukti akses lokal, owner setiap hambatan, rencana uji coordinator T-025 lintas proses, dan estimasi maju 125–220 jam fokus tersisa termasuk cadangan. Jam aktual P0–P2 tidak dapat diaudit karena tidak ada timesheet fokus.
+- T-012/#8 menunggu URL preview HTTPS dari T-006/#7; T-013/T-014/#9 tetap terbuka. T-007/T-008/#12 menunggu akses Meta dan bukti handset dua arah. Jobs/AI belum diverifikasi. Gerbang CRUD T-015 belum dinyatakan lulus.
+
 ## Konsistensi katalog demo, 10 Oktober 2026
 
-- Identitas aktif Nusa Property, kode `NUSA-001`, alur Dimas BSD/Rp2 miliar, naskah demo, dokumen bisnis/roadmap, dan 15 fixture evaluasi AI diselaraskan dengan katalog serta seed yang sudah tersedia. Build produksi dan 22 tes E2E desktop/mobile lulus pada branch integrasi. Issue #10 tetap terbuka sampai perubahan digabungkan; T-002 keseluruhan tetap terbuka untuk fixture kegagalan provider dan tahap evaluasi AI nyata T-039.
+- Identitas aktif Nusa Property, kode `NUSA-001`, alur Dimas BSD/Rp2 miliar, naskah demo, dokumen bisnis/roadmap, dan 15 fixture evaluasi AI diselaraskan dengan katalog serta seed yang sudah tersedia. Build produksi dan 22 tes E2E desktop/mobile lulus pada branch integrasi. Issue #10 kini ditutup setelah PR #23 digabung; T-002 keseluruhan tetap terbuka untuk fixture kegagalan provider dan tahap evaluasi AI nyata T-039.
 
 ## Matriks akses lokal, 10 Oktober 2026
 
