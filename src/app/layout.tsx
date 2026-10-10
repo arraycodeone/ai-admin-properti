@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { getEnv } from "@/server/env";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,6 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  getEnv();
   return <html lang="id"><body><a href="#main" className="skip-link">Lewati ke konten</a>{children}</body></html>;
 }

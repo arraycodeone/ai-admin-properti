@@ -15,3 +15,5 @@ Diperbarui 11 Oktober 2026. Hasil ini berlaku untuk checkout lokal dan target Su
 | `node scripts/check-design.mjs` | Lulus untuk pasangan warna yang diperiksa. |
 
 Browser Auth dan tes akses harus dijalankan berurutan karena keduanya memakai target uji yang sama. Tes fixture/mock tidak menggantikan pembuktian Auth pada HTTPS atau WhatsApp perangkat nyata. [Log historis](archive/test-results-before-nusa-direction.md) tetap tersedia.
+
+GitHub CI menjalankan typecheck, lint, unit, dan build tanpa kredensial database. E2E CI hanya berjalan bila `RUN_ISOLATED_E2E=true` serta empat secret `CI_SUPABASE_URL`, `CI_SUPABASE_PUBLISHABLE_KEY`, `CI_SUPABASE_SECRET_KEY`, dan `CI_TEST_DATABASE_URL` disetel untuk target uji terisolasi. Tanpa itu, E2E CI dilewati secara eksplisit; hasil E2E lokal di atas tetap berlaku hanya untuk target lokal yang diuji.
