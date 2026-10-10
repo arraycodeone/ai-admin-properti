@@ -67,7 +67,7 @@ export default async function Home() {
             <Link href="/properti?type=house"><Icon name="home" />Rumah</Link>
             <Link href="/properti?type=apartment"><Icon name="apartment" />Apartemen</Link>
           </nav>
-          <p className="catalog-note">Listing & spesifikasi demo · Foto ilustrasi AI</p>
+          <p className="catalog-note">Katalog konsep · Gambar dan spesifikasi ilustratif</p>
         </div>
         {properties.length ? (
           <div className="property-grid">
@@ -100,9 +100,9 @@ export default async function Home() {
         <div className="container consultation-inner">
           <figure className="agent-figure" data-motion="side">
             <div className="agent-image">
-              <Image src="/asset/images/agent/michael-santoso-demo.webp" alt="Potret ilustrasi AI Michael Santoso, agen fiktif untuk demo" fill sizes="(max-width: 760px) 100vw, 40vw" />
+              <Image src="/asset/images/agent/michael-santoso-demo.webp" alt="Ilustrasi AI seorang konsultan properti" fill sizes="(max-width: 760px) 100vw, 40vw" />
             </div>
-            <figcaption><strong>Michael Santoso</strong><span>Konsultan properti · Profil agen demo</span></figcaption>
+            <figcaption><strong>Tim konsultasi</strong><span>Potret ilustrasi AI</span></figcaption>
           </figure>
           <div className="consultation-copy" data-motion="rise" data-motion-delay="140">
             <p className="eyebrow">Mari bicarakan rencana Anda</p>
@@ -111,7 +111,7 @@ export default async function Home() {
             <div className="consultation-areas"><Icon name="pin" />BSD · Alam Sutera · Bintaro</div>
             <WhatsappCta phone={site.phone} />
             <Link href="/properti" className="text-link">Pilih properti untuk dibicarakan <Icon name="arrow" /></Link>
-            <p className="consultation-note">Kunjungan baru terjadwal setelah konfirmasi tim. Profil dan potret di samping merupakan ilustrasi demo.</p>
+            <p className="consultation-note">Kunjungan baru terjadwal setelah konfirmasi tim. Potret di samping merupakan ilustrasi AI.</p>
           </div>
         </div>
       </section>

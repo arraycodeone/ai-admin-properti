@@ -49,7 +49,7 @@ export const properties: PropertyRecord[] = [
   { ...base, id: "20000000-0000-4000-8000-000000000010", organization_id: organizationB, public_code: "AGB-001", slug: "rumah-agensi-b", title: "Listing organisasi B" },
 ];
 
-export function withDemoMedia(property: PublicProperty): PublicProperty {
+export function withConceptMedia(property: PublicProperty): PublicProperty {
   const listing = listingAssets.find(asset => asset.slug === property.slug);
   return listing ? { ...property, media: { cover: listing.cover, images: listing.images } } : property;
 }

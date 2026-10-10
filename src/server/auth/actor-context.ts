@@ -6,7 +6,6 @@ import type { Actor } from "./permissions";
 
 export async function requireActor(): Promise<Actor> {
   const env = getEnv();
-  if (env.APP_MODE !== "supabase") redirect("/login");
   const client = await userClient();
   const { data: { user }, error } = await client.auth.getUser();
   if (error || !user) redirect("/login");

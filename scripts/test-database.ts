@@ -3,7 +3,7 @@ import { loadEnvFile } from "node:process";
 
 export function testDatabaseConfig() {
   if (existsSync(".env.local")) loadEnvFile(".env.local");
-  if (process.env.APP_ENV !== "test" || process.env.TEST_DATABASE_CONFIRM_ISOLATED !== "true" ||
+  if (process.env.APP_ENV !== "development" || process.env.TEST_DATABASE_CONFIRM_ISOLATED !== "true" ||
       !process.env.TEST_DATABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_URL) {
     throw new Error("Konfigurasi database uji belum lengkap.");
   }

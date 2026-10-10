@@ -11,7 +11,7 @@ export function Header({ name }: { name: string }) {
   const pathname = usePathname();
   return (
     <>
-      <div className="demo-strip"><span>Website demo</span> Listing, foto, dan profil agen merupakan ilustrasi.</div>
+      <div className="concept-strip"><span>Katalog konsep</span> Spesifikasi dan gambar merupakan ilustrasi, bukan penawaran properti.</div>
       <header className="site-header" onKeyDown={event => {
         if (event.key === "Escape" && open) {
           setOpen(false);

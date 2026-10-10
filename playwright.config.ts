@@ -16,6 +16,6 @@ export default defineConfig({
     url: "http://127.0.0.1:3100",
     reuseExistingServer: false,
     timeout: 120_000,
-    env: { APP_MODE: "preview", APP_ENV: "test", SITE_URL: "http://127.0.0.1:3100", SITE_ORGANIZATION_ID: "10000000-0000-4000-8000-000000000001" },
+    env: { APP_ENV: "development", SITE_URL: "http://127.0.0.1:3100", SITE_ORGANIZATION_ID: "10000000-0000-4000-8000-000000000001" },
   },
 });

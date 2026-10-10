@@ -16,7 +16,7 @@ Paket aset berdasarkan PRD Nusa Property Demo MVP v1.0. Semua foto dibuat dengan
 
 Gambar siap pakai sudah dipindahkan ke `../public/asset/`. Sumber PNG, metadata, prompt, dan lembar pratinjau tetap di folder ini. Seluruh file paket diverifikasi dengan SHA-256 saat pemindahan sebelum dokumentasi diperbarui.
 
-Paket **Nusa Property** kini dipetakan ke 10 listing preview pada `src/demo/`, sesuai persetujuan redesign 4 Oktober 2026. Nama, harga, lokasi, cover, dan galeri berasal dari metadata paket; kamar dan luas ditambahkan sebagai spesifikasi sintetis. Media hanya ditempelkan setelah penyaringan publik pada mode preview. Data Supabase tidak otomatis memperoleh foto ilustrasi.
+Paket **Nusa Property** dipetakan ke 10 listing konsep pada `src/demo/`. Nama, harga, lokasi, cover, dan galeri berasal dari metadata paket; kamar dan luas adalah spesifikasi sintetis. Media ilustratif dipasangkan pada hasil query Supabase sesudah filter publik hanya dalam lingkungan `development`. Lingkungan `production` tidak memasangkan foto ilustratif ini secara otomatis.
 
 ```text
 public/asset/

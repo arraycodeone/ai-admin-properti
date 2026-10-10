@@ -9,13 +9,12 @@ let client: pg.Client | undefined;
 try {
   const databaseConfig = testDatabaseConfig();
   const env = parseConfig(process.env);
-  if (env.APP_MODE !== "supabase") throw new Error("Checker memerlukan mode Supabase.");
-  const api = new URL(env.NEXT_PUBLIC_SUPABASE_URL!);
+  const api = new URL(env.NEXT_PUBLIC_SUPABASE_URL);
   console.log("PASS: konfigurasi uji dan kecocokan target API/SQL.");
 
   stage = "Auth dengan publishable key";
   const health = await fetch(new URL("/auth/v1/health", api), {
-    headers: { apikey: env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY! },
+    headers: { apikey: env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY },
     signal: AbortSignal.timeout(10_000),
     redirect: "error",
   });
@@ -24,7 +23,7 @@ try {
   console.log("PASS: layanan Auth menerima publishable key.");
 
   stage = "Auth Admin dengan secret key";
-  const admin = createClient(api.origin, env.SUPABASE_SECRET_KEY!, {
+  const admin = createClient(api.origin, env.SUPABASE_SECRET_KEY, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
     global: { fetch: (input, init) => fetch(input, { ...init, signal: AbortSignal.timeout(10_000), redirect: "error" }) },
   });

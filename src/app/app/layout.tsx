@@ -19,7 +19,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </div>
       </aside>
       <div className="admin-content">
-        <div className="admin-topbar"><span>Ruang kerja tim</span><span className="status-label">Lingkungan demo</span></div>
+        <div className="admin-topbar"><span>Ruang kerja tim</span><span className="status-label">Nusa Property</span></div>
         {children}
       </div>
     </div>

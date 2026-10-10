@@ -17,7 +17,7 @@ export function Footer({ name }: { name: string }) {
         </nav>
       </div>
       <div className="container footer-bottom" data-motion="rise" data-motion-delay="70">
-        <span>© 2026 {name}. Website demo, bukan penawaran properti nyata.</span>
+        <span>© 2026 {name}. Katalog konsep dengan gambar ilustrasi.</span>
         <span>BSD · Alam Sutera · Bintaro</span>
       </div>
     </footer>

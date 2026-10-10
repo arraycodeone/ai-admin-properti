@@ -3,7 +3,7 @@ import { getPublicProperties } from "@/modules/properties/queries";
 import { organizationA, properties } from "@/demo/properties";
 
 const { rpc } = vi.hoisted(() => ({ rpc: vi.fn() }));
-vi.mock("@/server/env", () => ({ getEnv: () => ({ APP_MODE: "supabase", SITE_ORGANIZATION_ID: "10000000-0000-4000-8000-000000000001" }) }));
+vi.mock("@/server/env", () => ({ getEnv: () => ({ SITE_ORGANIZATION_ID: "10000000-0000-4000-8000-000000000001" }) }));
 vi.mock("@/server/db/system-client", () => ({ systemClient: () => ({ rpc }) }));
 
 beforeEach(() => vi.resetAllMocks());
