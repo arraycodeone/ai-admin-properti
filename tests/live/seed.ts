@@ -62,14 +62,14 @@ try {
     stage = `seed ke-${attempt}`;
     const result = spawnSync(
       process.execPath,
-      ["--import", "tsx", "scripts/seed-demo.ts"],
+      ["--import", "tsx", "scripts/seed-test.ts"],
       {
         cwd: process.cwd(),
         encoding: "utf8",
         timeout: 180_000,
         env: {
           ...process.env,
-          DEMO_SEED_PASSWORD:
+          TEST_SEED_PASSWORD:
             attempt === 1
               ? config.password
               : `${randomBytes(32).toString("base64url")}aA1!`,

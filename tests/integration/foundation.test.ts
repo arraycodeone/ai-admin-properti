@@ -76,15 +76,21 @@ describe("uang, waktu, dan CTA", () => {
 });
 
 describe("konfigurasi dan izin", () => {
-  it("preview dipilih secara eksplisit atau menjadi default lokal; konfigurasi live gagal tertutup", () => {
-    expect(parseConfig({}).APP_MODE).toBe("preview");
-    expect(() => parseConfig({ APP_MODE: "supabase" })).toThrow(/Konfigurasi wajib/);
-    expect(() => parseConfig({ APP_MODE: "typo" })).toThrow();
-    expect(() => parseConfig({ APP_ENV: "production" })).toThrow(/produksi/);
-    expect(() => parseConfig({ SITE_URL: "https://secret:password@example.com" })).toThrow(/origin/);
+  it("memerlukan Supabase, menolak mode lama, dan mengenal development/production", () => {
+    const keys = {
+      NEXT_PUBLIC_SUPABASE_URL: "https://example.supabase.co",
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "public-key",
+      SUPABASE_SECRET_KEY: "server-key",
+    };
+    expect(() => parseConfig({})).toThrow(/NEXT_PUBLIC_SUPABASE_URL/);
+    expect(() => parseConfig({ ...keys, APP_MODE: "legacy" })).toThrow(/APP_MODE/);
+    expect(() => parseConfig({ ...keys, APP_ENV: "test" })).toThrow(/APP_ENV/);
+    expect(parseConfig(keys).APP_ENV).toBe("development");
+    expect(parseConfig({ ...keys, APP_ENV: "production" }).APP_ENV).toBe("production");
+    expect(() => parseConfig({ ...keys, SITE_URL: "https://secret:password@example.com" })).toThrow(/origin/);
   });
   it("pesan kegagalan konfigurasi tidak memuat nilai rahasia", () => {
-    try { parseConfig({ APP_MODE: "supabase", SUPABASE_SECRET_KEY: "SECRET_TEST_MARKER" }); }
+    try { parseConfig({ SUPABASE_SECRET_KEY: "SECRET_TEST_MARKER" }); }
     catch (error) { expect(String(error)).not.toContain("SECRET_TEST_MARKER"); }
   });
   it("owner dan sales tetap dibatasi organisasi dan assignment", () => {

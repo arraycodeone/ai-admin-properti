@@ -44,7 +44,7 @@ async function login(page: Page, email: string, valid = true) {
   await page.goto("/login");
   await page.getByLabel("Email", { exact: true }).fill(email);
   try {
-    await page.getByLabel("Kata sandi", { exact: true }).fill(valid ? process.env.DEMO_SEED_PASSWORD! : "Incorrect-demo-password-123!");
+    await page.getByLabel("Kata sandi", { exact: true }).fill(valid ? process.env.TEST_SEED_PASSWORD! : "Incorrect-demo-password-123!");
   } catch { throw new Error("Tidak dapat mengisi password uji; rincian disembunyikan."); }
   await page.getByRole("button", { name: "Masuk ke dashboard" }).click();
 }
@@ -88,10 +88,11 @@ for (const account of demoAccounts.filter(account => account.org === organizatio
     await expect(page.locator(".login-form [role=alert]")).toHaveText("Login gagal. Periksa email dan kata sandi, lalu coba lagi.");
     await expect(page).toHaveURL(/\/login$/);
     await login(page, account.email);
-    await expect(page.getByRole("heading", { name: `Halo, ${account.display_name}.` })).toBeVisible();
+    await expect(page.getByRole("heading", { name: `Selamat datang, ${account.display_name}.` })).toBeVisible();
     await storedSession(context);
     await expect(page.locator(".summary-strip")).toContainText(account.role === "owner" ? "Owner" : "Sales");
     await expect(page.locator(".summary-strip")).toContainText(String(properties.filter(row => row.organization_id === organizationA).length));
+    await expect(page.locator(".dashboard-priority-card").filter({ hasText: "Prospek baru" }).locator("strong")).toHaveText("0");
     await expect(page.getByRole("navigation", { name: "Navigasi dashboard" }).getByRole("link")).toHaveCount(2);
     const response = await page.goto("/app/properti");
     expect(response?.headers()["cache-control"]).toContain("no-store");
@@ -125,12 +126,12 @@ test("berganti akun pada browser yang sama tidak menampilkan identitas lama", as
   for (const name of names) {
     const account = demoAccounts.find(account => account.display_name === name)!;
     await login(page, account.email);
-    await expect(page.getByRole("heading", { name: `Halo, ${name}.` })).toBeVisible();
+    await expect(page.getByRole("heading", { name: `Selamat datang, ${name}.` })).toBeVisible();
     await storedSession(context);
     for (const other of names.filter(other => other !== name)) await expect(page.locator(".sidebar-bottom")).not.toContainText(other);
     await page.getByRole("link", { name: "Buka katalog internal" }).click();
     await page.getByRole("link", { name: "Ringkasan", exact: true }).click();
-    await expect(page.getByRole("heading", { name: `Halo, ${name}.` })).toBeVisible();
+    await expect(page.getByRole("heading", { name: `Selamat datang, ${name}.` })).toBeVisible();
     await page.getByRole("button", { name: "Keluar" }).click();
     await expect(page).toHaveURL(/\/login$/);
     await page.goBack();
@@ -140,11 +141,11 @@ test("berganti akun pada browser yang sama tidak menampilkan identitas lama", as
 
 test("proxy memperbarui sesi dan menolak refresh sesi yang kedaluwarsa", async ({ page, context }) => {
   await login(page, "andi@example.test");
-  await expect(page.getByRole("heading", { name: "Halo, Andi." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Selamat datang, Andi." })).toBeVisible();
   const old = await storedSession(context);
   const id = await refreshOnNextRequest(context);
   const response = await page.goto("/app");
-  await expect(page.getByRole("heading", { name: "Halo, Andi." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Selamat datang, Andi." })).toBeVisible();
   const fresh = await storedSession(context);
   expect(fresh.session.refresh_token !== old.session.refresh_token).toBe(true);
   expect(fresh.session.expires_at > Date.now() / 1000).toBe(true);

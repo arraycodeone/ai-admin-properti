@@ -11,7 +11,7 @@ vi.mock("next/navigation", () => ({ redirect: (path: string) => { throw new Erro
 
 beforeEach(() => {
   vi.resetAllMocks();
-  getEnv.mockReturnValue({ APP_MODE: "supabase", SITE_ORGANIZATION_ID: "trusted-org" });
+  getEnv.mockReturnValue({ SITE_ORGANIZATION_ID: "trusted-org" });
   getUser.mockResolvedValue({ data: { user: { id: "verified-user", user_metadata: { role: "owner", organization_id: "forged-org" } } }, error: null });
   query.select.mockReturnValue(query);
   query.eq.mockReturnValue(query);
@@ -26,10 +26,10 @@ describe("actor server", () => {
     expect(query.eq.mock.calls).toEqual([["organization_id", "trusted-org"], ["user_id", "verified-user"], ["is_active", true]]);
   });
 
-  it("menolak preview sebelum membuka client", async () => {
-    getEnv.mockReturnValue({ APP_MODE: "preview" });
-    await expect(requireActor()).rejects.toThrow("redirect:/login");
-    expect(userClient).not.toHaveBeenCalled();
+  it("meneruskan kegagalan pembukaan client tanpa membaca membership", async () => {
+    userClient.mockRejectedValue(new Error("Koneksi gagal"));
+    await expect(requireActor()).rejects.toThrow("Koneksi gagal");
+    expect(query.select).not.toHaveBeenCalled();
   });
 
   it.each([null, { message: "expired" }])("menolak sesi kosong atau gagal sebelum membaca membership", async error => {

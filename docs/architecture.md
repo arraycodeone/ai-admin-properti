@@ -1,6 +1,6 @@
 # Arsitektur yang tersedia
 
-Diperbarui 4 Oktober 2026. Dokumen ini menjelaskan kode yang ada. Target AI, WhatsApp, jobs, dan operasi sales berada di [roadmap](roadmap.md) dan [backlog](backlog.md). Hasil implementasi dan keterbatasannya ada di [status](implementation-status.md).
+Diperbarui 11 Oktober 2026. Dokumen ini menjelaskan kode yang ada. Target AI, WhatsApp, jobs, dan operasi sales berada di [roadmap](roadmap.md) dan [backlog](backlog.md). Hasil implementasi dan keterbatasannya ada di [status](implementation-status.md).
 
 ## Peta folder
 
@@ -24,10 +24,10 @@ src/
     config.ts           Parser konfigurasi tanpa pembacaan environment
     env.ts              Pembacaan environment khusus server
   lib/                  Helper murni untuk uang, waktu, dan link WhatsApp
-  demo/                 Data sintetis bersama untuk preview, seed, dan tes
+  demo/                 Data konsep dan fixture sintetis untuk seed/tes
   types/                Tipe database generated dan koreksi kontrak wire RPC
   proxy.ts              Refresh sesi Supabase
-public/asset/           Gambar demo dan brand siap dilayani sebagai URL /asset/*
+public/asset/           Gambar ilustratif dan brand siap dilayani sebagai URL /asset/*
 assets-source/          PNG asli, metadata paket, prompt, dan lembar pratinjau
 scripts/                Bootstrap database uji, generation tipe, seed, dan pemeriksaan
 supabase/migrations/    Migrasi SQL berurutan
@@ -43,15 +43,15 @@ docs/archive/          Rancangan yang sudah digantikan
 
 ## Alur data
 
-- Katalog: halaman publik → `modules/properties/queries.ts` → validasi filter → data `demo` dan filter murni pada mode preview, atau RPC Supabase pada mode database → DTO publik.
+- Katalog: halaman publik → `modules/properties/queries.ts` → validasi filter → RPC Supabase → DTO publik. Gambar konsep dipetakan hanya pada lingkungan development.
 - Detail: `getPublicProperty` membaca katalog yang sudah dibatasi lalu memilih slug. Listing draft, nonaktif, atau organisasi lain tidak menjadi hasil publik.
-- Profil: `modules/site/queries.ts` membaca profil sintetis atau `site_settings` dan kanal siap milik organisasi website.
-- Dashboard internal: halaman → query modul → `requireActor()` → `userClient()` → query dengan scope organisasi. Query ringkasan mengembalikan actor terverifikasi beserta jumlah listing.
+- Profil: `modules/site/queries.ts` membaca `site_settings` dan kanal siap milik organisasi website. Organisasi fixture ditolak pada lingkungan production.
+- Dashboard internal: halaman → query modul → `requireActor()` → `userClient()` → query dengan scope organisasi dan RLS. Ringkasan berisi actor, listing, prospek baru, permintaan handoff, tugas, serta survei.
 - Editor listing: route owner → Server Action modul properti → validasi formulir → `userClient().rpc("save_property")`. RPC memeriksa owner aktif dan organisasi lagi, lalu menyimpan listing, detail privat, dan audit atomik. Sales hanya memakai query katalog baca; detail privat hanya diambil untuk form owner.
 - Login/logout: form/sidebar → Server Actions `server/auth/session.ts`. `proxy.ts` membantu refresh sesi; izin tetap diverifikasi saat data dibaca.
 - Halaman `/tentang`: route membaca kanal melalui `getSite()`, lalu menyusun `AgencyProfile`. Konten pendekatan dan kawasan berada di modul site; kawasan dipakai bersama dengan landing.
 - Presentasi publik: `PublicExperience` mengatur modalitas fokus, reveal sekali per kunjungan, dan parallax foto melalui IntersectionObserver/Web Animations/rAF. Data tetap di server. Font berlisensi berada di `(public)/fonts` dan dilayani lokal.
-- Seed: `scripts/seed-demo.ts` memakai data `src/demo/` setelah guard target uji. Tes menggunakan data yang sama dan fixture tambahan sesuai skenario.
+- Seed: `scripts/seed-test.ts` memakai data `src/demo/` setelah guard target uji. Tes menggunakan data yang sama dan fixture tambahan sesuai skenario.
 
 ## Batas tanggung jawab
 
@@ -62,12 +62,12 @@ docs/archive/          Rancangan yang sudah digantikan
 | `components` | Tampilan bersama; komponen client tidak mengimpor client database atau secret. |
 | `server` | Infrastruktur server, identitas, konfigurasi, koneksi database. |
 | `lib` | Helper murni yang aman dibagikan antara server dan client. |
-| `demo` | Data sintetis, tanpa secret atau koneksi layanan; bukan data pelanggan nyata. |
+| `demo` | Data sintetis untuk katalog konsep dan pengujian, tanpa secret atau koneksi layanan; bukan data pelanggan nyata. |
 | `tests` | Memakai kode aplikasi; aplikasi dan script tidak bergantung pada folder ini. |
 
-Query database ditandai `server-only`. Query internal memverifikasi actor sendiri dan menggunakan client sesi agar RLS ikut berlaku. Client sistem untuk katalog publik memakai organisasi dari konfigurasi server serta RPC/DTO yang membatasi field. Tidak ada fallback ke data demo bila Supabase gagal. Ketentuan database lengkap ada di [database.md](database.md).
+Query database ditandai `server-only`. Query internal memverifikasi actor sendiri dan menggunakan client sesi agar RLS ikut berlaku. Client sistem untuk katalog publik memakai organisasi dari konfigurasi server serta RPC/DTO yang membatasi field. Tidak ada fallback fixture bila Supabase gagal. Ketentuan database lengkap ada di [database.md](database.md).
 
-Route `/preview` dan komponen dashboard sintetisnya dihapus. Fixture prospek tetap digunakan seed/tes. `/login` dan `/app` tidak ditautkan dari HTML publik; autentikasi dan membership tetap wajib untuk dashboard. Layout publik tidak memakai `loading.tsx`/Suspense yang menyembunyikan HTML akhir di balik script streaming, sehingga kunjungan tanpa JavaScript memperoleh konten dan formulir GET lengkap. Loading dashboard, error boundary, empty state, dan not-found tetap tersedia.
+Fixture prospek digunakan untuk seed/tes. `/login` dan `/app` tidak ditautkan dari HTML publik; autentikasi dan membership tetap wajib untuk dashboard. Layout publik tidak memakai `loading.tsx`/Suspense yang menyembunyikan HTML akhir di balik script streaming, sehingga kunjungan tanpa JavaScript memperoleh konten dan formulir GET lengkap. Loading dashboard, error boundary, empty state, dan not-found tetap tersedia.
 
 Client aplikasi memakai tipe dari `src/types/database.ts`, yang memperbaiki bigint input dan nullability RPC dari hasil generator. `database.generated.ts` hanya diperbarui melalui `npm.cmd run db:types`. Adapter query memvalidasi respons menjadi DTO publik/internal. Bootstrap dan batas pengujian dijelaskan di [panduan migrasi](supabase-migrations.md).
 
@@ -77,7 +77,7 @@ Gunakan import langsung dengan alias `@/` untuk lintas folder `src`, dan import 
 
 `src/demo/` mempertahankan ID dua organisasi, dua puluh FAQ, dan empat prospek. Katalog memiliki sepuluh listing Nusa dan empat fixture akses (draft, paused, sold, organisasi B); UUID fixture akses tetap. Marker sintetis untuk menguji field privat juga dipakai seed. `tests/fixtures/ai-scenarios.json` tetap khusus evaluasi.
 
-`public/asset/` berisi gambar demo Nusa Property dengan URL `/asset/...`. `assets-source/` memuat PNG asli, prompt, metadata, serta bukti pembuatan. Metadata listing dipakai fixture preview; media opsional (cover dan galeri) ditambahkan query setelah filter/DTO publik, khusus mode preview. Respons database tidak diberi media sintetis. Lihat [petunjuk aset](../assets-source/README.md). Foto produksi yang memerlukan pencabutan akses tetap mengikuti rancangan Storage privat.
+`public/asset/` berisi gambar ilustratif Nusa Property dengan URL `/asset/...`. `assets-source/` memuat PNG asli, prompt, metadata, serta bukti pembuatan. Media opsional dipasangkan pada hasil query database hanya dalam lingkungan `development`, dengan penanda ilustrasi pada tampilan. Lingkungan `production` tidak memakai media sintetis. Lihat [petunjuk aset](../assets-source/README.md). Foto properti nyata yang memerlukan pencabutan akses tetap mengikuti rancangan Storage privat.
 
 ## Menambah fitur
 

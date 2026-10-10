@@ -5,8 +5,7 @@ import type { Database } from "@/types/database";
 
 export function systemClient() {
   const env = getEnv();
-  if (env.APP_MODE !== "supabase") throw new Error("Database belum dikonfigurasi.");
-  return createClient<Database>(env.NEXT_PUBLIC_SUPABASE_URL!, env.SUPABASE_SECRET_KEY!, {
+  return createClient<Database>(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SECRET_KEY, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 }

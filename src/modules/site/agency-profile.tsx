@@ -19,7 +19,7 @@ export function AgencyProfile({ phone }: { phone: string | null }) {
           <div className="about-hero-image" data-motion="photo">
             <Image data-parallax src="/asset/images/properties/luxury-residence-bsd/02-living-room.webp" alt="Ilustrasi AI interior hunian dengan ruang duduk dan cahaya alami" fill sizes="(max-width: 760px) 100vw, 55vw" preload />
           </div>
-          <figcaption className="image-caption">Ilustrasi AI dari koleksi hunian demo Nusa.</figcaption>
+          <figcaption className="image-caption">Ilustrasi AI hunian dalam katalog konsep.</figcaption>
         </figure>
       </section>
 
@@ -27,9 +27,9 @@ export function AgencyProfile({ phone }: { phone: string | null }) {
         <p className="eyebrow" data-motion="rise">Tentang Nusa Property</p>
         <div data-motion="rise" data-motion-delay="70">
           <h2 id="agency-heading">Pendamping pencarian<br /><em>hunian Anda.</em></h2>
-          <p>Nusa Property diperkenalkan dalam demo ini sebagai agensi yang mendampingi pencarian rumah dan apartemen di BSD, Alam Sutera, dan Bintaro.</p>
+          <p>Nusa Property mendampingi pencarian rumah dan apartemen di BSD, Alam Sutera, dan Bintaro.</p>
           <p>Pendekatannya berawal dari kebutuhan ruang, lokasi, dan anggaran. Katalog membantu Anda membandingkan pilihan sebelum membicarakan rincian properti dan rencana kunjungan.</p>
-          <p className="about-disclosure">Profil agensi dan listing pada website ini merupakan materi demo, bukan penawaran properti nyata.</p>
+          <p className="about-disclosure">Listing, harga, spesifikasi, dan gambar saat ini ditampilkan sebagai konsep ilustratif, bukan penawaran properti nyata.</p>
         </div>
       </section>
 
@@ -78,7 +78,7 @@ export function AgencyProfile({ phone }: { phone: string | null }) {
             <h2 id="next-step-heading">Ada ruang<br /><em>untuk rencana Anda.</em></h2>
           </div>
           <div data-motion="rise" data-motion-delay="70">
-            <p>Lihat pilihan hunian yang tersedia dalam katalog demo. Catat properti yang ingin Anda kenali lebih jauh.</p>
+            <p>Jelajahi konsep hunian dalam katalog untuk mengenali lokasi, tipe, dan ruang yang Anda cari.</p>
             <Link href="/properti" className="text-link">Lihat katalog properti <Icon name="arrow" /></Link>
             <WhatsappCta phone={phone} />
           </div>

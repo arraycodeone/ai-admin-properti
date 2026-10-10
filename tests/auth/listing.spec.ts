@@ -34,7 +34,7 @@ test.afterAll(async () => {
 test("owner membuat dan menerbitkan listing; sales tetap baca saja", async ({ page }) => {
   await page.goto("/login");
   await page.getByLabel("Email", { exact: true }).fill("owner.a@example.test");
-  await page.getByLabel("Kata sandi", { exact: true }).fill(process.env.DEMO_SEED_PASSWORD!);
+  await page.getByLabel("Kata sandi", { exact: true }).fill(process.env.TEST_SEED_PASSWORD!);
   await page.getByRole("button", { name: "Masuk ke dashboard" }).click();
   await expect(page).toHaveURL(/\/app$/);
   await page.goto("/app/properti");
@@ -89,7 +89,7 @@ test("owner membuat dan menerbitkan listing; sales tetap baca saja", async ({ pa
   await page.goto("/app/properti");
   await page.getByRole("button", { name: "Keluar" }).click();
   await page.getByLabel("Email", { exact: true }).fill("andi@example.test");
-  await page.getByLabel("Kata sandi", { exact: true }).fill(process.env.DEMO_SEED_PASSWORD!);
+  await page.getByLabel("Kata sandi", { exact: true }).fill(process.env.TEST_SEED_PASSWORD!);
   await page.getByRole("button", { name: "Masuk ke dashboard" }).click();
   await expect(page).toHaveURL(/\/app$/);
   await page.goto("/app/properti");

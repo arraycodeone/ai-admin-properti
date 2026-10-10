@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!property) return { title: "Properti tidak ditemukan" };
   return {
     title: `${property.title}, ${property.area}`,
-    description: `Contoh ${propertyTypeLabels[property.property_type].toLowerCase()} di ${property.area}. ${property.bedrooms} kamar. ${formatRupiah(property.price_rupiah)}. Data demo.`,
+    description: `Konsep ${propertyTypeLabels[property.property_type].toLowerCase()} di ${property.area}. ${property.bedrooms} kamar. Harga ilustratif ${formatRupiah(property.price_rupiah)}.`,
   };
 }
 
@@ -31,7 +31,7 @@ export default async function Detail({ params }: Props) {
         <span>{property.public_code}</span>
       </nav>
       <div className="page-heading">
-        <p className="eyebrow">{propertyTypeLabels[property.property_type]} · {property.public_code} · Data demo</p>
+        <p className="eyebrow">{propertyTypeLabels[property.property_type]} · {property.public_code} · Konsep ilustratif</p>
         <h1>{property.title}</h1>
         <p>{property.area}, {property.city}</p>
       </div>
@@ -62,7 +62,7 @@ export default async function Detail({ params }: Props) {
           </section>
         </div>
         <aside className="contact-panel">
-          <span className="muted">Harga penawaran contoh</span>
+          <span className="muted">Harga ilustratif</span>
           <p className="detail-price">{formatRupiah(property.price_rupiah)}</p>
           <hr />
           <h2>Mari bicarakan rumah ini.</h2>

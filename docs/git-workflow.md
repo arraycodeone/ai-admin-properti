@@ -6,9 +6,10 @@ Repository: `ai-admin-properti`. Visibilitas yang ditargetkan: private.
 | --- | --- |
 | `main` | Fondasi yang telah lolos pemeriksaan lokal. Belum berarti siap produksi. |
 | `develop` | Integrasi pekerjaan berikutnya sebelum masuk main. |
-| `feature/integrasi-supabase` | Migrasi, seed, autentikasi, dan pengujian akses Supabase. |
 
-Buat branch fitur berikutnya dari `develop`, lalu ajukan pull request kembali ke `develop`. Setelah pemeriksaan dan review selesai, ajukan pull request `develop` ke `main`. Hindari push paksa pada branch bersama.
+Branch fitur dibuat sementara dari `develop` untuk PR. Setelah branch remote dan PR tersedia, branch fitur lokal boleh dihapus agar checkout lokal hanya menyisakan `main` dan `develop`. Branch remote yang dipakai PR tidak dihapus sebelum review selesai.
+
+Buat branch fitur berikutnya dari `develop`, lalu ajukan pull request kembali ke `develop`. Setelah pemeriksaan dan review selesai, ajukan pull request `develop` ke `main`. Hindari push paksa pada branch bersama. PR #26 sudah tergabung pada `develop`; status task akses tetap mengikuti bukti HTTPS, bukan status merge saja.
 
 ```powershell
 git switch develop

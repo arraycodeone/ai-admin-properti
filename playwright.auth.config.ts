@@ -4,7 +4,7 @@ import { organizationA } from "./src/demo/properties";
 
 testDatabaseConfig();
 if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || !process.env.SUPABASE_SECRET_KEY ||
-    (process.env.DEMO_SEED_PASSWORD?.length ?? 0) < 16) {
+    (process.env.TEST_SEED_PASSWORD?.length ?? 0) < 16) {
   throw new Error("NOT RUN: konfigurasi akun uji belum lengkap. Lihat docs/auth-verification.md.");
 }
 
@@ -25,6 +25,6 @@ export default defineConfig({
     url: "http://127.0.0.1:3100/login",
     reuseExistingServer: false,
     timeout: 120_000,
-    env: { APP_MODE: "supabase", APP_ENV: "test", SITE_URL: "http://127.0.0.1:3100", SITE_ORGANIZATION_ID: organizationA },
+    env: { APP_ENV: "development", SITE_URL: "http://127.0.0.1:3100", SITE_ORGANIZATION_ID: organizationA },
   },
 });

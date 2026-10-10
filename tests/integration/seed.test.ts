@@ -19,13 +19,13 @@ beforeEach(() => {
   vi.resetModules();
   vi.resetAllMocks();
   for (const [name, value] of Object.entries({
-    APP_ENV: "test",
+    APP_ENV: "development",
     TEST_DATABASE_CONFIRM_ISOLATED: "true",
-    DEMO_SEED_CONFIRM_ISOLATED: "true",
+    TEST_SEED_CONFIRM_ISOLATED: "true",
     NEXT_PUBLIC_SUPABASE_URL: "http://127.0.0.1:54321",
     TEST_DATABASE_URL: "postgresql://postgres:local@127.0.0.1:54322/postgres",
     SUPABASE_SECRET_KEY: "SECRET_TEST_MARKER",
-    DEMO_SEED_PASSWORD: "PASSWORD_TEST_MARKER_123",
+    TEST_SEED_PASSWORD: "PASSWORD_TEST_MARKER_123",
   }))
     vi.stubEnv(name, value);
   vi.spyOn(console, "log").mockImplementation(() => {});
@@ -61,10 +61,10 @@ afterEach(() => {
 describe("seed guard dan pemulihan", () => {
   it.each([
     ["APP_ENV", "production"],
-    ["APP_ENV", "demo"],
+    ["APP_ENV", "test"],
     ["TEST_DATABASE_CONFIRM_ISOLATED", "false"],
-    ["DEMO_SEED_CONFIRM_ISOLATED", "false"],
-    ["DEMO_SEED_PASSWORD", "short"],
+    ["TEST_SEED_CONFIRM_ISOLATED", "false"],
+    ["TEST_SEED_PASSWORD", "short"],
     ["SUPABASE_SECRET_KEY", ""],
     [
       "TEST_DATABASE_URL",
@@ -73,7 +73,7 @@ describe("seed guard dan pemulihan", () => {
   ])("menolak %s=%s sebelum membuka client", async (name, value) => {
     vi.stubEnv(name, value);
     expect(() => seedConfig()).toThrow();
-    await import("../../scripts/seed-demo");
+    await import("../../scripts/seed-test");
     expect(createClient).not.toHaveBeenCalled();
     expect(process.exitCode).toBe(1);
     expect(console.error).toHaveBeenCalledWith(
@@ -87,7 +87,7 @@ describe("seed guard dan pemulihan", () => {
     { id: "foreign-org", is_demo: true, processing_paused: true },
   ])("menolak organisasi tidak aman sebelum mutasi", async (row) => {
     select.mockResolvedValue({ data: [row], error: null });
-    await import("../../scripts/seed-demo");
+    await import("../../scripts/seed-test");
     expect(upsert).not.toHaveBeenCalled();
     expect(listUsers).not.toHaveBeenCalled();
     expect(process.exitCode).toBe(1);
@@ -98,14 +98,14 @@ describe("seed guard dan pemulihan", () => {
       data: { users: [{ id: "foreign-user", email: "foreign@example.test" }] },
       error: null,
     });
-    await import("../../scripts/seed-demo");
+    await import("../../scripts/seed-test");
     expect(upsert).not.toHaveBeenCalled();
     expect(createUser).not.toHaveBeenCalled();
     expect(process.exitCode).toBe(1);
   });
 
   it("menjalankan ulang akun yang ada tanpa mengganti password", async () => {
-    await import("../../scripts/seed-demo");
+    await import("../../scripts/seed-test");
     expect(process.exitCode).toBe(0);
     expect(createUser).not.toHaveBeenCalled();
     expect(upsert).toHaveBeenCalledWith(
@@ -142,7 +142,7 @@ describe("seed guard dan pemulihan", () => {
       users.push(user);
       return { error: null, data: { user } };
     });
-    await import("../../scripts/seed-demo");
+    await import("../../scripts/seed-test");
     expect(process.exitCode).toBe(1);
     expect(users).toHaveLength(2);
     expect(JSON.stringify(vi.mocked(console.error).mock.calls)).not.toContain(
@@ -150,7 +150,7 @@ describe("seed guard dan pemulihan", () => {
     );
     process.exitCode = 0;
     vi.resetModules();
-    await import("../../scripts/seed-demo");
+    await import("../../scripts/seed-test");
     expect(process.exitCode).toBe(0);
     expect(users).toHaveLength(5);
     expect(new Set(users.map((user) => user.email)).size).toBe(5);

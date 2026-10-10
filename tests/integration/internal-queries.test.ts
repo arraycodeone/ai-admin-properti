@@ -35,8 +35,11 @@ describe.each([
       from: vi.fn().mockReturnThis(),
       select: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
+      lt: vi.fn().mockReturnThis(),
+      gte: vi.fn().mockReturnThis(),
+      in: vi.fn().mockReturnThis(),
       order: vi.fn().mockReturnThis(),
-      limit: vi.fn().mockResolvedValue(result),
+      limit: vi.fn().mockReturnThis(),
     };
     userClient.mockResolvedValue(query);
 
@@ -46,7 +49,12 @@ describe.each([
     expect(query.from).toHaveBeenCalledWith("properties");
     expect(query.eq).toHaveBeenCalledWith("organization_id", organizationB);
     if (read === getDashboardSummary) {
-      expect(data).toEqual({ actor, listingCount: 1 });
+      expect(data).toEqual({ actor, listingCount: 1, newLeadCount: 1, handoffCount: 1, overdueTaskCount: 1, upcomingSurveyCount: 1, nextTasks: [] });
+      expect(query.from).toHaveBeenCalledWith("leads");
+      expect(query.in).toHaveBeenCalledWith("source_kind", ["website_message", "whatsapp_direct"]);
+      expect(query.from).toHaveBeenCalledWith("conversations");
+      expect(query.from).toHaveBeenCalledWith("tasks");
+      expect(query.from).toHaveBeenCalledWith("surveys");
     } else {
       expect(data).toEqual([]);
       expect(query.order).toHaveBeenCalledWith("public_code");
@@ -61,11 +69,34 @@ describe.each([
       from: vi.fn().mockReturnThis(),
       select: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
+      lt: vi.fn().mockReturnThis(),
+      gte: vi.fn().mockReturnThis(),
+      in: vi.fn().mockReturnThis(),
       order: vi.fn().mockReturnThis(),
-      limit: vi.fn().mockResolvedValue(result),
+      limit: vi.fn().mockReturnThis(),
     };
     userClient.mockResolvedValue(query);
 
     await expect(read()).rejects.toThrow(new Error(errorMessage));
   });
+});
+
+it("ringkasan sales membatasi prospek, tugas, dan survei ke penugasan sendiri", async () => {
+  requireActor.mockResolvedValue({ ...actor, role: "sales", userId: "sales-b" });
+  const result = { data: [], count: 0, error: null };
+  const query = {
+    ...result,
+    from: vi.fn().mockReturnThis(),
+    select: vi.fn().mockReturnThis(),
+    eq: vi.fn().mockReturnThis(),
+    lt: vi.fn().mockReturnThis(),
+    gte: vi.fn().mockReturnThis(),
+    in: vi.fn().mockReturnThis(),
+    order: vi.fn().mockReturnThis(),
+    limit: vi.fn().mockReturnThis(),
+  };
+  userClient.mockResolvedValue(query);
+  await getDashboardSummary();
+  expect(query.eq).toHaveBeenCalledWith("assigned_user_id", "sales-b");
+  expect(query.eq).toHaveBeenCalledWith("agent_user_id", "sales-b");
 });

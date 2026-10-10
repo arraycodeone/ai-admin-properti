@@ -11,7 +11,7 @@ vi.mock("@/server/config", () => ({ parseConfig }));
 
 beforeEach(() => {
   vi.resetAllMocks();
-  parseConfig.mockReturnValue({ APP_MODE: "supabase", NEXT_PUBLIC_SUPABASE_URL: "https://example.supabase.co", NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "test-key" });
+  parseConfig.mockReturnValue({ NEXT_PUBLIC_SUPABASE_URL: "https://example.supabase.co", NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "test-key" });
   getUser.mockResolvedValue({ error: null });
   signOut.mockResolvedValue({ error: null });
   createServerClient.mockReturnValue({ auth: { getUser, signOut } });

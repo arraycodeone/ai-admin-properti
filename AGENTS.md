@@ -4,8 +4,8 @@
 
 - Satu aplikasi Next.js App Router, TypeScript, React, Tailwind, dan Supabase.
 - Bahasa tampilan Indonesia, rupiah berbentuk bigint/string, waktu Asia/Jakarta.
-- Mode `preview` memakai data sintetis; mode `supabase` memakai database.
-- Website, katalog, login, dan preview tersedia. AI, WhatsApp, jobs, serta CRUD bisnis masih backlog.
+- Aplikasi membaca Supabase pada `development` dan `production`; target tes tetap terisolasi.
+- Website dan katalog konsep, login, serta editor listing owner tersedia. AI, WhatsApp, jobs, aset, FAQ, dan operasi sales masih backlog.
 - Baca `README.md` untuk menjalankan aplikasi dan `docs/architecture.md` untuk alur kode.
 
 ## Cari file berdasarkan tugas
@@ -14,14 +14,14 @@
 | --- | --- |
 | Route, layout, metadata, loading, error | `src/app/` |
 | Filter, validasi, query, kartu properti | `src/modules/properties/` |
-| Ringkasan dan preview dashboard | `src/modules/dashboard/` |
+| Ringkasan dashboard | `src/modules/dashboard/` |
 | Profil agensi dan kanal publik | `src/modules/site/` |
 | Komponen umum, header/footer, navigasi | `src/components/` |
 | Identitas, sesi, dan izin | `src/server/auth/` |
 | Client database dan konfigurasi | `src/server/db/`, `src/server/config.ts`, `src/server/env.ts` |
 | Tipe database dan generation | `src/types/database.ts`, `src/types/database.generated.ts`, `scripts/generate-db-types.ts` |
 | Format uang, waktu, URL WhatsApp | `src/lib/` |
-| Data sintetis untuk preview/seed | `src/demo/` |
+| Data konsep dan fixture pengujian | `src/demo/` |
 | Migrasi dan tes akses database | `supabase/migrations/`, `supabase/tests/` |
 | Tes logika dan alur browser | `tests/integration/`, `tests/e2e/` |
 | Aset web / sumber gambar | `public/asset/` / `assets-source/` |

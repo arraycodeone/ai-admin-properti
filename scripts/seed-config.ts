@@ -5,9 +5,9 @@ export function seedConfig() {
   const database = testDatabaseConfig();
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const key = process.env.SUPABASE_SECRET_KEY;
-  const password = process.env.DEMO_SEED_PASSWORD;
+  const password = process.env.TEST_SEED_PASSWORD;
   if (
-    process.env.DEMO_SEED_CONFIRM_ISOLATED !== "true" ||
+    process.env.TEST_SEED_CONFIRM_ISOLATED !== "true" ||
     !key?.trim() ||
     !password ||
     password.length < 16

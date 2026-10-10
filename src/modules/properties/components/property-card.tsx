@@ -10,7 +10,7 @@ export function PropertyVisual({ property, large = false }: { property: PublicPr
       {property.media ? (
         <Image
           src={property.media.cover}
-          alt={`Ilustrasi AI ${property.title}`}
+          alt={`Ilustrasi ${property.title}`}
           fill
           sizes={large ? "(max-width: 760px) 100vw, 65vw" : "(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw"}
         />

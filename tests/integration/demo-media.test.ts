@@ -1,12 +1,12 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { organizationA, properties, withDemoMedia } from "@/demo/properties";
+import { organizationA, properties, withConceptMedia } from "@/demo/properties";
 import { searchProperties } from "@/modules/properties/service";
 
 describe("katalog Nusa", () => {
   it("memetakan 10 listing publik ke cover dan empat foto yang tersedia", () => {
-    const rows = searchProperties(properties, organizationA).map(withDemoMedia);
+    const rows = searchProperties(properties, organizationA).map(withConceptMedia);
     expect(rows).toHaveLength(10);
     expect(new Set(properties.map(row => row.id)).size).toBe(properties.length);
     for (const row of rows) {

@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: { default: "Nusa Property | Ruang baru, cerita berikutnya", template: "%s | Nusa Property" },
-  description: "Pratinjau website agensi properti. Cari contoh rumah, apartemen, dan tanah sesuai lokasi serta anggaran.",
+  description: "Jelajahi katalog konsep rumah, apartemen, dan tanah di BSD, Alam Sutera, dan Bintaro.",
   robots: { index: false, follow: false },
   icons: { icon: "/asset/brand/favicon.svg", apple: "/asset/brand/apple-touch-icon.png" },
 };

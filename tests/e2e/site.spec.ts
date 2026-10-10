@@ -79,18 +79,18 @@ test("kategori, kawasan, konsultasi, footer dan profil bekerja", async ({ page }
   await page.getByRole("link", { name: "Lihat semua properti" }).click();
   await expect(page).toHaveURL(/\/properti$/);
   await page.getByRole("link", { name: "Privasi", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Privasi pada demo ini" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Privasi dan penggunaan data" })).toBeVisible();
   await openMenu(page);
   await page.getByRole("navigation", { name: "Navigasi utama" }).getByRole("link", { name: "Tentang Nusa" }).click();
   await expect(page.getByRole("heading", { name: "Mengenal Nusa Property." })).toBeVisible();
 });
 
-test("preview dihapus dan dashboard tetap memerlukan sesi", async ({ page }) => {
+test("dashboard memerlukan sesi dan route lama tidak tersedia", async ({ page }) => {
   await page.goto("/app");
   await expect(page).toHaveURL(/\/login$/);
   await page.goto("/app/properti");
   await expect(page).toHaveURL(/\/login$/);
-  await expect(page.getByText("Login belum aktif", { exact: true })).toBeVisible();
+  await expect(page.locator(".login-form")).toBeVisible();
   await expect(page.locator('a[href="/preview"]')).toHaveCount(0);
   const response = await page.goto("/preview");
   expect(response?.status()).toBe(404);

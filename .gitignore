@@ -10,6 +10,8 @@ test-results/
 Thumbs.db
 .npm-cache/
 .supabase/
+**/.openwa/
+**/_IGNORE_*/
 supabase/.temp/
 .agents/
 .codex/

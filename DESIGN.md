@@ -1,6 +1,6 @@
 # Nusa Property: desain aktif
 
-Ditetapkan 4 Oktober 2026 melalui pilihan pengguna: beralih ke Nusa Property, premium hangat, Anti Slop selama desain, spesifikasi sintetis dan profil agen berlabel demo. Menggantikan arahan marketplace merah muda sebelumnya.
+Diperbarui 11 Oktober 2026: Nusa Property memakai arah premium hangat. Katalog konsep dan potret ilustratif diberi label jelas; materi tersebut belum menjadi penawaran unit atau profil orang nyata. Dashboard owner/sales mengutamakan tindakan hari ini.
 
 ## Arah dan tujuan
 
@@ -41,17 +41,17 @@ Landing agen properti untuk pencari rumah dan apartemen di BSD, Alam Sutera, dan
 - IntersectionObserver, Web Animations API, listener, dan animasi dibersihkan ketika navigasi. Tidak ada library motion tambahan. Perubahan reduced motion saat halaman terbuka juga menghentikan animasi.
 - Konten dasar tidak diberi opacity nol atau visibility hidden. Tanpa JavaScript, konten, navigasi, dan pencarian GET tetap tersedia.
 - `/tentang` menyajikan profil agensi, tiga pendekatan layanan, foto interior, kawasan bersama, serta CTA katalog/status konsultasi. Tanpa riwayat perusahaan atau klaim layanan yang dibuat-buat. Michael tetap pada landing.
-- Header: Properti · Kawasan · Tentang Nusa · Konsultasi. Footer: Katalog properti · Tentang Nusa · Privasi. Tidak ada tautan internal dalam HTML publik; `/preview` 404, `/login` tersedia langsung, `/app` tetap dilindungi.
+- Header: Properti · Kawasan · Tentang Nusa · Konsultasi. Footer: Katalog properti · Tentang Nusa · Privasi. Tidak ada tautan internal dalam HTML publik; `/login` tersedia langsung, `/app` tetap dilindungi.
 
 ## Data dan aset
 
 - Logo, hero, cover, kawasan, dan profil menggunakan `/asset/`; metadata di `assets-source` adalah sumber pemetaan.
-- Sepuluh listing Nusa menjadi katalog preview. Empat fixture tambahan tetap menguji draft, paused, sold, dan organisasi B. UUID fixture akses tidak berubah.
+- Sepuluh listing Nusa menjadi katalog konsep. Empat fixture tambahan tetap menguji draft, paused, sold, dan organisasi B. UUID fixture akses tidak berubah.
 - Spesifikasi pada `src/demo/properties.ts` merupakan data sintetis yang disetujui pengguna, bukan hasil pengukuran foto.
-- Media ditambahkan setelah filter publik dan hanya dalam mode preview. Mode Supabase tetap memakai DTO database tanpa foto sintetis otomatis.
+- Media ilustratif dipasangkan setelah filter publik hanya dalam lingkungan `development`. Lingkungan `production` tetap memakai DTO database tanpa foto sintetis otomatis.
 - Semua foto dan profil agen diberi disclosure terlihat. Tidak ada testimoni, rating, jaminan hasil, atau klaim transaksi.
 - PNG asli tidak disalin ke halaman. Gambar WebP memakai ukuran responsif dan lazy loading; hero diprioritaskan.
 
 ## Pemeriksaan
 
-Kontras teks minimal 4.5:1, kontrol dan fokus minimal 3:1, diperiksa oleh `scripts/check-design.mjs`. Uji browser mencakup 360, 768, 800 landscape, dan 1440 px, navigasi keyboard, seluruh kategori/kawasan, galeri, filter, gambar, dan larangan akses listing nonpublik. Bukti aktual ada di `docs/test-results.md` dan `docs/anti-slop-check.md`.
+Kontras teks minimal 4.5:1, kontrol dan fokus minimal 3:1, diperiksa oleh `scripts/check-design.mjs`. Uji browser mencakup 360, 768, 800 landscape, dan 1440 px, navigasi keyboard, seluruh kategori/kawasan, galeri, filter, gambar, dan larangan akses listing nonpublik. Hasil terkini ada di `docs/test-results.md`; pemeriksaan desain sebelumnya disimpan di `docs/archive/anti-slop-check-2026-10-04.md`.

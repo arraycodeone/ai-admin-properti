@@ -4,7 +4,7 @@ import { PropertyCard } from "@/modules/properties/components/property-card";
 import { getPublicProperties } from "@/modules/properties/queries";
 import { filterSchema } from "@/modules/properties/schemas";
 
-export const metadata: Metadata = { title: "Cari properti", description: "Cari contoh properti di BSD, Alam Sutera, dan Bintaro berdasarkan lokasi, anggaran, dan jumlah kamar." };
+export const metadata: Metadata = { title: "Cari properti", description: "Jelajahi katalog konsep properti di BSD, Alam Sutera, dan Bintaro berdasarkan lokasi, anggaran, dan jumlah kamar." };
 
 export default async function Catalog({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const raw = await searchParams;
@@ -23,7 +23,7 @@ export default async function Catalog({ searchParams }: { searchParams: Promise<
       {!parsed.success && <p className="notice notice-error" role="alert">Filter tidak valid. Gunakan pilihan lokasi, anggaran, tipe, dan kamar yang tersedia.</p>}
       <div className="results-heading">
         <h2>{properties.length} properti ditemukan</h2>
-        <span className="muted small">Listing & spesifikasi demo · Foto ilustrasi AI</span>
+        <span className="muted small">Katalog konsep · Gambar dan spesifikasi ilustratif</span>
       </div>
       {properties.length ? (
         <div className="property-grid">

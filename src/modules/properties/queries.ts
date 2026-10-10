@@ -4,15 +4,13 @@ import { systemClient } from "@/server/db/system-client";
 import { userClient } from "@/server/db/user-client";
 import { requireActor } from "@/server/auth/actor-context";
 import { requireOwner } from "@/server/auth/permissions";
-import { properties, withDemoMedia } from "@/demo/properties";
+import { withConceptMedia } from "@/demo/properties";
 import { filterSchema, publicPropertySchema, internalPropertySchema, propertyEditSchema } from "./schemas";
-import { searchProperties } from "./service";
 import type { InternalProperty, PropertyFilters, PublicProperty } from "./types";
 
 export async function getPublicProperties(filters: PropertyFilters = {}): Promise<PublicProperty[]> {
   const env = getEnv();
   const parsed = filterSchema.parse(filters);
-  if (env.APP_MODE === "preview") return searchProperties(properties, env.SITE_ORGANIZATION_ID, parsed).map(withDemoMedia);
   const { data, error } = await systemClient().rpc("search_public_properties", {
     p_organization_id: env.SITE_ORGANIZATION_ID, p_location: parsed.location || undefined,
     p_budget: parsed.budget, p_bedrooms: parsed.bedrooms, p_type: parsed.type,
@@ -20,7 +18,7 @@ export async function getPublicProperties(filters: PropertyFilters = {}): Promis
   if (error) throw new Error("Katalog belum dapat dimuat. Silakan coba kembali.");
   const result = publicPropertySchema.array().safeParse(data);
   if (!result.success) throw new Error("Katalog belum dapat dimuat. Silakan coba kembali.");
-  return result.data;
+  return env.APP_ENV === "development" ? result.data.map(withConceptMedia) : result.data;
 }
 
 export async function getPublicProperty(slug: string) {
