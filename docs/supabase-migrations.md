@@ -19,6 +19,8 @@ Script menerapkan file `supabase/migrations/` berurutan dalam satu transaksi, me
 
 Pada proyek yang sudah dimigrasi, jalankan `test:db -- --schema` untuk mengulang tes. `db:bootstrap` akan menolak target tersebut; untuk membuktikan bootstrap lagi, gunakan proyek uji kosong lain. Migrasi tambahan pada proyek berisi data harus memakai workflow migrasi berurutan seperti Supabase CLI, bukan bootstrap atau mengedit ulang file yang sudah diterapkan. Struktur riwayat mengikuti kolom CLI (`version`, `name`, `statements`).
 
+Migrasi T-015 `202610110001_listing_management.sql` telah diterapkan secara transaksional dan dicatat pada riwayat **hanya** di proyek uji terisolasi yang dua organisasinya demo dan paused. Aplikasi produksi belum dimigrasi. Sebelum memakai branch T-015 pada lingkungan lain, terapkan migrasi berurutan dengan workflow migrasi yang sesuai, lalu jalankan `db:types`, `test:db -- --schema`, dan tes akses pada target uji tersebut.
+
 ## Menghasilkan tipe
 
 `db:types` memakai [generator resmi Supabase](https://github.com/supabase/sdk/tree/main/packages/postgrest-typegen), `@supabase/postgrest-typegen@0.4.0`, dengan `pg` baca saja dan formatter Prettier. Paket generator masih berstatus alpha; versinya dikunci di lockfile. Tidak memerlukan Docker atau token Management API. Metadata hanya schema `public`, diurutkan sebelum ditulis.

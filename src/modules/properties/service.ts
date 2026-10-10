@@ -6,6 +6,7 @@ export function publicProperty(row: PropertyRecord): PublicProperty {
     description: row.description, city: row.city, area: row.area, property_type: row.property_type,
     price_rupiah: row.price_rupiah, bedrooms: row.bedrooms, bathrooms: row.bathrooms,
     land_area_m2: row.land_area_m2, building_area_m2: row.building_area_m2,
+    amenities: row.amenities,
   };
 }
 

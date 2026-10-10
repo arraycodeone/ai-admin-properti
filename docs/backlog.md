@@ -232,6 +232,7 @@ Bukti setiap task dicatat saat pengerjaan, misalnya di `docs/test-results.md`: I
 #### T-015 — Implementasikan pengelolaan listing
 
 - [ ] **Selesai**
+- **Implementasi lokal 11 Oktober 2026:** form owner untuk draft/edit/publikasi, fasilitas, kontak privat, RPC atomik dan audit telah diuji pada Supabase uji terisolasi. PR tetap draft; task belum lulus gerbang T-013/T-014 yang menunggu preview HTTPS #7/#8/#9. Foto tetap T-016, FAQ tetap T-017.
 - **Dependensi:** T-013, T-014.
 - **Kerjakan:** owner membuat/mengubah listing, harga, lokasi, fasilitas, status, dan publikasi. Simpan kontak pemilik unit dalam tabel privat. Validasi angka IDR serta field; catat perubahan penting pada audit.
 - **Hasil:** data properti berasal dari database; sales hanya mendapat field dan tindakan yang diizinkan.

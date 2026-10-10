@@ -51,6 +51,14 @@ export default async function Detail({ params }: Props) {
               <div><dt>Luas tanah</dt><dd>{property.land_area_m2 ? `${property.land_area_m2} m²` : "Tidak tersedia"}</dd></div>
               <div><dt>Luas bangunan</dt><dd>{property.building_area_m2 ? `${property.building_area_m2} m²` : "Tidak tersedia"}</dd></div>
             </dl>
+            {property.amenities.length > 0 && (
+              <div className="property-amenities">
+                <h2>Fasilitas</h2>
+                <ul>
+                  {property.amenities.map(item => <li key={item}>{item}</li>)}
+                </ul>
+              </div>
+            )}
           </section>
         </div>
         <aside className="contact-panel">

@@ -39,7 +39,7 @@ Buka `http://localhost:3000`. Tidak memerlukan `.env.local` untuk preview sintet
 | `/tentang` | Profil agensi Nusa, pendekatan layanan, kawasan, dan status konsultasi. |
 | `/privasi` | Penjelasan penggunaan data pada demo. |
 | `/login` | Status koneksi atau login Supabase, sesuai mode. |
-| `/app`, `/app/properti` | Memerlukan pengguna Supabase dan membership aktif. |
+| `/app`, `/app/properti` | Memerlukan pengguna Supabase dan membership aktif. Owner dapat membuka `/app/properti/baru` dan `/app/properti/[id]/ubah`. |
 
 Navigasi pelanggan tidak memuat tautan login atau dashboard. `/login` hanya tersedia melalui URL langsung; `/app` tetap dilindungi sesi dan membership aktif. Route `/preview` dihapus dan menghasilkan 404. Mode preview lokal tidak mengaktifkan login Supabase. Fixture prospek tetap tersedia untuk seed dan pengujian.
 
@@ -87,7 +87,7 @@ Seed bersifat reset fixture: menjalankan ulang akan mengembalikan katalog dan em
 
 - Tidak ada fallback fixture ketika `APP_MODE=supabase` mengalami error. UI menampilkan kegagalan.
 - Secret database hanya di server. Data katalog menggunakan DTO allowlist; bigint rupiah diserialisasi sebagai string.
-- Semua 21 tabel memakai RLS. Mutasi langsung pengguna dicabut; RPC mutasi bisnis dan Storage upload belum tersedia.
+- Semua 21 tabel memakai RLS. Mutasi langsung pengguna dicabut; RPC owner untuk listing tersedia pada schema T-015, sedangkan mutasi bisnis lain dan Storage upload belum tersedia.
 - Kanal uji belum aktif. Tidak ada nomor acak pada CTA dan tidak ada pengiriman WhatsApp.
 - `noindex` berlaku pada metadata dan HTTP header. Sitemap kosong selama demo. `APP_ENV=production` ditolak sampai gate produksi dikerjakan.
 - Mode preview memakai 10 listing Nusa dengan foto AI dan spesifikasi sintetis berlabel demo. Mode Supabase belum memiliki integrasi foto. Jangan memakai katalog ini sebagai penawaran nyata.

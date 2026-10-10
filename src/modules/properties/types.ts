@@ -20,6 +20,7 @@ export type PublicProperty = {
   bathrooms: number;
   land_area_m2: string | null;
   building_area_m2: string | null;
+  amenities: string[];
   media?: { cover: string; images: PropertyImage[] };
 };
 

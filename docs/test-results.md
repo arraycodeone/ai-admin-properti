@@ -1,5 +1,11 @@
 # Bukti pengujian lokal
 
+## Listing owner T-015, 11 Oktober 2026
+
+Migrasi `202610110001_listing_management.sql` diterapkan pada target Supabase uji terisolasi dengan dua organisasi demo paused. `db:types`, typecheck, lint, 55 tes unit/integrasi, `test:db -- --schema`, `test:db` (termasuk `listing.test.sql`), dan `test:access` dengan sesi Auth nyata lulus. Tes SQL memeriksa rupiah di atas batas aman `Number`, publikasi/arsip, kode/slug terkunci setelah terbit, izin sales/lintas tenant, audit atomik, dan tidak adanya kontak privat pada audit/DTO publik. Fixture tes SQL di-rollback; akun/objek sementara tes akses dibersihkan.
+
+Build produksi, 22 E2E preview desktop/mobile, dan 9 tes browser Auth lokal lulus pada port 3100 tanpa memakai ulang server lain. Tes browser owner memeriksa validasi dan duplikasi, nilai form bertahan setelah error, draft dan publikasi, perubahan ketersediaan, data setelah reload, fasilitas publik, serta penolakan form untuk sales. Listing sementara tes browser dihapus pada cleanup. Preview HTTPS tetap belum diuji karena #7/#8; foto/upload dan FAQ tetap T-016/T-017.
+
 ## Tinjauan fondasi, 11 Oktober 2026
 
 Tidak ada tes baru pada tinjauan dokumentasi T-014. Bukti akses lokal di bawah tetap berlaku; preview HTTPS untuk T-012/#8 dan kanal WhatsApp dua arah T-008/#12 belum diuji. [Rencana uji coordinator T-025 dan batas gerbang](foundation-review.md) belum merupakan hasil tes.

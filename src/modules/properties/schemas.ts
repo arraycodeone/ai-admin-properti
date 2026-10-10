@@ -18,6 +18,35 @@ export const propertySchema = z.object({
   bathrooms: z.coerce.number().int().min(0).max(100),
   availability: z.enum(["active", "paused", "sold"]),
   publication_status: z.enum(["draft", "published", "archived"]),
+  amenities: z.array(z.string().trim().min(1).max(80)).max(20),
+});
+
+const optionalText = (limit: number) => z.string().trim().max(limit).transform(value => value || null);
+const areaSchema = z.string().trim().refine(value =>
+  value === "" || (/^[0-9]{1,10}(\.[0-9]{1,2})?$/.test(value) && BigInt(value.replace(".", "")) > 0n),
+"Masukkan luas positif dengan maksimal dua angka desimal.").transform(value => value || null);
+
+export const propertyInputSchema = propertySchema.extend({
+  public_address: optionalText(300),
+  land_area_m2: areaSchema,
+  building_area_m2: areaSchema,
+  owner_name: optionalText(160),
+  owner_phone_e164: z.string().trim().refine(value => !value || /^\+[1-9][0-9]{7,14}$/.test(value),
+    "Gunakan nomor internasional, misalnya +628123456789.").transform(value => value || null),
+  exact_address: optionalText(300),
+  internal_notes: optionalText(2000),
+});
+
+export const propertyEditSchema = propertySchema.extend({
+  id: z.string().uuid(),
+  published_at: z.string().nullable(),
+  public_address: z.string().nullable(),
+  land_area_m2: z.string().nullable(),
+  building_area_m2: z.string().nullable(),
+  owner_name: z.string().nullable(),
+  owner_phone_e164: z.string().nullable(),
+  exact_address: z.string().nullable(),
+  internal_notes: z.string().nullable(),
 });
 
 export const filterSchema = z.object({
@@ -41,6 +70,7 @@ export const publicPropertySchema = z.object({
   bathrooms: z.number().int().nonnegative(),
   land_area_m2: z.string().nullable(),
   building_area_m2: z.string().nullable(),
+  amenities: propertySchema.shape.amenities,
 });
 
 export const internalPropertySchema = publicPropertySchema.pick({

@@ -3,8 +3,9 @@ import { getEnv } from "@/server/env";
 import { systemClient } from "@/server/db/system-client";
 import { userClient } from "@/server/db/user-client";
 import { requireActor } from "@/server/auth/actor-context";
+import { requireOwner } from "@/server/auth/permissions";
 import { properties, withDemoMedia } from "@/demo/properties";
-import { filterSchema, publicPropertySchema, internalPropertySchema } from "./schemas";
+import { filterSchema, publicPropertySchema, internalPropertySchema, propertyEditSchema } from "./schemas";
 import { searchProperties } from "./service";
 import type { InternalProperty, PropertyFilters, PublicProperty } from "./types";
 
@@ -42,4 +43,18 @@ export async function getInternalProperties(): Promise<InternalProperty[]> {
   const result = internalPropertySchema.array().safeParse(data);
   if (!result.success) throw new Error("Properti internal belum dapat dimuat.");
   return result.data;
+}
+
+export async function getPropertyForEdit(id: string) {
+  const actor = await requireActor();
+  requireOwner(actor);
+  const db = await userClient();
+  const { data, error } = await db.rpc("get_property_for_edit", {
+    p_organization_id: actor.organizationId, p_property_id: id,
+  });
+  if (error) throw new Error("Properti belum dapat dimuat.");
+  if (data === null) return null;
+  const parsed = propertyEditSchema.safeParse(data);
+  if (!parsed.success) throw new Error("Data properti tidak valid.");
+  return parsed.data;
 }
