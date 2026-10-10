@@ -43,7 +43,7 @@ Aturan pengerjaan:
 6. Data demo wajib sintetis. Nomor WhatsApp untuk uji nyata harus termasuk penerima yang diizinkan oleh konfigurasi akun uji.
 7. Task produksi dikerjakan setelah demo diterima dan sebelum melayani pelanggan nyata. Simulator yang lulus tidak membuktikan integrasi WhatsApp nyata.
 
-Estimasi awal dari plan tetap **75–120 jam fokus atau sekitar 15–24 hari kerja pada 5 jam/hari**, dengan asumsi konten dan akses siap. Ini patokan awal, bukan hasil penjumlahan estimasi setiap task. Waktu menunggu pihak luar dan pekerjaan tambahan produksi tidak termasuk. Tinjau ulang pada T-014 dan setelah pembuktian koordinasi pengiriman di T-025; jangan mempertahankan angka lama bila kompleksitas aktual lebih besar.
+Estimasi awal dari plan adalah **75–120 jam fokus atau sekitar 15–24 hari kerja pada 5 jam/hari** untuk seluruh demo. [Tinjauan fondasi T-014](foundation-review.md) memperkirakan **125–220 jam fokus tersisa**, termasuk cadangan, tanpa waktu tunggu pihak luar atau pekerjaan produksi. Rentang ini perlu dikalibrasi lagi setelah T-025 dan integrasi provider pertama terbukti.
 
 ## 2. Peta urutan dan syarat lanjut
 
@@ -221,6 +221,7 @@ Bukti setiap task dicatat saat pengerjaan, misalnya di `docs/test-results.md`: I
 #### T-014 — Tinjau fondasi dan estimasi tersisa
 
 - [ ] **Selesai**
+- **Tinjauan 11 Oktober 2026:** [bukti, hambatan/owner, estimasi maju, dan rencana uji T-025](foundation-review.md) tercatat. Gerbang tetap terbuka sampai T-012 pada preview HTTPS dan T-013 selesai; tidak ada timesheet jam aktual yang dapat diaudit.
 - **Dependensi:** T-013; gunakan status aktual T-008, termasuk jika blocked.
 - **Kerjakan:** bandingkan jam aktual, kelulusan akses, kendala platform, dan risiko coordinator/send gate dengan estimasi awal. Perbarui prioritas dan rentang estimasi pekerjaan tersisa.
 - **Hasil:** estimasi terbaru beserta asumsi/hambatan; tidak menambah scope tanpa kebutuhan.

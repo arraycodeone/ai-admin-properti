@@ -1,5 +1,9 @@
 # Bukti pengujian lokal
 
+## Tinjauan fondasi, 11 Oktober 2026
+
+Tidak ada tes baru pada tinjauan dokumentasi T-014. Bukti akses lokal di bawah tetap berlaku; preview HTTPS untuk T-012/#8 dan kanal WhatsApp dua arah T-008/#12 belum diuji. [Rencana uji coordinator T-025 dan batas gerbang](foundation-review.md) belum merupakan hasil tes.
+
 ## Matriks akses Supabase nyata, 10 Oktober 2026
 
 `test:access` lulus untuk Owner A, Andi, Sari, anggota nonaktif, Owner B, dan anon pada target uji terisolasi. Fixture dua organisasi mencakup tabel baca yang relevan, RPC actor/lead, mutasi langsung terlarang, serta objek nyata Storage privat yang hanya berhasil diunduh client sistem. Cleanup menghapus objek, baris, dan lima akun Auth sementara. `test:db` berseed lulus setelahnya. Typecheck, lint, 54 tes Vitest, build produksi, dan 22 tes E2E desktop/mobile lulus pada branch integrasi. Cakupan rinci dan batas ada di [access-verification.md](access-verification.md).
