@@ -1,5 +1,7 @@
 # Keputusan implementasi lokal
 
+Catatan 10 Oktober 2026: keputusan identitas/katalog 3 Oktober di bawah adalah riwayat. Identitas demo aktif kini Nusa Property sesuai [DESIGN.md](../../DESIGN.md); alur Dimas memakai BSD dan budget Rp2 miliar.
+
 Tanggal: 3 Oktober 2026. Sumber keputusan: permintaan pengguna untuk implementasi lokal, Anti Slop DURING, `DESIGN.md`, dan referensi Pinhome.
 
 ## Arah desain yang berlaku

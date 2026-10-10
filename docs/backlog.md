@@ -70,7 +70,7 @@ Fondasi jobs dipasang pada tahap E agar simulator, balasan sales, dan WhatsApp m
 | --- | --- | --- |
 | Organisasi | Agensi A untuk demo; Agensi B untuk tes isolasi | Membuktikan data tidak tertukar walaupun ID objek diketahui. |
 | Akun | Owner A, Sales Andi, Sales Sari; akun tidak aktif; Owner B | Tiga akun pertama untuk presentasi; akun lain untuk pengujian akses. |
-| Katalog | 10 properti sintetis; kode `BKS-001`; kombinasi aktif/published, draft, paused, terjual, di atas budget | Pencarian cocok, kosong, perubahan harga, dan pembatasan publikasi. |
+| Katalog | 10 properti publik sintetis Nusa dan 4 fixture akses; kode `NUSA-001`; kombinasi aktif/published, draft, paused, terjual, di atas budget | Pencarian cocok, kosong, perubahan harga, dan pembatasan publikasi. |
 | Data privat | Kontak pemilik unit dengan penanda uji yang mudah dicari | Mendeteksi kebocoran pada HTML, JSON, respons AI, log, dan cache. |
 | FAQ | Sekitar 20 entri, termasuk aktif/nonaktif dan milik Agensi B | Membuktikan filter organisasi dan publikasi. |
 | Prospek | 4 lead contoh: baru, diproses sales, survei, serta closed | Assignment, ringkasan, dan perlindungan histori closing. |
@@ -117,8 +117,9 @@ Bukti setiap task dicatat saat pengerjaan, misalnya di `docs/test-results.md`: I
 #### T-002 — Siapkan konten, fixture, dan skenario pengujian
 
 - [ ] **Selesai**
+- **Kemajuan 10 Oktober 2026:** identitas/katalog Nusa, pemetaan foto, naskah Dimas, dan 15 fixture evaluasi AI sudah sejalan. Fixture kegagalan provider serta pengujian AI nyata tetap pekerjaan T-002/T-039; issue #10 khusus pemetaan identitas/aset dapat ditinjau terpisah.
 - **Dependensi:** T-001.
-- **Kerjakan:** siapkan data pada bagian 3, foto berizin/sintetis, teks website, dan 15 skenario evaluasi AI pada T-039. Gunakan alur Dimas: budget Rp700 juta, Bekasi, minimal dua kamar, ingin survei; sediakan listing yang cocok serta pembanding yang tidak cocok. Tetapkan hasil yang diharapkan sebelum implementasi.
+- **Kerjakan:** siapkan data pada bagian 3, foto berizin/sintetis, teks website, dan 15 skenario evaluasi AI pada T-039. Gunakan alur Dimas: budget Rp2 miliar, BSD, minimal dua kamar, ingin survei; sediakan listing yang cocok serta pembanding yang tidak cocok. Tetapkan hasil yang diharapkan sebelum implementasi.
 - **Hasil:** fixture dan naskah demo yang konsisten antara website, database, serta percakapan.
 - **Tes lulus:** tidak ada data nyata atau secret; properti yang dicari pada naskah benar-benar tersedia; kasus kosong, privat, duplikat, dan tenant berbeda ikut disiapkan.
 
@@ -211,6 +212,7 @@ Bukti setiap task dicatat saat pengerjaan, misalnya di `docs/test-results.md`: I
 #### T-013 — TEST isolasi data dan akses langsung
 
 - [ ] **Selesai**
+- **Bukti lokal 10 Oktober 2026:** matriks lima sesi Auth nyata dan anon diperluas ke data peran/organisasi, RPC, serta unduhan objek Storage privat; [hasil dan batas](access-verification.md). Menunggu kelulusan dependensi T-012 pada URL preview HTTPS; fitur upload aplikasi dan pencabutan cache aset tetap T-016.
 - **Dependensi:** T-009–T-012.
 - **Kerjakan:** jalankan matriks owner A/Andi/Sari/anggota nonaktif/owner B/anon terhadap select, insert, update, delete, RPC, dan aset yang relevan.
 - **Hasil:** tes database/integrasi akses yang dapat diulang memakai identitas pengguna sebenarnya.

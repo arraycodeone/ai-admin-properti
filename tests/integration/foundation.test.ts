@@ -49,11 +49,11 @@ describe("uang, waktu, dan CTA", () => {
     expect(jakartaDay("2026-10-03T17:00:00Z")).toBe("2026-10-04");
   });
   it("hanya menyusun link, dengan encoding benar dan validasi nomor/kode", () => {
-    const url = new URL(whatsappLink("+12025550123", "BKS-001"));
+    const url = new URL(whatsappLink("+12025550123", "NUSA-001"));
     expect(url.origin).toBe("https://wa.me");
     expect(url.pathname).toBe("/12025550123");
-    expect(url.searchParams.get("text")).toBe("Halo, saya ingin bertanya tentang properti BKS-001.");
-    expect(() => whatsappLink("08123", "BKS-001")).toThrow();
+    expect(url.searchParams.get("text")).toBe("Halo, saya ingin bertanya tentang properti NUSA-001.");
+    expect(() => whatsappLink("08123", "NUSA-001")).toThrow();
     expect(() => whatsappLink("+12025550123", "<script>")).toThrow();
   });
 });

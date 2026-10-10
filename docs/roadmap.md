@@ -115,7 +115,7 @@ Kerjakan tahap sesuai dependensinya. P1a adalah uji kanal awal selama P1–P2; a
 ### P0 — Putuskan pengalaman yang didemokan
 
 - Tetapkan fitur inti dan fitur yang ditunda menurut bagian 2.
-- Gunakan alur Dimas: anggaran Rp700 juta, Bekasi, minimal dua kamar, ingin survei.
+- Gunakan alur Dimas: anggaran Rp2 miliar, BSD, minimal dua kamar, ingin survei.
 - Tetapkan identitas website agen dan teks CTA: “Tanya Properti Ini” pada detail listing serta “Konsultasi via WhatsApp” pada beranda. Pilih satu listing berkode publik untuk menguji konteks dari website sampai inbox.
 - Siapkan listing yang cocok, satu listing di atas anggaran, satu listing tidak tersedia, serta satu skenario tanpa hasil.
 - Tentukan profil owner dan sales; pergantian peran dalam demo dilakukan lewat akun berbeda, bukan tombol yang mengubah izin pengguna.
@@ -159,7 +159,7 @@ Kerjakan tahap sesuai dependensinya. P1a adalah uji kanal awal selama P1–P2; a
 
 - Buat beranda/landing page agen, katalog sederhana, detail properti, bagian profil/kontak, dan halaman privasi. Katalog menggunakan sepuluh listing seed; pencarian awal cukup filter area, harga, dan kamar yang sudah tersedia. Halaman detail mempunyai slug serta kode properti publik yang stabil.
 - Website dan AI membaca sumber listing yang sama. Data publik hanya mencakup field yang diizinkan dari listing aktif dan dipublikasikan; catatan internal, kontak pemilik properti, prospek, serta percakapan tidak masuk respons publik. Identitas organisasi website ditentukan konfigurasi server, bukan parameter bebas dari pengunjung. Perubahan harga/status harus memperbarui halaman dan hasil AI; listing yang ditarik dari publikasi tidak lagi dapat dibaca melalui URL/API publik.
-- CTA memakai click-to-chat ke nomor WhatsApp yang terhubung ke Cloud API untuk klien tersebut. Isi pesan awal mencantumkan kode properti dan sumber yang sederhana, misalnya “Halo, saya tertarik rumah Bekasi kode BKS-001 dari website. Bisa dibantu?” Gunakan format nomor internasional dan encode teks sesuai [panduan WhatsApp](https://faq.whatsapp.com/5913398998672934).
+- CTA memakai click-to-chat ke nomor WhatsApp yang terhubung ke Cloud API untuk klien tersebut. Isi pesan awal mencantumkan kode properti dan sumber yang sederhana, misalnya “Halo, saya tertarik properti NUSA-001 dari website. Bisa dibantu?” Gunakan format nomor internasional dan encode teks sesuai [panduan WhatsApp](https://faq.whatsapp.com/5913398998672934).
 - Klik CTA membuka WhatsApp dengan teks awal; pengguna tetap menekan Kirim. AI dan pembuatan prospek baru berjalan setelah webhook menerima pesan tersebut. CTA beranda menggunakan pesan konsultasi umum. Uji di ponsel dan desktop; sediakan nomor kontak yang terbaca jika pengguna belum dapat membuka WhatsApp.
 - Server memvalidasi kode properti pada pesan terhadap katalog organisasi kanal. Pengguna dapat mengubah/menghapus pesan awal; jika kode tidak valid atau konteks tidak cukup, AI menanyakan kebutuhan. Teks pelanggan bukan dasar otorisasi, harga, atau ketersediaan. Penanda “dari website” dicatat sebagai sumber yang dinyatakan pada pesan, bukan bukti atribusi pasti; tanpa penanda, sumber website tidak diasumsikan.
 - SEO berfokus pada properti dan area layanan agen. Siapkan judul/deskripsi unik, heading jelas, URL deskriptif, canonical, sitemap halaman publik yang layak diindeks, tautan internal, serta gambar ringan dengan teks alternatif. Pilih topik berdasarkan listing nyata dan kebutuhan calon pembeli; halaman area tambahan dibuat saat tersedia konten berguna. Ikuti [panduan SEO Google](https://developers.google.com/search/docs/fundamentals/seo-starter-guide).
@@ -300,8 +300,8 @@ Jika satu blocker inti gagal, jangan tandai demo utama selesai. Catat apakah yan
 
 | Menit | Aksi presenter | Nilai yang terlihat |
 | --- | --- | --- |
-| 0–1 | Buka website agen tanpa login; lihat rumah Bekasi dan detail listing | Calon pembeli menemukan informasi properti dan CTA yang jelas. |
-| 1–2 | Tekan “Tanya Properti Ini”; dari WhatsApp uji kirim pesan awal dan anggaran maksimal Rp700 juta | Pesan masuk ke AI admin dengan konteks properti yang tervalidasi. |
+| 0–1 | Buka website agen tanpa login; lihat rumah contoh di BSD dan detail listing | Calon pembeli menemukan informasi properti dan CTA yang jelas. |
+| 1–2 | Tekan “Tanya Properti Ini”; dari WhatsApp uji kirim pesan awal dan anggaran maksimal Rp2 miliar | Pesan masuk ke AI admin dengan konteks properti yang tervalidasi. |
 | 2–3 | Jawab kebutuhan dua kamar; lihat listing yang cocok dan prospek tercatat | Chat menghasilkan informasi yang dapat dipakai sales. |
 | 3–4 | Login sales pada sesi berbeda; ambil alih dan balas setelah handoff selesai | Sales mendapat konteks; balasan AI mengantre dibatalkan dan pengiriman AI baru berhenti. |
 | 4–5 | Ajukan survei, kemudian konfirmasi setelah pemeriksaan | Jadwal dan penanggung jawab terlihat jelas. |
