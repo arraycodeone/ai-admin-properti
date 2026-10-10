@@ -126,7 +126,7 @@ Label **Demo** berarti masuk rancangan yang sudah disepakati, bukan sudah selesa
 
 ### UC-02 — Owner memasang dan memperbarui properti
 
-- **Aktor/kondisi:** Bu Rina memasukkan BKS-001, rumah Bekasi Rp700 juta, dua kamar, dengan foto yang diizinkan.
+- **Aktor/kondisi:** Bu Rina memasukkan NUSA-001, rumah contoh di BSD seharga Rp1,85 miliar dengan tiga kamar dan foto sintetis berlabel demo.
 - **Positif:** listing disimpan sebagai draft, diperiksa, lalu dipublikasikan. Website dan pencarian AI memakai harga/status dari record yang sama.
 - **Negatif:** harga salah ketik; rumah sudah terjual di lapangan tetapi owner belum memperbarui; foto atau nomor pemilik unit masuk kolom publik.
 - **Penanganan:** owner memperbaiki data dan menunda/menarik publikasi bila perlu. Sales melaporkan perubahan lapangan; maintenance menangani bug teknis, bukan menentukan harga yang benar.
@@ -135,7 +135,7 @@ Label **Demo** berarti masuk rancangan yang sudah disepakati, bukan sudah selesa
 
 ### UC-03 — Pengunjung menekan CTA properti
 
-- **Aktor/kondisi:** Dimas membuka detail BKS-001 dan menekan “Tanya Properti Ini”.
+- **Aktor/kondisi:** Dimas membuka detail NUSA-001 dan menekan “Tanya Properti Ini”.
 - **Positif:** WhatsApp membuka nomor agensi dengan kode listing; setelah Dimas mengirim, pesan masuk dan minat propertinya dikenali.
 - **Negatif:** Dimas menutup WhatsApp tanpa mengirim, menghapus kode, atau menggantinya dengan kode milik agensi lain.
 - **Penanganan:** klik saja dihitung terpisah tanpa membuat lead; pesan tanpa kode dilayani sebagai konsultasi umum; kode tidak sah tidak membuka data organisasi lain.
@@ -144,7 +144,7 @@ Label **Demo** berarti masuk rancangan yang sudah disepakati, bukan sudah selesa
 
 ### UC-04 — AI menggali kebutuhan calon pembeli
 
-- **Aktor/kondisi:** Dimas mengirim “Cari rumah Bekasi, budget 700, dua kamar.”
+- **Aktor/kondisi:** Dimas mengirim “Cari rumah BSD, budget 2 miliar, minimal dua kamar.”
 - **Positif:** AI mengklarifikasi maksud budget jika belum jelas, mencatat preferensi, dan mencari listing aktif terpublikasi. Sistem menugaskan lead ke sales default aktif, misalnya Andi.
 - **Negatif:** AI menafsirkan angka ambigu tanpa bertanya, mengarang listing, atau menjanjikan fasilitas yang tidak tercatat.
 - **Penanganan:** server memvalidasi argumen pencarian; AI menanyakan informasi yang kurang. Bila jawaban tidak dapat diverifikasi, buat tugas sales dan minta handoff.
@@ -283,8 +283,8 @@ Label **Demo** berarti masuk rancangan yang sudah disepakati, bukan sudah selesa
 
 | Waktu contoh | Kejadian | Peran yang bekerja | Hasil yang tercatat |
 | --- | --- | --- | --- |
-| Hari 1, pagi | Dimas menemukan rumah Bekasi di website lalu mengirim pesan lewat CTA | Calon pembeli; sistem menerima | Satu contact, satu lead, pesan, dan properti yang ditanyakan. |
-| Hari 1, setelah pesan masuk | AI memastikan budget Rp700 juta dan minimal dua kamar | AI; sistem assignment | Preferensi dan ringkasan; lead ditugaskan ke Andi. |
+| Hari 1, pagi | Dimas menemukan rumah contoh di BSD pada website lalu mengirim pesan lewat CTA | Calon pembeli; sistem menerima | Satu contact, satu lead, pesan, dan properti yang ditanyakan. |
+| Hari 1, setelah pesan masuk | AI memastikan budget Rp2 miliar dan minimal dua kamar | AI; sistem assignment | Preferensi dan ringkasan; lead ditugaskan ke Andi. |
 | Hari 1, jam kerja | Dimas meminta survei; Andi mengambil alih dan mengecek pemilik unit | Sales | Pengajuan requested, lalu confirmed setelah tanggal/jam tersedia. |
 | Hari 3, waktu survei | Kunjungan benar-benar berlangsung | Sales dan calon pembeli | Survei completed; catatan kondisi rumah dan minat pelanggan. |
 | Setelah kunjungan | Dimas meminta waktu berdiskusi dengan keluarga | Sales | Tugas follow-up; lead belum dianggap won. |
@@ -294,7 +294,7 @@ Nilai positifnya adalah konteks dan pekerjaan berikutnya tidak terputus dari web
 
 ### Contoh B — Pelanggan tidak membeli, tetapi penanganannya benar
 
-Pelanggan menginginkan rumah tiga kamar, sementara BKS-001 hanya dua kamar. AI menjelaskan perbedaannya dan mencari alternatif yang valid. Tidak ada stok sesuai; sales mencatat kebutuhan dan pelanggan memilih belum melanjutkan. Tidak dibuat survei fiktif atau closing. Jika pelanggan meminta tidak ditindaklanjuti, permintaan itu dihormati.
+Pelanggan menginginkan rumah lima kamar di BSD dengan budget maksimal Rp2 miliar. NUSA-001 hanya tiga kamar, sementara NUSA-004 lima kamar tetapi di atas budget. AI menjelaskan perbedaannya tanpa menyebut keduanya cocok. Tidak ada stok sesuai; sales mencatat kebutuhan dan pelanggan memilih belum melanjutkan. Tidak dibuat survei fiktif atau closing. Jika pelanggan meminta tidak ditindaklanjuti, permintaan itu dihormati.
 
 Hasil bisnisnya belum berupa penjualan, tetapi sistem berhasil menjaga data tetap benar dan mencegah janji yang menyesatkan. Owner kemudian dapat menilai apakah masalahnya stok, harga, area, atau kualitas penanganan berdasarkan catatan yang tersedia.
 

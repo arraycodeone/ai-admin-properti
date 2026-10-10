@@ -1,5 +1,9 @@
 # Bukti pengujian lokal
 
+## Matriks akses Supabase nyata, 10 Oktober 2026
+
+`test:access` lulus untuk Owner A, Andi, Sari, anggota nonaktif, Owner B, dan anon pada target uji terisolasi. Fixture dua organisasi mencakup tabel baca yang relevan, RPC actor/lead, mutasi langsung terlarang, serta objek nyata Storage privat yang hanya berhasil diunduh client sistem. Cleanup menghapus objek, baris, dan lima akun Auth sementara. `test:db` berseed lulus setelahnya. Typecheck, lint, 54 tes Vitest, build produksi, dan 22 tes E2E desktop/mobile lulus pada branch integrasi. Cakupan rinci dan batas ada di [access-verification.md](access-verification.md).
+
 ## Autentikasi browser nyata lokal, 4 Oktober 2026
 
 `npm.cmd run test:auth` lulus 8 skenario dengan akun seed dan layanan Auth/Data API Supabase nyata: tanpa sesi, password salah/benar tiga peran, logout, nonaktif/organisasi lain, pergantian akun dan Back, refresh serta penolakan sesi yang `not_after`-nya diubah khusus untuk tes. Cookie expiry dibersihkan; response internal `no-store`. Metode dan batas: [auth-verification.md](auth-verification.md).

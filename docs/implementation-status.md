@@ -1,5 +1,14 @@
 # Status implementasi
 
+## Konsistensi katalog demo, 10 Oktober 2026
+
+- Identitas aktif Nusa Property, kode `NUSA-001`, alur Dimas BSD/Rp2 miliar, naskah demo, dokumen bisnis/roadmap, dan 15 fixture evaluasi AI diselaraskan dengan katalog serta seed yang sudah tersedia. Build produksi dan 22 tes E2E desktop/mobile lulus pada branch integrasi. Issue #10 tetap terbuka sampai perubahan digabungkan; T-002 keseluruhan tetap terbuka untuk fixture kegagalan provider dan tahap evaluasi AI nyata T-039.
+
+## Matriks akses lokal, 10 Oktober 2026
+
+- T-013 / issue #9: `test:access` lulus pada Supabase uji terisolasi dengan lima sesi Auth nyata dan anon. Fixture sementara kini mencakup kanal, pengaturan situs, aset publik/privat, FAQ, percakapan, pesan, survei, tugas, audit, dan metrik di dua organisasi. Pemeriksaan meliputi batas baca peran/tenant, RPC, mutasi langsung yang tertutup, serta penolakan unduh objek nyata dari bucket privat. Objek, baris, dan akun sementara dibersihkan.
+- `test:db` berseed, typecheck, lint, dan 54 tes lokal lulus. Verifikasi URL preview HTTPS T-012 masih menunggu #7, sehingga checkbox T-013 tetap terbuka sesuai dependensinya. Pengelolaan aset aplikasi dan pencabutan cache tetap T-016.
+
 ## Sesi browser lokal, 4 Oktober 2026
 
 - T-012 / issue #8: 8 skenario `test:auth` lulus pada browser lokal dengan Supabase nyata, mencakup login salah/benar owner/Andi/Sari, logout, URL langsung, membership nonaktif/lintas organisasi, pergantian akun, refresh dan expiry sesi server.
