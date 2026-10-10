@@ -93,7 +93,7 @@ for (const account of demoAccounts.filter(account => account.org === organizatio
     await expect(page.locator(".summary-strip")).toContainText(account.role === "owner" ? "Owner" : "Sales");
     await expect(page.locator(".summary-strip")).toContainText(String(properties.filter(row => row.organization_id === organizationA).length));
     await expect(page.locator(".dashboard-priority-card").filter({ hasText: "Prospek baru" }).locator("strong")).toHaveText("0");
-    await expect(page.getByRole("navigation", { name: "Navigasi dashboard" }).getByRole("link")).toHaveCount(2);
+    await expect(page.getByRole("navigation", { name: "Navigasi dashboard" }).getByRole("link")).toHaveCount(3);
     const response = await page.goto("/app/properti");
     expect(response?.headers()["cache-control"]).toContain("no-store");
     await expect(page.locator(".lead-row")).toHaveCount(properties.filter(row => row.organization_id === organizationA).length);

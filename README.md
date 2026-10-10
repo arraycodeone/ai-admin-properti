@@ -4,7 +4,7 @@ Website katalog konsep dan ruang kerja owner/sales, dibangun dengan Next.js, Typ
 
 ## Status
 
-Katalog, login, pengelolaan listing oleh owner, dan ringkasan kerja tersedia pada branch `develop`. Sepuluh listing Nusa memakai spesifikasi sintetis dan gambar AI **sebagai konsep ilustratif**, bukan penawaran unit nyata. Situs tetap `noindex`. Foto listing nyata, FAQ editor, inbox, WhatsApp, AI, pekerjaan latar, dan alur sales masih dalam backlog. PR #26 untuk editor listing sudah tergabung ke `develop`; gerbang Auth HTTPS dan akses #7 → #8 → #9 belum dibuktikan.
+Katalog, login, pengelolaan listing oleh owner, dan ringkasan kerja tersedia. Editor FAQ owner berada pada branch lanjutan yang menunggu review. Sepuluh listing Nusa memakai spesifikasi sintetis dan gambar AI **sebagai konsep ilustratif**, bukan penawaran unit nyata. Situs tetap `noindex`. Foto listing nyata, inbox, WhatsApp, AI, pekerjaan latar, dan alur sales masih dalam backlog. PR #26 untuk editor listing sudah tergabung ke `develop`; gerbang Auth HTTPS dan akses #7 → #8 → #9 belum dibuktikan.
 
 ## Jalankan lokal
 
@@ -15,7 +15,7 @@ npm.cmd ci
 npm.cmd run dev
 ```
 
-Buka `http://localhost:3000`. Halaman tim ada di `/login` dan `/app`; katalog internal ada di `/app/properti`. Hanya owner yang dapat membuka `/app/properti/baru` dan `/app/properti/[id]/ubah`. Navigasi publik tidak menautkan halaman tim.
+Buka `http://localhost:3000`. Halaman tim ada di `/login` dan `/app`; katalog internal ada di `/app/properti`, FAQ di `/app/faq`. Hanya owner yang dapat mengubah listing dan FAQ. Navigasi publik tidak menautkan halaman tim.
 
 ## Pemeriksaan
 

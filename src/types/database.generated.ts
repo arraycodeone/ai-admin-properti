@@ -1560,6 +1560,17 @@ export type Database = {
         Args: { p_organization_id: string; p_property_id: string };
         Returns: Json;
       };
+      save_knowledge_entry: {
+        Args: {
+          p_answer: string;
+          p_entry_id: string;
+          p_is_active: boolean;
+          p_organization_id: string;
+          p_question: string;
+          p_visibility: string;
+        };
+        Returns: string;
+      };
       save_property: {
         Args: {
           p_data: Json;

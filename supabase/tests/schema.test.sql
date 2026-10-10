@@ -17,7 +17,7 @@ begin
       raise exception 'direct mutation: %', target;
     end if;
   end loop;
-  foreach target in array array['active_role(uuid)','can_read_lead(uuid,uuid)','check_message_reference()','touch_updated_at()','search_public_properties(uuid,text,bigint,smallint,text)','get_property_for_edit(uuid,uuid)','save_property(uuid,uuid,jsonb)'] loop
+  foreach target in array array['active_role(uuid)','can_read_lead(uuid,uuid)','check_message_reference()','touch_updated_at()','search_public_properties(uuid,text,bigint,smallint,text)','get_property_for_edit(uuid,uuid)','save_property(uuid,uuid,jsonb)','save_knowledge_entry(uuid,uuid,text,text,text,boolean)'] loop
     if has_function_privilege('anon','public.' || target,'EXECUTE') then
       raise exception 'anon function privilege: %', target;
     end if;
@@ -26,7 +26,8 @@ begin
     raise exception 'catalog RPC must be server-only';
   end if;
   if not has_function_privilege('authenticated','public.save_property(uuid,uuid,jsonb)','EXECUTE')
-    or not has_function_privilege('authenticated','public.get_property_for_edit(uuid,uuid)','EXECUTE') then
+    or not has_function_privilege('authenticated','public.get_property_for_edit(uuid,uuid)','EXECUTE')
+    or not has_function_privilege('authenticated','public.save_knowledge_entry(uuid,uuid,text,text,text,boolean)','EXECUTE') then
     raise exception 'owner RPC unavailable';
   end if;
   if not exists (select 1 from storage.buckets where id = 'property-media' and not public) then

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AgencyProfile } from "@/modules/site/agency-profile";
+import { getPublicFaqs } from "@/modules/knowledge/queries";
 import { getSite } from "@/modules/site/queries";
 
 export const metadata: Metadata = {
@@ -8,6 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const site = await getSite();
-  return <AgencyProfile phone={site.phone} />;
+  const [site, faqs] = await Promise.all([getSite(), getPublicFaqs()]);
+  return <AgencyProfile phone={site.phone} faqs={faqs} />;
 }

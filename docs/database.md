@@ -20,7 +20,7 @@ Setiap data bisnis memakai `organization_id`; foreign key gabungan menjaga rujuk
 - `save_property` memeriksa owner aktif melalui Auth, menyimpan listing dan detail privat dalam satu transaksi, lalu mencatat audit tanpa nilai kontak privat.
 - Detail kontak pemilik unit hanya untuk owner. Sales dan pengunjung memakai pembaca yang tidak mengeluarkan field itu.
 - Aset foto memakai bucket privat; route baca publik harus memeriksa status listing setiap kali, termasuk aturan cache. Editor aset T-016 belum ada.
-- FAQ aktif dan publik kelak menjadi sumber bagi website/AI. Editor FAQ dan query final T-017 belum selesai.
+- FAQ aktif dan publik dibaca melalui DTO terbatas untuk website/AI. Editor owner serta RPC audit T-017 tersedia pada target uji; akses HTTPS tetap perlu dibuktikan.
 
 ## Pesan dan pekerjaan
 

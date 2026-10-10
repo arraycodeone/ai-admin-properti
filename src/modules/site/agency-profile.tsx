@@ -4,8 +4,10 @@ import { Icon } from "@/components/ui/icon";
 import { WhatsappCta } from "@/components/public/whatsapp-cta";
 import { AreaCards } from "./area-cards";
 import { agencyApproach } from "./content";
+import type { z } from "zod";
+import type { publicFaqSchema } from "@/modules/knowledge/schemas";
 
-export function AgencyProfile({ phone }: { phone: string | null }) {
+export function AgencyProfile({ phone, faqs }: { phone: string | null; faqs: z.infer<typeof publicFaqSchema>[] }) {
   return (
     <main id="main">
       <section className="container about-hero" aria-labelledby="about-heading">
@@ -70,6 +72,25 @@ export function AgencyProfile({ phone }: { phone: string | null }) {
         </div>
         <AreaCards />
       </section>
+
+      {faqs.length > 0 && (
+        <section className="container section" aria-labelledby="faq-heading">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Pertanyaan umum</p>
+              <h2 id="faq-heading">Yang sering<br /><em>ditanyakan.</em></h2>
+            </div>
+          </div>
+          <div className="faq-list">
+            {faqs.map(faq => (
+              <article className="faq-card" key={faq.id}>
+                <h3>{faq.question}</h3>
+                <p>{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="about-closing section" aria-labelledby="next-step-heading">
         <div className="container about-closing-inner">
