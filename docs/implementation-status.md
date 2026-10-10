@@ -1,5 +1,11 @@
 # Status implementasi
 
+## Editor listing owner, 11 Oktober 2026
+
+- T-015 diimplementasikan pada branch fitur: owner dapat membuat draft, mengubah listing, menerbitkan/menarik/arsip, mengelola fasilitas dan kontak pemilik unit privat; sales tetap membaca katalog tanpa form edit. Satu RPC menjaga listing, detail privat dan audit dalam transaksi; harga rupiah dikirim/dibaca sebagai teks.
+- Migrasi T-015 diterapkan hanya pada Supabase uji terisolasi yang memiliki dua organisasi demo paused dan riwayat migrasi fondasi. Tipe database dihasilkan ulang. Suite database, akses Auth nyata, browser Auth lokal, build dan E2E preview lulus; [bukti rinci](test-results.md).
+- T-015 tetap terbuka dan PR tetap draft sampai #7 → #8 → #9 lulus pada URL preview HTTPS. Foto/upload T-016 dan FAQ T-017 belum diimplementasikan.
+
 ## Tinjauan fondasi, 11 Oktober 2026
 
 - PR #23 telah digabung ke `develop`; issue #10 untuk identitas/aset Nusa ditutup. T-002 lebih luas tetap terbuka untuk fixture kegagalan provider dan evaluasi AI pada T-039.

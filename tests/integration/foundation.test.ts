@@ -4,7 +4,7 @@ import { parseRupiah, formatRupiah } from "@/lib/money";
 import { jakartaDay } from "@/lib/time";
 import { whatsappLink } from "@/lib/whatsapp-link";
 import { searchProperties } from "@/modules/properties/service";
-import { filterSchema, propertySchema } from "@/modules/properties/schemas";
+import { filterSchema, propertySchema, propertyInputSchema } from "@/modules/properties/schemas";
 import { canReadLead, requireOwner } from "@/server/auth/permissions";
 import { organizationA, organizationB, properties, privateMarker } from "@/demo/properties";
 
@@ -34,6 +34,23 @@ describe("katalog publik", () => {
     expect(filterSchema.safeParse({ bedrooms: "1.5" }).success).toBe(false);
     expect(filterSchema.safeParse({ type: "other" }).success).toBe(false);
     expect(propertySchema.safeParse({ ...properties[0], price_rupiah: "650.000.000" }).success).toBe(false);
+  });
+  it("memvalidasi formulir owner tanpa mengubah rupiah menjadi Number", () => {
+    const input = {
+      ...properties[0], price_rupiah: "9007199254740993",
+      public_address: "", land_area_m2: "120.50", building_area_m2: "",
+      owner_name: "", owner_phone_e164: "+628123456789", exact_address: "", internal_notes: "",
+    };
+    const parsed = propertyInputSchema.parse(input);
+    expect(parsed.price_rupiah).toBe("9007199254740993");
+    expect(parsed.land_area_m2).toBe("120.50");
+    expect(parsed.building_area_m2).toBeNull();
+    for (const price of ["-1", "1.5", "9223372036854775808"]) {
+      expect(propertyInputSchema.safeParse({ ...input, price_rupiah: price }).success).toBe(false);
+    }
+    expect(propertyInputSchema.safeParse({ ...input, land_area_m2: "0.00" }).success).toBe(false);
+    expect(propertyInputSchema.safeParse({ ...input, amenities: Array(21).fill("A") }).success).toBe(false);
+    expect(propertyInputSchema.safeParse({ ...input, owner_phone_e164: "08123" }).success).toBe(false);
   });
 });
 

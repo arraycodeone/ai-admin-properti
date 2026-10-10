@@ -18,7 +18,7 @@ try {
       throw new Error("Database bukan fixture uji terisolasi.");
     }
   }
-  for (const file of schemaOnly ? ["schema.test.sql"] : ["access.test.sql", "integrity.test.sql"]) {
+  for (const file of schemaOnly ? ["schema.test.sql"] : ["access.test.sql", "integrity.test.sql", "listing.test.sql"]) {
     stage = file;
     await client.query(await readFile(new URL(`../supabase/tests/${file}`, import.meta.url), "utf8"));
     console.log(`PASS: ${file}`);

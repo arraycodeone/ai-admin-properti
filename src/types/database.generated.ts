@@ -973,6 +973,7 @@ export type Database = {
       };
       properties: {
         Row: {
+          amenities: string[];
           area: string;
           availability: string;
           bathrooms: number;
@@ -1000,6 +1001,7 @@ export type Database = {
         };
         ComputedFields: never;
         Insert: {
+          amenities?: string[];
           area: string;
           availability?: string;
           bathrooms: number;
@@ -1026,6 +1028,7 @@ export type Database = {
           updated_by_user_id?: string | null;
         };
         Update: {
+          amenities?: string[];
           area?: string;
           availability?: string;
           bathrooms?: number;
@@ -1553,6 +1556,18 @@ export type Database = {
         Args: { p_lead_id: string; p_organization_id: string };
         Returns: boolean;
       };
+      get_property_for_edit: {
+        Args: { p_organization_id: string; p_property_id: string };
+        Returns: Json;
+      };
+      save_property: {
+        Args: {
+          p_data: Json;
+          p_organization_id: string;
+          p_property_id: string;
+        };
+        Returns: string;
+      };
       search_public_properties: {
         Args: {
           p_bedrooms?: number;
@@ -1562,6 +1577,7 @@ export type Database = {
           p_type?: string;
         };
         Returns: {
+          amenities: string[];
           area: string;
           bathrooms: number;
           bedrooms: number;

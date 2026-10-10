@@ -33,6 +33,7 @@ const nusaProperties: PropertyRecord[] = listingAssets.map((listing, index) => {
     bathrooms,
     land_area_m2: land,
     building_area_m2: building,
+    amenities: [],
     availability: "active",
     publication_status: "published",
     published_at: "2026-10-01T02:00:00Z",

@@ -47,6 +47,7 @@ docs/archive/          Rancangan yang sudah digantikan
 - Detail: `getPublicProperty` membaca katalog yang sudah dibatasi lalu memilih slug. Listing draft, nonaktif, atau organisasi lain tidak menjadi hasil publik.
 - Profil: `modules/site/queries.ts` membaca profil sintetis atau `site_settings` dan kanal siap milik organisasi website.
 - Dashboard internal: halaman → query modul → `requireActor()` → `userClient()` → query dengan scope organisasi. Query ringkasan mengembalikan actor terverifikasi beserta jumlah listing.
+- Editor listing: route owner → Server Action modul properti → validasi formulir → `userClient().rpc("save_property")`. RPC memeriksa owner aktif dan organisasi lagi, lalu menyimpan listing, detail privat, dan audit atomik. Sales hanya memakai query katalog baca; detail privat hanya diambil untuk form owner.
 - Login/logout: form/sidebar → Server Actions `server/auth/session.ts`. `proxy.ts` membantu refresh sesi; izin tetap diverifikasi saat data dibaca.
 - Halaman `/tentang`: route membaca kanal melalui `getSite()`, lalu menyusun `AgencyProfile`. Konten pendekatan dan kawasan berada di modul site; kawasan dipakai bersama dengan landing.
 - Presentasi publik: `PublicExperience` mengatur modalitas fokus, reveal sekali per kunjungan, dan parallax foto melalui IntersectionObserver/Web Animations/rAF. Data tetap di server. Font berlisensi berada di `(public)/fonts` dan dilayani lokal.

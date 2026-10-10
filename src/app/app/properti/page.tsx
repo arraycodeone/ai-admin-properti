@@ -1,15 +1,18 @@
+import Link from "next/link";
 import { getInternalProperties } from "@/modules/properties/queries";
+import { requireActor } from "@/server/auth/actor-context";
 
 export default async function InternalProperties() {
-  const properties = await getInternalProperties();
+  const [properties, actor] = await Promise.all([getInternalProperties(), requireActor()]);
 
   return (
     <main id="main">
-      <div className="page-heading">
-        <h1>Properti</h1>
-        <p className="muted">
-          Katalog internal agensi. Pengelolaan listing menyusul setelah uji akses database.
-        </p>
+      <div className="dashboard-heading">
+        <div>
+          <h1>Properti</h1>
+          <p className="muted">Katalog internal agensi.</p>
+        </div>
+        {actor.role === "owner" && <Link className="button" href="/app/properti/baru">Tambah properti</Link>}
       </div>
       {properties.length ? (
         <div className="lead-list">
@@ -24,6 +27,7 @@ export default async function InternalProperties() {
               </div>
               <div>
                 <p>{property.availability} · {property.publication_status}</p>
+                {actor.role === "owner" && <Link href={`/app/properti/${property.id}/ubah`}>Ubah listing</Link>}
               </div>
             </article>
           ))}

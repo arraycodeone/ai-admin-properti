@@ -17,13 +17,17 @@ begin
       raise exception 'direct mutation: %', target;
     end if;
   end loop;
-  foreach target in array array['active_role(uuid)','can_read_lead(uuid,uuid)','check_message_reference()','touch_updated_at()','search_public_properties(uuid,text,bigint,smallint,text)'] loop
+  foreach target in array array['active_role(uuid)','can_read_lead(uuid,uuid)','check_message_reference()','touch_updated_at()','search_public_properties(uuid,text,bigint,smallint,text)','get_property_for_edit(uuid,uuid)','save_property(uuid,uuid,jsonb)'] loop
     if has_function_privilege('anon','public.' || target,'EXECUTE') then
       raise exception 'anon function privilege: %', target;
     end if;
   end loop;
   if has_function_privilege('authenticated','public.search_public_properties(uuid,text,bigint,smallint,text)','EXECUTE') then
     raise exception 'catalog RPC must be server-only';
+  end if;
+  if not has_function_privilege('authenticated','public.save_property(uuid,uuid,jsonb)','EXECUTE')
+    or not has_function_privilege('authenticated','public.get_property_for_edit(uuid,uuid)','EXECUTE') then
+    raise exception 'owner RPC unavailable';
   end if;
   if not exists (select 1 from storage.buckets where id = 'property-media' and not public) then
     raise exception 'private bucket missing';
@@ -98,7 +102,7 @@ begin
   select price_rupiah, to_jsonb(p) into amount, public_row from public.search_public_properties(org_a) p where id = property_a;
   if amount is distinct from '9007199254740993' then raise exception 'bigint serialization lost precision'; end if;
   if (select array_agg(k order by k) from jsonb_object_keys(public_row) k) is distinct from
-    array['area','bathrooms','bedrooms','building_area_m2','city','description','id','land_area_m2','price_rupiah','property_type','public_code','slug','title'] then
+    array['amenities','area','bathrooms','bedrooms','building_area_m2','city','description','id','land_area_m2','price_rupiah','property_type','public_code','slug','title'] then
     raise exception 'public DTO fields changed';
   end if;
   if exists (select 1 from public.search_public_properties(org_a,null,9007199254740992) where id = property_a) then

@@ -135,6 +135,7 @@ CTA aktif hanya jika kanal bertipe WhatsApp dan konfigurasinya siap. Nomor tujua
 | `price_rupiah` | `bigint`, nonnegatif. |
 | `bedrooms`, `bathrooms` | `smallint`, nonnegatif. |
 | `land_area_m2?`, `building_area_m2?` | `numeric(12,2)`, positif jika diisi. |
+| `amenities` | `text[]`, maksimal 20 fasilitas teks; default daftar kosong. |
 | `availability` | `text`: `active`, `paused`, `sold`. |
 | `publication_status` | `text`: `draft`, `published`, `archived`. |
 | `published_at?` | `timestamptz`; wajib untuk status published. |
@@ -142,6 +143,8 @@ CTA aktif hanya jika kanal bertipe WhatsApp dan konfigurasinya siap. Nomor tujua
 | `created_by_user_id?`, `updated_by_user_id?` | `uuid`; anggota organisasi, nullable untuk seed/operator. |
 
 Website dan tools AI pelanggan hanya mencari listing dengan `availability = active` dan `publication_status = published`. `paused`, `sold`, atau ditarik dari publikasi tidak ditawarkan sebagai listing tersedia. Riwayat survei/prospek tetap mengacu ke recordnya.
+
+T-015 menambah `save_property(organization_id, property_id?, data)` untuk owner aktif. RPC memvalidasi organisasi dari `auth.uid()`, menulis properti, detail privat opsional, dan audit dalam satu transaksi; grant mutasi tabel langsung tetap tertutup. `get_property_for_edit` memakai izin baca owner dan mengirim harga/luas sebagai teks agar presisi terjaga. `published_at` diisi pada publikasi pertama dan dipertahankan setelah listing ditarik; kode dan slug tidak dapat berubah setelah itu. Audit hanya menyimpan perubahan field publik yang penting, tanpa kontak pemilik unit.
 
 ### 5.5 `property_private_details`
 
